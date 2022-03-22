@@ -44,6 +44,8 @@ namespace OpenStack_GUI.Forms
             this.lblDomain = new MaterialSkin.Controls.MaterialLabel();
             this.lblPort = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblUsername
@@ -99,6 +101,7 @@ namespace OpenStack_GUI.Forms
             this.txtPassword.MouseState = MaterialSkin.MouseState.OUT;
             this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Password = true;
             this.txtPassword.Size = new System.Drawing.Size(470, 50);
             this.txtPassword.TabIndex = 3;
             this.txtPassword.Text = "";
@@ -122,6 +125,7 @@ namespace OpenStack_GUI.Forms
             this.btnLogin.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnLogin.UseAccentColor = false;
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // btnExit
             // 
@@ -141,6 +145,7 @@ namespace OpenStack_GUI.Forms
             this.btnExit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnExit.UseAccentColor = false;
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // cmbBoxProtocol
             // 
@@ -156,8 +161,8 @@ namespace OpenStack_GUI.Forms
             this.cmbBoxProtocol.IntegralHeight = false;
             this.cmbBoxProtocol.ItemHeight = 43;
             this.cmbBoxProtocol.Items.AddRange(new object[] {
-            "HTTP",
-            "HTTPS"});
+            "http",
+            "https"});
             this.cmbBoxProtocol.Location = new System.Drawing.Point(39, 265);
             this.cmbBoxProtocol.MaxDropDownItems = 4;
             this.cmbBoxProtocol.MouseState = MaterialSkin.MouseState.OUT;
@@ -223,6 +228,7 @@ namespace OpenStack_GUI.Forms
             this.txtPort.TabIndex = 10;
             this.txtPort.Text = "";
             this.txtPort.TrailingIcon = null;
+            this.txtPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPort_KeyPress);
             // 
             // lblProtocol
             // 
@@ -265,18 +271,29 @@ namespace OpenStack_GUI.Forms
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(107, 181);
+            this.materialLabel1.Location = new System.Drawing.Point(118, 190);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(243, 19);
             this.materialLabel1.TabIndex = 14;
             this.materialLabel1.Text = "Login to Your OpenStack Platform";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::OpenStack_GUI.Properties.Resources.OpenStackLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(172, 85);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(189, 87);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(550, 600);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.lblPort);
             this.Controls.Add(this.lblDomain);
@@ -298,6 +315,7 @@ namespace OpenStack_GUI.Forms
             this.Name = "LoginForm";
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -320,5 +338,6 @@ namespace OpenStack_GUI.Forms
         private MaterialSkin.Controls.MaterialLabel lblDomain;
         private MaterialSkin.Controls.MaterialLabel lblPort;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

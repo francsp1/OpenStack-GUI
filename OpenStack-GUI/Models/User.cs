@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OpenStack_GUI.Models
 {
-    class User
+    public class User
     {
         public string nome { get; set; }
         public string id { get; set; }
