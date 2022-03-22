@@ -28,12 +28,13 @@ namespace OpenStack_GUI.Forms
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            
+            Boolean aux = false;
             GlobalSessionDetails.Protocol = (string) cmbBoxProtocol.SelectedItem;
 
             string domain = (string)txtDomain.Text;
             if (String.IsNullOrEmpty(domain))
             {
+                aux = true;
                 MessageBox.Show("Please, enter a domain/IP", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
@@ -44,6 +45,7 @@ namespace OpenStack_GUI.Forms
             string port = (string)txtPort.Text;
             if (String.IsNullOrEmpty(port) || !int.TryParse(port, out int it) || !float.TryParse(port, out float ft))
             {
+                aux = true;
                 MessageBox.Show("Please, enter a valid Port", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
@@ -54,6 +56,7 @@ namespace OpenStack_GUI.Forms
             string username = (string)txtUsername.Text;
             if (String.IsNullOrEmpty(username))
             {
+                aux = true;
                 MessageBox.Show("Please, enter a username", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
@@ -64,6 +67,7 @@ namespace OpenStack_GUI.Forms
             string password = (string)txtPassword.Text;
             if (String.IsNullOrEmpty(password))
             {
+                aux = true;
                 MessageBox.Show("Please, enter a password", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
@@ -71,9 +75,19 @@ namespace OpenStack_GUI.Forms
                 GlobalSessionDetails.Password = password;
             }
 
+            if(aux == true)
+            {
+                return;
+            }
 
-            GlobalSessionDetails.GetUnscopedToken();
+            //GlobalSessionDetails.GetUnscopedToken();
 
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.ShowDialog();
+            this.Close();
+
+            return;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
