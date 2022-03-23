@@ -1,4 +1,5 @@
 ﻿using MaterialSkin.Controls;
+using OpenStack_GUI.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,11 @@ namespace OpenStack_GUI.Forms
             manager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
             manager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Blue300, MaterialSkin.Primary.Blue500, MaterialSkin.Primary.Blue500, MaterialSkin.Accent.LightBlue400, MaterialSkin.TextShade.WHITE);
 
+            string username = GlobalSessionDetails.Username;
+            if (username != null)
+            {
+                this.Text = username;
+            }
         }
     }
 }

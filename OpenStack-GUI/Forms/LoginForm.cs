@@ -80,12 +80,13 @@ namespace OpenStack_GUI.Forms
                 return;
             }
 
-            //GlobalSessionDetails.GetUnscopedToken();
-
-            MainForm mainForm = new MainForm();
-            this.Hide();
-            mainForm.ShowDialog();
-            this.Close();
+            if (GlobalSessionDetails.GetUnscopedToken())
+            {
+                MainForm mainForm = new MainForm();
+                this.Hide();
+                mainForm.ShowDialog();
+                this.Close();
+            }
 
             return;
         }

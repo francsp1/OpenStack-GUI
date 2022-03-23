@@ -35,7 +35,13 @@ namespace OpenStack_GUI.Forms
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.mainTabControlImageList = new System.Windows.Forms.ImageList(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
+            this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.mainTabControl.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.materialTabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTabControl
@@ -56,6 +62,8 @@ namespace OpenStack_GUI.Forms
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.materialTabControl1);
+            this.tabPage1.Controls.Add(this.materialTabSelector1);
             this.tabPage1.Location = new System.Drawing.Point(4, 39);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -85,6 +93,54 @@ namespace OpenStack_GUI.Forms
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // materialTabSelector1
+            // 
+            this.materialTabSelector1.BaseTabControl = this.materialTabControl1;
+            this.materialTabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
+            this.materialTabSelector1.Depth = 0;
+            this.materialTabSelector1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.materialTabSelector1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialTabSelector1.Location = new System.Drawing.Point(3, 3);
+            this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialTabSelector1.Name = "materialTabSelector1";
+            this.materialTabSelector1.Size = new System.Drawing.Size(1580, 48);
+            this.materialTabSelector1.TabIndex = 0;
+            this.materialTabSelector1.Text = "materialTabSelector1";
+            // 
+            // materialTabControl1
+            // 
+            this.materialTabControl1.Controls.Add(this.tabPage3);
+            this.materialTabControl1.Controls.Add(this.tabPage4);
+            this.materialTabControl1.Depth = 0;
+            this.materialTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialTabControl1.Location = new System.Drawing.Point(3, 51);
+            this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialTabControl1.Multiline = true;
+            this.materialTabControl1.Name = "materialTabControl1";
+            this.materialTabControl1.SelectedIndex = 0;
+            this.materialTabControl1.Size = new System.Drawing.Size(1580, 736);
+            this.materialTabControl1.TabIndex = 1;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.Color.White;
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1572, 707);
+            this.tabPage3.TabIndex = 0;
+            this.tabPage3.Text = "tabPage3";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.BackColor = System.Drawing.Color.White;
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1572, 707);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "tabPage4";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -95,8 +151,9 @@ namespace OpenStack_GUI.Forms
             this.DrawerTabControl = this.mainTabControl;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainForm";
             this.mainTabControl.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.materialTabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -108,5 +165,9 @@ namespace OpenStack_GUI.Forms
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ImageList mainTabControlImageList;
         private System.Windows.Forms.ImageList imageList1;
+        private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
     }
 }

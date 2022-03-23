@@ -22,7 +22,7 @@ namespace OpenStack_GUI.Models
 
         public static User User { get; set; }
 
-        public static void GetUnscopedToken()
+        public static bool GetUnscopedToken()
         {
             try
             {
@@ -67,9 +67,11 @@ namespace OpenStack_GUI.Models
                     }
                 }
 
+                return true;
             } catch (Exception excp)
             {
                 MessageBox.Show(excp.Message, "Something went wrong!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
     }
