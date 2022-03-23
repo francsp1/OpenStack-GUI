@@ -32,13 +32,14 @@ namespace OpenStack_GUI.Forms
             this.components = new System.ComponentModel.Container();
             this.mainTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.mainTabControlImageList = new System.Windows.Forms.ImageList(this.components);
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.mainTabControlImageList = new System.Windows.Forms.ImageList(this.components);
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.comboBoxProjects = new System.Windows.Forms.ComboBox();
             this.mainTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.materialTabControl1.SuspendLayout();
@@ -70,42 +71,6 @@ namespace OpenStack_GUI.Forms
             this.tabPage1.Size = new System.Drawing.Size(1586, 790);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tab 1";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.BackColor = System.Drawing.Color.White;
-            this.tabPage2.Location = new System.Drawing.Point(4, 39);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1586, 790);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tab 2";
-            // 
-            // mainTabControlImageList
-            // 
-            this.mainTabControlImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.mainTabControlImageList.ImageSize = new System.Drawing.Size(32, 32);
-            this.mainTabControlImageList.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // materialTabSelector1
-            // 
-            this.materialTabSelector1.BaseTabControl = this.materialTabControl1;
-            this.materialTabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
-            this.materialTabSelector1.Depth = 0;
-            this.materialTabSelector1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.materialTabSelector1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTabSelector1.Location = new System.Drawing.Point(3, 3);
-            this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialTabSelector1.Name = "materialTabSelector1";
-            this.materialTabSelector1.Size = new System.Drawing.Size(1580, 48);
-            this.materialTabSelector1.TabIndex = 0;
-            this.materialTabSelector1.Text = "materialTabSelector1";
             // 
             // materialTabControl1
             // 
@@ -141,11 +106,58 @@ namespace OpenStack_GUI.Forms
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "tabPage4";
             // 
+            // materialTabSelector1
+            // 
+            this.materialTabSelector1.BaseTabControl = this.materialTabControl1;
+            this.materialTabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
+            this.materialTabSelector1.Depth = 0;
+            this.materialTabSelector1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.materialTabSelector1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialTabSelector1.Location = new System.Drawing.Point(3, 3);
+            this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialTabSelector1.Name = "materialTabSelector1";
+            this.materialTabSelector1.Size = new System.Drawing.Size(1580, 48);
+            this.materialTabSelector1.TabIndex = 0;
+            this.materialTabSelector1.Text = "materialTabSelector1";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Location = new System.Drawing.Point(4, 39);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1586, 790);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tab 2";
+            // 
+            // mainTabControlImageList
+            // 
+            this.mainTabControlImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.mainTabControlImageList.ImageSize = new System.Drawing.Size(32, 32);
+            this.mainTabControlImageList.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // comboBoxProjects
+            // 
+            this.comboBoxProjects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxProjects.FormattingEnabled = true;
+            this.comboBoxProjects.Location = new System.Drawing.Point(309, 34);
+            this.comboBoxProjects.Name = "comboBoxProjects";
+            this.comboBoxProjects.Size = new System.Drawing.Size(255, 24);
+            this.comboBoxProjects.TabIndex = 1;
+            this.comboBoxProjects.SelectedIndexChanged += new System.EventHandler(this.comboBoxProjects_SelectedIndexChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1600, 900);
+            this.Controls.Add(this.comboBoxProjects);
             this.Controls.Add(this.mainTabControl);
             this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.mainTabControl;
@@ -169,5 +181,6 @@ namespace OpenStack_GUI.Forms
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
+        private System.Windows.Forms.ComboBox comboBoxProjects;
     }
 }

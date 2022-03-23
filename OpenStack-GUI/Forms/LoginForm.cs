@@ -22,9 +22,13 @@ namespace OpenStack_GUI.Forms
             manager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
             manager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Blue300, MaterialSkin.Primary.Blue500, MaterialSkin.Primary.Blue500, MaterialSkin.Accent.LightBlue400, MaterialSkin.TextShade.WHITE);
 
+            txtDomain.Text = "192.168.100.140";
+            txtPort.Text = "80";
+            txtUsername.Text = "demo";
+            txtPassword.Text = "secret";
+
         }
 
-        
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
