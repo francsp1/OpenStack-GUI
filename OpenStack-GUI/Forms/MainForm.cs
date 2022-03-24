@@ -20,6 +20,7 @@ namespace OpenStack_GUI.Forms
         public MainForm()
         {
             InitializeComponent();
+
             MaterialSkin.MaterialSkinManager manager = MaterialSkin.MaterialSkinManager.Instance;
             manager.AddFormToManage(this);
             manager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;

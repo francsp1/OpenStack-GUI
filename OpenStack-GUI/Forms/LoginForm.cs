@@ -33,10 +33,20 @@ namespace OpenStack_GUI.Forms
         private void btnLogin_Click(object sender, EventArgs e)
         {
             Boolean aux = false;
-            GlobalSessionDetails.Protocol = (string) cmbBoxProtocol.SelectedItem;
+
+            string protocol = (string) cmbBoxProtocol.SelectedItem;
+            if (String.IsNullOrWhiteSpace(protocol) || (protocol != "http" && protocol != "https") ) 
+            {
+                aux = true;
+                MessageBox.Show("Please, enter a valid Procotol (http or https)", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                GlobalSessionDetails.Protocol = protocol;
+            }
 
             string domain = (string)txtDomain.Text;
-            if (String.IsNullOrEmpty(domain))
+            if (String.IsNullOrWhiteSpace(domain))
             {
                 aux = true;
                 MessageBox.Show("Please, enter a domain/IP", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -47,7 +57,7 @@ namespace OpenStack_GUI.Forms
             }
 
             string port = (string)txtPort.Text;
-            if (String.IsNullOrEmpty(port) || !int.TryParse(port, out int it) || !float.TryParse(port, out float ft))
+            if (String.IsNullOrWhiteSpace(port) || !int.TryParse(port, out int it) || !float.TryParse(port, out float ft))
             {
                 aux = true;
                 MessageBox.Show("Please, enter a valid Port", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -58,7 +68,7 @@ namespace OpenStack_GUI.Forms
             }
 
             string username = (string)txtUsername.Text;
-            if (String.IsNullOrEmpty(username))
+            if (String.IsNullOrWhiteSpace(username))
             {
                 aux = true;
                 MessageBox.Show("Please, enter a username", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -69,7 +79,7 @@ namespace OpenStack_GUI.Forms
             }
 
             string password = (string)txtPassword.Text;
-            if (String.IsNullOrEmpty(password))
+            if (String.IsNullOrWhiteSpace(password))
             {
                 aux = true;
                 MessageBox.Show("Please, enter a password", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
