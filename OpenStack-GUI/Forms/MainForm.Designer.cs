@@ -150,7 +150,6 @@ namespace OpenStack_GUI.Forms
             this.comboBoxProjects.Name = "comboBoxProjects";
             this.comboBoxProjects.Size = new System.Drawing.Size(255, 24);
             this.comboBoxProjects.TabIndex = 1;
-            this.comboBoxProjects.SelectedIndexChanged += new System.EventHandler(this.comboBoxProjects_SelectedIndexChanged);
             // 
             // MainForm
             // 

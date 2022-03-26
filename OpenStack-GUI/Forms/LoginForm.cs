@@ -94,12 +94,11 @@ namespace OpenStack_GUI.Forms
                 return;
             }
 
-            if (GlobalSessionDetails.GetUnscopedToken())
+            if (GlobalSessionDetails.getUnscopedToken())
             {
-                MainForm mainForm = new MainForm();
                 this.Hide();
-                mainForm.ShowDialog();
-                this.Close();
+                MainForm mainForm = new MainForm();
+                this.Show();
             }
 
             return;
