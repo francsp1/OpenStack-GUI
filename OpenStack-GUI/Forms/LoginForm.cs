@@ -17,7 +17,8 @@ namespace OpenStack_GUI.Forms
         public LoginForm()
         {
             InitializeComponent();
-            materialSkinInitialize()();
+
+            materialSkinInitialize();
 
             txtDomain.Text = "192.168.100.140";
             txtPort.Text = "80";
@@ -26,13 +27,6 @@ namespace OpenStack_GUI.Forms
 
         }
 
-        private void materialSkinInitialize()()
-        {
-            MaterialSkin.MaterialSkinManager manager = MaterialSkin.MaterialSkinManager.Instance;
-            manager.AddFormToManage(this);
-            manager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
-            manager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Blue300, MaterialSkin.Primary.Blue500, MaterialSkin.Primary.Blue500, MaterialSkin.Accent.LightBlue400, MaterialSkin.TextShade.WHITE);
-        }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -121,5 +115,14 @@ namespace OpenStack_GUI.Forms
                     ch != Convert.ToChar(Keys.Delete))
                 e.Handled = true;
         }
+
+        private void materialSkinInitialize()
+        {
+            MaterialSkin.MaterialSkinManager manager = MaterialSkin.MaterialSkinManager.Instance;
+            manager.AddFormToManage(this);
+            manager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
+            manager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Blue300, MaterialSkin.Primary.Blue500, MaterialSkin.Primary.Blue500, MaterialSkin.Accent.LightBlue400, MaterialSkin.TextShade.WHITE);
+        }
+
     }
 }
