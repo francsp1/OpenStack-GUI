@@ -70,7 +70,7 @@ namespace OpenStack_GUI.Forms
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1586, 790);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tab 1";
+            this.tabPage1.Text = "Image Service (Glance)";
             // 
             // materialTabControl1
             // 
