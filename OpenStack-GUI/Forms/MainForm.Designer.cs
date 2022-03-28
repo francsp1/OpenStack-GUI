@@ -31,23 +31,32 @@ namespace OpenStack_GUI.Forms
         {
             this.components = new System.ComponentModel.Container();
             this.mainTabControl = new MaterialSkin.Controls.MaterialTabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ImageServiceTab = new System.Windows.Forms.TabPage();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.imagesTab = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.mainTabControlImageList = new System.Windows.Forms.ImageList(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.comboBoxProjects = new System.Windows.Forms.ComboBox();
+            this.imagesList = new MaterialSkin.Controls.MaterialListView();
+            this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnVisibility = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnProtected = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnDiskFormat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnChecked = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mainTabControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.ImageServiceTab.SuspendLayout();
             this.materialTabControl1.SuspendLayout();
+            this.imagesTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTabControl
             // 
-            this.mainTabControl.Controls.Add(this.tabPage1);
+            this.mainTabControl.Controls.Add(this.ImageServiceTab);
             this.mainTabControl.Controls.Add(this.tabPage2);
             this.mainTabControl.Depth = 0;
             this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -60,21 +69,21 @@ namespace OpenStack_GUI.Forms
             this.mainTabControl.Size = new System.Drawing.Size(1594, 833);
             this.mainTabControl.TabIndex = 0;
             // 
-            // tabPage1
+            // ImageServiceTab
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.White;
-            this.tabPage1.Controls.Add(this.materialTabControl1);
-            this.tabPage1.Controls.Add(this.materialTabSelector1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 39);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1586, 790);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Image Service (Glance)";
+            this.ImageServiceTab.BackColor = System.Drawing.Color.White;
+            this.ImageServiceTab.Controls.Add(this.materialTabControl1);
+            this.ImageServiceTab.Controls.Add(this.materialTabSelector1);
+            this.ImageServiceTab.Location = new System.Drawing.Point(4, 39);
+            this.ImageServiceTab.Name = "ImageServiceTab";
+            this.ImageServiceTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ImageServiceTab.Size = new System.Drawing.Size(1586, 790);
+            this.ImageServiceTab.TabIndex = 0;
+            this.ImageServiceTab.Text = "Image Service";
             // 
             // materialTabControl1
             // 
-            this.materialTabControl1.Controls.Add(this.tabPage3);
+            this.materialTabControl1.Controls.Add(this.imagesTab);
             this.materialTabControl1.Controls.Add(this.tabPage4);
             this.materialTabControl1.Depth = 0;
             this.materialTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -86,15 +95,16 @@ namespace OpenStack_GUI.Forms
             this.materialTabControl1.Size = new System.Drawing.Size(1580, 736);
             this.materialTabControl1.TabIndex = 1;
             // 
-            // tabPage3
+            // imagesTab
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.White;
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1572, 707);
-            this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "tabPage3";
+            this.imagesTab.BackColor = System.Drawing.Color.White;
+            this.imagesTab.Controls.Add(this.imagesList);
+            this.imagesTab.Location = new System.Drawing.Point(4, 25);
+            this.imagesTab.Name = "imagesTab";
+            this.imagesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.imagesTab.Size = new System.Drawing.Size(1572, 707);
+            this.imagesTab.TabIndex = 0;
+            this.imagesTab.Text = "Images";
             // 
             // tabPage4
             // 
@@ -151,6 +161,74 @@ namespace OpenStack_GUI.Forms
             this.comboBoxProjects.Size = new System.Drawing.Size(255, 24);
             this.comboBoxProjects.TabIndex = 1;
             // 
+            // imagesList
+            // 
+            this.imagesList.AutoSizeTable = false;
+            this.imagesList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.imagesList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.imagesList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnChecked,
+            this.columnName,
+            this.columnType,
+            this.columnVisibility,
+            this.columnProtected,
+            this.columnDiskFormat,
+            this.columnSize});
+            this.imagesList.Depth = 0;
+            this.imagesList.FullRowSelect = true;
+            this.imagesList.HideSelection = false;
+            this.imagesList.Location = new System.Drawing.Point(295, 158);
+            this.imagesList.MinimumSize = new System.Drawing.Size(200, 100);
+            this.imagesList.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.imagesList.MouseState = MaterialSkin.MouseState.OUT;
+            this.imagesList.Name = "imagesList";
+            this.imagesList.OwnerDraw = true;
+            this.imagesList.Size = new System.Drawing.Size(976, 286);
+            this.imagesList.TabIndex = 0;
+            this.imagesList.UseCompatibleStateImageBehavior = false;
+            this.imagesList.View = System.Windows.Forms.View.Details;
+            // 
+            // columnName
+            // 
+            this.columnName.DisplayIndex = 0;
+            this.columnName.Text = "Name";
+            this.columnName.Width = 250;
+            // 
+            // columnType
+            // 
+            this.columnType.DisplayIndex = 1;
+            this.columnType.Text = "Type";
+            this.columnType.Width = 100;
+            // 
+            // columnVisibility
+            // 
+            this.columnVisibility.DisplayIndex = 2;
+            this.columnVisibility.Text = "Visibility";
+            this.columnVisibility.Width = 100;
+            // 
+            // columnProtected
+            // 
+            this.columnProtected.DisplayIndex = 3;
+            this.columnProtected.Text = "Protected";
+            this.columnProtected.Width = 100;
+            // 
+            // columnDiskFormat
+            // 
+            this.columnDiskFormat.DisplayIndex = 4;
+            this.columnDiskFormat.Text = "Disk Format";
+            this.columnDiskFormat.Width = 120;
+            // 
+            // columnSize
+            // 
+            this.columnSize.DisplayIndex = 5;
+            this.columnSize.Text = "Size";
+            this.columnSize.Width = 100;
+            // 
+            // columnChecked
+            // 
+            this.columnChecked.DisplayIndex = 6;
+            this.columnChecked.Text = "";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -163,8 +241,9 @@ namespace OpenStack_GUI.Forms
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.mainTabControl.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.ImageServiceTab.ResumeLayout(false);
             this.materialTabControl1.ResumeLayout(false);
+            this.imagesTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -172,14 +251,22 @@ namespace OpenStack_GUI.Forms
         #endregion
 
         private MaterialSkin.Controls.MaterialTabControl mainTabControl;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage ImageServiceTab;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ImageList mainTabControlImageList;
         private System.Windows.Forms.ImageList imageList1;
         private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage imagesTab;
         private System.Windows.Forms.TabPage tabPage4;
         private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
         private System.Windows.Forms.ComboBox comboBoxProjects;
+        private MaterialSkin.Controls.MaterialListView imagesList;
+        private System.Windows.Forms.ColumnHeader columnName;
+        private System.Windows.Forms.ColumnHeader columnType;
+        private System.Windows.Forms.ColumnHeader columnVisibility;
+        private System.Windows.Forms.ColumnHeader columnProtected;
+        private System.Windows.Forms.ColumnHeader columnDiskFormat;
+        private System.Windows.Forms.ColumnHeader columnSize;
+        private System.Windows.Forms.ColumnHeader columnChecked;
     }
 }
