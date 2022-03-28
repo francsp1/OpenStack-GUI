@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -15,14 +16,13 @@ namespace OpenStack_GUI.Models
         public static string Port { get; set; } = null;
         public static string Username { get; set; } = null;
         public static string Password { get; set; } = null;
+        public static string UserId { get; set; } = null;
         public static string UnscopedToken { get; set; } = null;
         public static string ScopedToken { get; set; } = null;
 
         public static string ProjectId { get; set; } = null;
 
-        public static User User { get; set; }
-
-        public static bool getUnscopedToken()
+        public static bool getUnscopedToken() //Get unscoped token and user id
         {
             try
             {
@@ -54,6 +54,10 @@ namespace OpenStack_GUI.Models
 
                 //Send Post to KEYSTONE API (identity)
                 var responseString = myWebClient.UploadString(Protocol + "://" + Domain + ":" + Port + "/identity/v3/auth/tokens/", jsonToSend);
+
+                //Extract the user id from response body and store it
+                var jo = JObject.Parse(responseString);
+                UserId = jo["token"]["user"]["id"].ToString();
 
                 //Get the token from response headers
 
