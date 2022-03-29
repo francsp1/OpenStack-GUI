@@ -92,50 +92,13 @@ namespace OpenStack_GUI.Forms
                 var myObject = JObject.Parse(responseString);
                 JArray images = (JArray)myObject["images"];
 
-                imagesListView.Items.Clear();
+                imagesDataGridView.Rows.Clear();
+                imagesDataGridView.Refresh();
                 for (int i = 0; i < images.Count; i++)
                 {
                     var currentImage = images[i];
-                    
-                    /*
-                    Models.Image image = new Models.Image();
-                    
-                    image.Status = currentImage["status"].ToString();
-                    image.Name = currentImage["name"].ToString();
-                    //image.Tags = new List<object>();
-                    image.ContainerFormat = currentImage["container_format"].ToString();
-                    image.CreatedAt = new DateTimeOffset(DateTime.Parse(currentImage["created_at"].ToString()));
-                    image.DiskFormat = currentImage["disk_format"].ToString();
-                    image.UpdatedAt = new DateTimeOffset(DateTime.Parse(currentImage["updated_at"].ToString()));
-                    image.Visibility = currentImage["visibility"].ToString();
-                    image.Self = currentImage["self"].ToString();
-                    image.MinDisk = long.Parse(currentImage["min_disk"].ToString());
-                    image.Protected = bool.Parse(currentImage["protected"].ToString());
-                    image.Id = Guid.Parse(currentImage["id"].ToString());
-                    image.File = currentImage["file"].ToString();
-                    image.Checksum = currentImage["checksum"].ToString();
-                    image.OsHashAlgo = currentImage["os_hash_algo"].ToString();
-                    image.OsHashValue = currentImage["os_hash_value"].ToString();
-                    image.OsHidden = bool.Parse(currentImage["os_hidden"].ToString());
-                    image.Owner = currentImage["owner"].ToString();
-                    image.Size = long.Parse(currentImage["size"].ToString());
-                    image.MinRam = long.Parse(currentImage["min_ram"].ToString());
-                    image.Schema = currentImage["schema"].ToString();
-                    image.VirtualSize = currentImage["virtual_size"];
-                    image.Description = currentImage["description"] == null ? null : currentImage["description"].ToString();
-                    image.HwRngModel = currentImage["hw_rng_model"] == null ? null : currentImage["hw_rng_model"].ToString();
-                    */
+                    imagesDataGridView.Rows.Add(false, currentImage["id"].ToString(), currentImage["owner"].ToString(), currentImage["name"].ToString(), currentImage["status"].ToString(), currentImage["visibility"].ToString(), bool.Parse(currentImage["protected"].ToString()) ? "Yes" : "No", currentImage["disk_format"].ToString(), (((float)long.Parse(currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB");
 
-                    ListViewItem item = new ListViewItem("Por definir");
-                    item.SubItems.Add(currentImage["owner"].ToString());
-                    item.SubItems.Add(currentImage["name"].ToString());
-                    item.SubItems.Add(currentImage["status"].ToString());
-                    item.SubItems.Add(currentImage["visibility"].ToString());
-                    item.SubItems.Add(bool.Parse(currentImage["protected"].ToString()) ? "Yes": "No");
-                    item.SubItems.Add(currentImage["disk_format"].ToString());
-                    item.SubItems.Add(   (((float)long.Parse(currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB" );
-
-                    imagesListView.Items.Add(item);
                 }
             }
             catch (Exception excp)
@@ -201,3 +164,46 @@ namespace OpenStack_GUI.Forms
         }
     }
 }
+
+
+
+/*
+                    Models.Image image = new Models.Image();
+                    
+                    image.Status = currentImage["status"].ToString();
+                    image.Name = currentImage["name"].ToString();
+                    //image.Tags = new List<object>();
+                    image.ContainerFormat = currentImage["container_format"].ToString();
+                    image.CreatedAt = new DateTimeOffset(DateTime.Parse(currentImage["created_at"].ToString()));
+                    image.DiskFormat = currentImage["disk_format"].ToString();
+                    image.UpdatedAt = new DateTimeOffset(DateTime.Parse(currentImage["updated_at"].ToString()));
+                    image.Visibility = currentImage["visibility"].ToString();
+                    image.Self = currentImage["self"].ToString();
+                    image.MinDisk = long.Parse(currentImage["min_disk"].ToString());
+                    image.Protected = bool.Parse(currentImage["protected"].ToString());
+                    image.Id = Guid.Parse(currentImage["id"].ToString());
+                    image.File = currentImage["file"].ToString();
+                    image.Checksum = currentImage["checksum"].ToString();
+                    image.OsHashAlgo = currentImage["os_hash_algo"].ToString();
+                    image.OsHashValue = currentImage["os_hash_value"].ToString();
+                    image.OsHidden = bool.Parse(currentImage["os_hidden"].ToString());
+                    image.Owner = currentImage["owner"].ToString();
+                    image.Size = long.Parse(currentImage["size"].ToString());
+                    image.MinRam = long.Parse(currentImage["min_ram"].ToString());
+                    image.Schema = currentImage["schema"].ToString();
+                    image.VirtualSize = currentImage["virtual_size"];
+                    image.Description = currentImage["description"] == null ? null : currentImage["description"].ToString();
+                    image.HwRngModel = currentImage["hw_rng_model"] == null ? null : currentImage["hw_rng_model"].ToString();
+                   
+
+                    ListViewItem item = new ListViewItem("Por definir");
+                    item.SubItems.Add(currentImage["owner"].ToString());
+                    item.SubItems.Add(currentImage["name"].ToString());
+                    item.SubItems.Add(currentImage["status"].ToString());
+                    item.SubItems.Add(currentImage["visibility"].ToString());
+                    item.SubItems.Add(bool.Parse(currentImage["protected"].ToString()) ? "Yes": "No");
+                    item.SubItems.Add(currentImage["disk_format"].ToString());
+                    item.SubItems.Add(   (((float)long.Parse(currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB" );
+
+                    imagesListView.Items.Add(item);
+                    */
