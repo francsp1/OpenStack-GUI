@@ -27,23 +27,27 @@ namespace OpenStack_GUI.Forms
                 string username = GlobalSessionDetails.Username;
                 if (username != null)
                 {
-                    this.Text = username + ": "+ GlobalSessionDetails.UserId;
+                    this.Text = "User :" + username + " | " +"ID: "+ GlobalSessionDetails.UserId;
                 }
 
                 comboBoxProjects.SelectedIndex = 0;
 
                 GlobalSessionDetails.ProjectId = getSelectedProjectId();
 
-                comboBoxProjects.SelectedIndexChanged += new System.EventHandler(this.comboBoxProjects_SelectedIndexChanged);
+                if (GlobalSessionDetails.getScopedToken())
+                {
+                    comboBoxProjects.SelectedIndexChanged += new System.EventHandler(this.comboBoxProjects_SelectedIndexChanged);
 
-                fillMainTabControl();
+                    fillMainTabControl();
 
-                this.ShowDialog();
+                    this.ShowDialog();
+                }
+
             }
 
         }
 
-        private bool fillProjectsComboBox()  //Get the  project list and fill the project's combo box
+        private bool fillProjectsComboBox()  //Get the  project list of the selected project and fill the project's combo box
         {
             try
             {
@@ -83,7 +87,7 @@ namespace OpenStack_GUI.Forms
             {
                 WebClient myWebClient = new WebClient();
 
-                myWebClient.Headers.Add("x-auth-token", GlobalSessionDetails.UnscopedToken);
+                myWebClient.Headers.Add("x-auth-token", GlobalSessionDetails.ScopedToken);
 
                 string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + "/image/v2/images";
 
@@ -96,6 +100,7 @@ namespace OpenStack_GUI.Forms
                 imagesDataGridView.Refresh();
                 for (int i = 0; i < images.Count; i++)
                 {
+                    
                     var currentImage = images[i];
                     imagesDataGridView.Rows.Add(false, currentImage["id"].ToString(), currentImage["owner"].ToString(), currentImage["name"].ToString(), currentImage["status"].ToString(), currentImage["visibility"].ToString(), bool.Parse(currentImage["protected"].ToString()) ? "Yes" : "No", currentImage["disk_format"].ToString(), (((float)long.Parse(currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB");
 
@@ -150,15 +155,20 @@ namespace OpenStack_GUI.Forms
 
         private void comboBoxProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(GlobalSessionDetails.ProjectId == (GlobalSessionDetails.ProjectId = getSelectedProjectId()))
+            if(GlobalSessionDetails.ProjectId == (GlobalSessionDetails.ProjectId = getSelectedProjectId())) //if user selects the same project that was already selected
             {
                 //MessageBox.Show("Entrou!!\nAntigo: " + GlobalSessionDetails.ProjectId + "\nNovo:    " + getSelectedProjectId(), "Ola", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else
+            else //if user select other project
             {
-                MessageBox.Show("Fazer cenas", "Ola", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                fillMainTabControl();
+                //MessageBox.Show("Fazer cenas", "Ola", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                if (GlobalSessionDetails.getScopedToken()){ //if the token has been obtained with success
+                
+                    fillMainTabControl();
+                }
+                
             }
  
         }

@@ -98,7 +98,7 @@ namespace OpenStack_GUI.Models
                     if (myWebHeaderCollection.GetKey(i) == "X-Subject-Token")
                     {
                         GlobalSessionDetails.ScopedToken = myWebHeaderCollection.Get(i);
-                        MessageBox.Show("The Token was obtained with success!", "Token obtained", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("The Token was obtained with success!", "Token obtained", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
