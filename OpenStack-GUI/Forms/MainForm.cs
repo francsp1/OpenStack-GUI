@@ -27,7 +27,7 @@ namespace OpenStack_GUI.Forms
                 string username = GlobalSessionDetails.Username;
                 if (username != null)
                 {
-                    this.Text = "User :" + username + " | " +"ID: "+ GlobalSessionDetails.UserId;
+                    this.Text = "User: " + username + " | " + "ID: "+ GlobalSessionDetails.UserId;
                 }
 
                 comboBoxProjects.SelectedIndex = 0;
@@ -47,7 +47,7 @@ namespace OpenStack_GUI.Forms
 
         }
 
-        private bool fillProjectsComboBox()  //Get the  project list of the selected project and fill the project's combo box
+        private bool fillProjectsComboBox()  //Get the  project list of the user and fill the project's combo box
         {
             try
             {
@@ -144,14 +144,7 @@ namespace OpenStack_GUI.Forms
             }
         }
 
-        private void materialSkinInitialize()
-        {
-            MaterialSkin.MaterialSkinManager manager = MaterialSkin.MaterialSkinManager.Instance;
-            manager.AddFormToManage(this);
-            manager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
-            manager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Blue300, MaterialSkin.Primary.Blue500, MaterialSkin.Primary.Blue500, MaterialSkin.Accent.LightBlue400, MaterialSkin.TextShade.WHITE);
 
-        }
 
         private void comboBoxProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -172,6 +165,37 @@ namespace OpenStack_GUI.Forms
             }
  
         }
+
+        #region MaterialSkinFunctions
+        private void materialSkinInitialize()
+        {
+            MaterialSkin.MaterialSkinManager manager = MaterialSkin.MaterialSkinManager.Instance;
+            manager.AddFormToManage(this);
+            manager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
+            manager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Blue300, MaterialSkin.Primary.Blue500, MaterialSkin.Primary.Blue500, MaterialSkin.Accent.LightBlue400, MaterialSkin.TextShade.WHITE);
+
+        }
+        #endregion MaterialSkinFunctions
+
+        #region SecundaryEvents
+        private void txtMinimumDisk_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) &&
+                ch != Convert.ToChar(Keys.Back) &&
+                    ch != Convert.ToChar(Keys.Delete))
+                e.Handled = true;
+        }
+
+        private void txtMinimumRam_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) &&
+                ch != Convert.ToChar(Keys.Back) &&
+                    ch != Convert.ToChar(Keys.Delete))
+                e.Handled = true;
+        }
+        #endregion SecundaryEvents
     }
 }
 
