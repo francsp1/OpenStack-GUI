@@ -45,6 +45,7 @@ namespace OpenStack_GUI.Forms
 
             }
 
+
         }
 
         private bool fillProjectsComboBox()  //Get the  project list of the user and fill the project's combo box
@@ -77,6 +78,19 @@ namespace OpenStack_GUI.Forms
         private void fillMainTabControl()
         {
             fillmageServiceTab();
+            fillVolumeService();
+
+        }
+
+        private void fillVolumeService()
+        {
+            Volumes volumes = new Volumes();
+            volumes.TopLevel = false;
+            volumes.AutoScroll = true;
+            panelVolumes.Controls.Add(volumes);
+            volumes.Show();
+            volumes.Dock = DockStyle.Fill;
+            
 
         }
 
