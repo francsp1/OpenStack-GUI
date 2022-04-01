@@ -202,6 +202,11 @@ namespace OpenStack_GUI.Forms
             this.Close();
             
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
