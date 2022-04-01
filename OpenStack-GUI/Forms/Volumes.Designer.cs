@@ -55,10 +55,18 @@ namespace OpenStack_GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1139, 582);
+            this.ControlBox = false;
             this.Controls.Add(this.materialButton1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Volumes";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Volumes";
+            this.TransparencyKey = System.Drawing.Color.White;
             this.Load += new System.EventHandler(this.Volumes_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

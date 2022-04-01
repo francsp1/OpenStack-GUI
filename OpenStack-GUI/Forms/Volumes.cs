@@ -19,8 +19,7 @@ namespace OpenStack_GUI
 
         private void Volumes_Load(object sender, EventArgs e)
         {
-            this.ControlBox = false;
-            this.Text = String.Empty;
+           
         }
     }
 }
