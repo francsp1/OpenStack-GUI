@@ -1,5 +1,5 @@
 ﻿
-namespace OpenStack_GUI.Forms
+namespace OpenStack_GUI
 {
     partial class Instances
     {
@@ -29,20 +29,10 @@ namespace OpenStack_GUI.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // Instances
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.ControlBox = false;
-            this.MaximizeBox = false;
-            this.Name = "Instances";
             this.Text = "Instances";
-            this.ResumeLayout(false);
-
         }
 
         #endregion
