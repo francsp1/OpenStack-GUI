@@ -89,7 +89,7 @@ namespace OpenStack_GUI.Forms
 
                 myWebClient.Headers.Add("x-auth-token", GlobalSessionDetails.ScopedToken);
 
-                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + "/image/v2/images";
+                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port +  "/image/v2/images";
 
                 var responseString = myWebClient.DownloadString(url);
 
@@ -121,7 +121,7 @@ namespace OpenStack_GUI.Forms
                 var myWebClient = new WebClient();
                 myWebClient.Headers.Add("x-auth-token", GlobalSessionDetails.UnscopedToken);
 
-                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + "/identity/v3/auth/projects";
+                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/identity/v3/auth/projects";
 
                 var responseString = myWebClient.DownloadString(url);
 
@@ -196,6 +196,12 @@ namespace OpenStack_GUI.Forms
                 e.Handled = true;
         }
         #endregion SecundaryEvents
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            
+        }
     }
 }
 

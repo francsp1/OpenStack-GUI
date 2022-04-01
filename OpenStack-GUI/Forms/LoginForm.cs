@@ -20,10 +20,10 @@ namespace OpenStack_GUI.Forms
 
             materialSkinInitialize();
 
-            txtDomain.Text = "192.168.100.140";
-            txtPort.Text = "80";
-            txtUsername.Text = "demo";
-            txtPassword.Text = "secret";
+            //txtDomain.Text = "192.168.100.140";
+            //txtPort.Text = "80";
+            //txtUsername.Text = "demo";
+            //txtPassword.Text = "secret";
 
         }
 
@@ -95,6 +95,8 @@ namespace OpenStack_GUI.Forms
             if (GlobalSessionDetails.getUnscopedToken())
             {
                 this.Hide();
+                this.Controls.Clear();
+                this.InitializeComponent();
                 MainForm mainForm = new MainForm();
                 this.Show();
             }
