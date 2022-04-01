@@ -54,7 +54,7 @@ namespace OpenStack_GUI.Forms
                 var myWebClient = new WebClient();
                 myWebClient.Headers.Add("x-auth-token", GlobalSessionDetails.UnscopedToken);
 
-                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + "/identity/v3/auth/projects";
+                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/identity/v3/auth/projects";
 
                 var responseString = myWebClient.DownloadString(url);
 
