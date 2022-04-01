@@ -32,13 +32,13 @@ namespace OpenStack_GUI.Forms
             this.components = new System.ComponentModel.Container();
             this.mainTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.ImageServiceTab = new System.Windows.Forms.TabPage();
+            this.panelImageService = new System.Windows.Forms.Panel();
             this.volumesTab = new System.Windows.Forms.TabPage();
             this.panelVolumes = new System.Windows.Forms.Panel();
             this.mainTabControlImageList = new System.Windows.Forms.ImageList(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.comboBoxProjects = new System.Windows.Forms.ComboBox();
-            this.logout = new MaterialSkin.Controls.MaterialButton();
-            this.panelImageService = new System.Windows.Forms.Panel();
+            this.btnLogout = new MaterialSkin.Controls.MaterialButton();
             this.mainTabControl.SuspendLayout();
             this.ImageServiceTab.SuspendLayout();
             this.volumesTab.SuspendLayout();
@@ -71,6 +71,15 @@ namespace OpenStack_GUI.Forms
             this.ImageServiceTab.Size = new System.Drawing.Size(1542, 775);
             this.ImageServiceTab.TabIndex = 0;
             this.ImageServiceTab.Text = "Image Service";
+            // 
+            // panelImageService
+            // 
+            this.panelImageService.BackColor = System.Drawing.Color.White;
+            this.panelImageService.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelImageService.Location = new System.Drawing.Point(3, 2);
+            this.panelImageService.Name = "panelImageService";
+            this.panelImageService.Size = new System.Drawing.Size(1536, 771);
+            this.panelImageService.TabIndex = 0;
             // 
             // volumesTab
             // 
@@ -115,41 +124,32 @@ namespace OpenStack_GUI.Forms
             this.comboBoxProjects.Size = new System.Drawing.Size(255, 24);
             this.comboBoxProjects.TabIndex = 1;
             // 
-            // logout
+            // btnLogout
             // 
-            this.logout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.logout.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.logout.Depth = 0;
-            this.logout.HighEmphasis = true;
-            this.logout.Icon = null;
-            this.logout.Location = new System.Drawing.Point(1372, 16);
-            this.logout.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
-            this.logout.MouseState = MaterialSkin.MouseState.HOVER;
-            this.logout.Name = "logout";
-            this.logout.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.logout.Size = new System.Drawing.Size(78, 36);
-            this.logout.TabIndex = 2;
-            this.logout.Text = "logout";
-            this.logout.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.logout.UseAccentColor = false;
-            this.logout.UseVisualStyleBackColor = true;
-            this.logout.Click += new System.EventHandler(this.materialButton1_Click);
-            // 
-            // panelImageService
-            // 
-            this.panelImageService.BackColor = System.Drawing.Color.White;
-            this.panelImageService.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelImageService.Location = new System.Drawing.Point(3, 2);
-            this.panelImageService.Name = "panelImageService";
-            this.panelImageService.Size = new System.Drawing.Size(1536, 771);
-            this.panelImageService.TabIndex = 0;
+            this.btnLogout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnLogout.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnLogout.Depth = 0;
+            this.btnLogout.HighEmphasis = true;
+            this.btnLogout.Icon = null;
+            this.btnLogout.Location = new System.Drawing.Point(1372, 16);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.btnLogout.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnLogout.Size = new System.Drawing.Size(78, 36);
+            this.btnLogout.TabIndex = 2;
+            this.btnLogout.Text = "logout";
+            this.btnLogout.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnLogout.UseAccentColor = false;
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1556, 884);
-            this.Controls.Add(this.logout);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.comboBoxProjects);
             this.Controls.Add(this.mainTabControl);
             this.DrawerShowIconsWhenHidden = true;
@@ -174,7 +174,7 @@ namespace OpenStack_GUI.Forms
         private System.Windows.Forms.ImageList mainTabControlImageList;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ComboBox comboBoxProjects;
-        private MaterialSkin.Controls.MaterialButton logout;
+        private MaterialSkin.Controls.MaterialButton btnLogout;
         private System.Windows.Forms.Panel panelVolumes;
         private System.Windows.Forms.Panel panelImageService;
     }

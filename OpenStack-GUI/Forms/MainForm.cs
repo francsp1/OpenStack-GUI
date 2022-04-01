@@ -189,7 +189,7 @@ namespace OpenStack_GUI.Forms
         }
         #endregion SecundaryEvents
 
-        private void materialButton1_Click(object sender, EventArgs e)
+        private void btnLogOut_Click(object sender, EventArgs e)
         {
             this.Close();
             
