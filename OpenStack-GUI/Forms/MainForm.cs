@@ -78,54 +78,32 @@ namespace OpenStack_GUI.Forms
         private void fillMainTabControl()
         {
             fillmageServiceTab();
-            fillVolumeService();
+            fillVolumesTab();
 
         }
 
-        private void fillVolumeService()
+        private void fillVolumesTab()
         {
-            Volumes volumes = new Volumes();
-            volumes.TopLevel = false;
-            volumes.AutoScroll = true;
-            panelVolumes.Controls.Add(volumes);
-            volumes.Show();
-            volumes.Dock = DockStyle.Fill;
+            panelVolumes.Controls.Clear();
+            VolumesForm volumesForm = new VolumesForm();
+            volumesForm.TopLevel = false;
+            volumesForm.AutoScroll = true;
+            panelVolumes.Controls.Add(volumesForm);
+            volumesForm.Show();
+            volumesForm.Dock = DockStyle.Fill;
             
 
         }
 
         private void fillmageServiceTab()
         {
-            //////////Images tab
-            try
-            {
-                WebClient myWebClient = new WebClient();
-
-                myWebClient.Headers.Add("x-auth-token", GlobalSessionDetails.ScopedToken);
-
-                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port +  "/image/v2/images";
-
-                var responseString = myWebClient.DownloadString(url);
-
-                var myObject = JObject.Parse(responseString);
-                JArray images = (JArray)myObject["images"];
-
-                imagesDataGridView.Rows.Clear();
-                imagesDataGridView.Refresh();
-                for (int i = 0; i < images.Count; i++)
-                {
-                    
-                    var currentImage = images[i];
-                    imagesDataGridView.Rows.Add(false, currentImage["id"].ToString(), currentImage["owner"].ToString(), currentImage["name"].ToString(), currentImage["status"].ToString(), currentImage["visibility"].ToString(), bool.Parse(currentImage["protected"].ToString()) ? "Yes" : "No", currentImage["disk_format"].ToString(), (((float)long.Parse(currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB");
-
-                }
-            }
-            catch (Exception excp)
-            {
-                MessageBox.Show(excp.Message, "Could not get the Images", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            //////////
-
+            panelImageService.Controls.Clear();
+            ImagesForm imagesForm = new ImagesForm();
+            imagesForm.TopLevel = false;
+            imagesForm.AutoScroll = true;
+            panelImageService.Controls.Add(imagesForm);
+            imagesForm.Show();
+            imagesForm.Dock = DockStyle.Fill;
         }
 
         private string getSelectedProjectId() //Get the id of the project currently selected
@@ -217,10 +195,6 @@ namespace OpenStack_GUI.Forms
             
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
 

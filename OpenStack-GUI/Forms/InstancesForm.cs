@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace OpenStack_GUI.Forms
 {
-    public partial class Instances : Form
+    public partial class InstancesForm : Form
     {
-        public Instances()
+        public InstancesForm()
         {
             InitializeComponent();
         }

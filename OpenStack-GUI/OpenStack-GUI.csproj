@@ -53,11 +53,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\Instances.cs">
+    <Compile Include="Forms\ImagesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Instances.Designer.cs">
-      <DependentUpon>Instances.cs</DependentUpon>
+    <Compile Include="Forms\ImagesForm.Designer.cs">
+      <DependentUpon>ImagesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InstancesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InstancesForm.Designer.cs">
+      <DependentUpon>InstancesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
@@ -76,12 +82,18 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Forms\Volumes.cs">
+    <Compile Include="Forms\VolumesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Volumes.Designer.cs">
-      <DependentUpon>Volumes.cs</DependentUpon>
+    <Compile Include="Forms\VolumesForm.Designer.cs">
+      <DependentUpon>VolumesForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\ImagesForm.resx">
+      <DependentUpon>ImagesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InstancesForm.resx">
+      <DependentUpon>InstancesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,8 +110,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Forms\Volumes.resx">
-      <DependentUpon>Volumes.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\VolumesForm.resx">
+      <DependentUpon>VolumesForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

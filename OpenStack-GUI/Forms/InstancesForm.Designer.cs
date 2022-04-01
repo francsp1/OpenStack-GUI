@@ -1,7 +1,7 @@
 ﻿
 namespace OpenStack_GUI.Forms
 {
-    partial class Instances
+    partial class InstancesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,24 @@ namespace OpenStack_GUI.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Instances
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1519, 716);
+            this.ControlBox = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "Instances";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Instances";
+            this.TransparencyKey = System.Drawing.Color.White;
+            this.ResumeLayout(false);
+
         }
 
         #endregion
