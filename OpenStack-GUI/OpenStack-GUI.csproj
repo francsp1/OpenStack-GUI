@@ -82,9 +82,6 @@
     <Compile Include="Forms\Volumes.Designer.cs">
       <DependentUpon>Volumes.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\Instances.resx">
-      <DependentUpon>Instances.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>

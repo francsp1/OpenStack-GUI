@@ -1,5 +1,5 @@
 ﻿
-namespace OpenStack_GUI
+namespace OpenStack_GUI.Forms
 {
     partial class Instances
     {

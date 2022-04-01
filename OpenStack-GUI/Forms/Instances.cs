@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OpenStack_GUI
+namespace OpenStack_GUI.Forms
 {
     public partial class Instances : Form
     {
