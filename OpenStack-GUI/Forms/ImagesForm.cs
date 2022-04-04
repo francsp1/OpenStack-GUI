@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -19,7 +20,6 @@ namespace OpenStack_GUI.Forms
         {
             InitializeComponent();
 
-            
             //////////Images tab
             try
             {
@@ -50,6 +50,27 @@ namespace OpenStack_GUI.Forms
             }
             //////////
             
+        }
+
+        private void btnCreateImage_Click(object sender, EventArgs e)
+        {
+            string filePath = txtImageFile.Text;
+
+            if (!File.Exists(filePath) /*|| filePath.Length <= 0*/) //check if the path of the file is valid
+            {
+                MessageBox.Show("Path is not valid! Please check if this path exists or is not empty", "Path Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void btnImageBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog file = new OpenFileDialog();
+
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+                txtImageFile.Text = file.FileName;
+            }
         }
     }
 }

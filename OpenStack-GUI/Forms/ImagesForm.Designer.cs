@@ -59,6 +59,7 @@ namespace OpenStack_GUI.Forms
             this.txtImageDescription = new MaterialSkin.Controls.MaterialTextBox();
             this.txtImageName = new MaterialSkin.Controls.MaterialTextBox();
             this.lblImageName = new MaterialSkin.Controls.MaterialLabel();
+            this.btnCreateImage = new MaterialSkin.Controls.MaterialButton();
             this.imagesTabControl.SuspendLayout();
             this.imagesTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imagesDataGridView)).BeginInit();
@@ -208,6 +209,7 @@ namespace OpenStack_GUI.Forms
             // createImageTab
             // 
             this.createImageTab.BackColor = System.Drawing.Color.White;
+            this.createImageTab.Controls.Add(this.btnCreateImage);
             this.createImageTab.Controls.Add(this.switchImageProtected);
             this.createImageTab.Controls.Add(this.cmbImageBoxVisibility);
             this.createImageTab.Controls.Add(this.lblImageVisibility);
@@ -292,7 +294,7 @@ namespace OpenStack_GUI.Forms
             this.txtImageMinimumRam.AnimateReadOnly = false;
             this.txtImageMinimumRam.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtImageMinimumRam.Depth = 0;
-            this.txtImageMinimumRam.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtImageMinimumRam.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtImageMinimumRam.LeadingIcon = null;
             this.txtImageMinimumRam.Location = new System.Drawing.Point(604, 270);
             this.txtImageMinimumRam.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -310,7 +312,7 @@ namespace OpenStack_GUI.Forms
             this.txtImageMinimumDisk.AnimateReadOnly = false;
             this.txtImageMinimumDisk.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtImageMinimumDisk.Depth = 0;
-            this.txtImageMinimumDisk.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtImageMinimumDisk.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtImageMinimumDisk.LeadingIcon = null;
             this.txtImageMinimumDisk.Location = new System.Drawing.Point(336, 270);
             this.txtImageMinimumDisk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -412,13 +414,14 @@ namespace OpenStack_GUI.Forms
             this.btnImageBrowse.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnImageBrowse.UseAccentColor = false;
             this.btnImageBrowse.UseVisualStyleBackColor = true;
+            this.btnImageBrowse.Click += new System.EventHandler(this.btnImageBrowse_Click);
             // 
             // txtImageFile
             // 
             this.txtImageFile.AnimateReadOnly = false;
             this.txtImageFile.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtImageFile.Depth = 0;
-            this.txtImageFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtImageFile.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtImageFile.LeadingIcon = null;
             this.txtImageFile.Location = new System.Drawing.Point(47, 151);
             this.txtImageFile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -460,7 +463,7 @@ namespace OpenStack_GUI.Forms
             this.txtImageDescription.AnimateReadOnly = false;
             this.txtImageDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtImageDescription.Depth = 0;
-            this.txtImageDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtImageDescription.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtImageDescription.LeadingIcon = null;
             this.txtImageDescription.Location = new System.Drawing.Point(581, 34);
             this.txtImageDescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -468,7 +471,7 @@ namespace OpenStack_GUI.Forms
             this.txtImageDescription.MouseState = MaterialSkin.MouseState.OUT;
             this.txtImageDescription.Multiline = false;
             this.txtImageDescription.Name = "txtImageDescription";
-            this.txtImageDescription.Size = new System.Drawing.Size(747, 50);
+            this.txtImageDescription.Size = new System.Drawing.Size(617, 50);
             this.txtImageDescription.TabIndex = 3;
             this.txtImageDescription.Text = "";
             this.txtImageDescription.TrailingIcon = null;
@@ -478,7 +481,7 @@ namespace OpenStack_GUI.Forms
             this.txtImageName.AnimateReadOnly = false;
             this.txtImageName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtImageName.Depth = 0;
-            this.txtImageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtImageName.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtImageName.LeadingIcon = null;
             this.txtImageName.Location = new System.Drawing.Point(47, 34);
             this.txtImageName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -502,6 +505,26 @@ namespace OpenStack_GUI.Forms
             this.lblImageName.Size = new System.Drawing.Size(91, 19);
             this.lblImageName.TabIndex = 0;
             this.lblImageName.Text = "Image Name";
+            // 
+            // btnCreateImage
+            // 
+            this.btnCreateImage.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCreateImage.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnCreateImage.Depth = 0;
+            this.btnCreateImage.HighEmphasis = true;
+            this.btnCreateImage.Icon = null;
+            this.btnCreateImage.Location = new System.Drawing.Point(47, 488);
+            this.btnCreateImage.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnCreateImage.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCreateImage.Name = "btnCreateImage";
+            this.btnCreateImage.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnCreateImage.Size = new System.Drawing.Size(125, 36);
+            this.btnCreateImage.TabIndex = 17;
+            this.btnCreateImage.Text = "Create Image";
+            this.btnCreateImage.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnCreateImage.UseAccentColor = false;
+            this.btnCreateImage.UseVisualStyleBackColor = true;
+            this.btnCreateImage.Click += new System.EventHandler(this.btnCreateImage_Click);
             // 
             // ImagesForm
             // 
@@ -560,5 +583,6 @@ namespace OpenStack_GUI.Forms
         private MaterialSkin.Controls.MaterialTextBox txtImageDescription;
         private MaterialSkin.Controls.MaterialTextBox txtImageName;
         private MaterialSkin.Controls.MaterialLabel lblImageName;
+        private MaterialSkin.Controls.MaterialButton btnCreateImage;
     }
 }
