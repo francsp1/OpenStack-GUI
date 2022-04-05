@@ -43,6 +43,7 @@ namespace OpenStack_GUI.Forms
             this.collumnDiskFormat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.collumnSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createImageTab = new System.Windows.Forms.TabPage();
+            this.btnCreateImage = new MaterialSkin.Controls.MaterialButton();
             this.switchImageProtected = new MaterialSkin.Controls.MaterialSwitch();
             this.cmbImageBoxVisibility = new MaterialSkin.Controls.MaterialComboBox();
             this.lblImageVisibility = new MaterialSkin.Controls.MaterialLabel();
@@ -56,10 +57,9 @@ namespace OpenStack_GUI.Forms
             this.txtImageFile = new MaterialSkin.Controls.MaterialTextBox();
             this.lblImageFile = new MaterialSkin.Controls.MaterialLabel();
             this.lblImageDescription = new MaterialSkin.Controls.MaterialLabel();
-            this.txtImageDescription = new MaterialSkin.Controls.MaterialTextBox();
             this.txtImageName = new MaterialSkin.Controls.MaterialTextBox();
             this.lblImageName = new MaterialSkin.Controls.MaterialLabel();
-            this.btnCreateImage = new MaterialSkin.Controls.MaterialButton();
+            this.txtImageDescription = new MaterialSkin.Controls.MaterialTextBox();
             this.imagesTabControl.SuspendLayout();
             this.imagesTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imagesDataGridView)).BeginInit();
@@ -209,6 +209,7 @@ namespace OpenStack_GUI.Forms
             // createImageTab
             // 
             this.createImageTab.BackColor = System.Drawing.Color.White;
+            this.createImageTab.Controls.Add(this.txtImageDescription);
             this.createImageTab.Controls.Add(this.btnCreateImage);
             this.createImageTab.Controls.Add(this.switchImageProtected);
             this.createImageTab.Controls.Add(this.cmbImageBoxVisibility);
@@ -223,7 +224,6 @@ namespace OpenStack_GUI.Forms
             this.createImageTab.Controls.Add(this.txtImageFile);
             this.createImageTab.Controls.Add(this.lblImageFile);
             this.createImageTab.Controls.Add(this.lblImageDescription);
-            this.createImageTab.Controls.Add(this.txtImageDescription);
             this.createImageTab.Controls.Add(this.txtImageName);
             this.createImageTab.Controls.Add(this.lblImageName);
             this.createImageTab.Location = new System.Drawing.Point(4, 25);
@@ -234,11 +234,31 @@ namespace OpenStack_GUI.Forms
             this.createImageTab.TabIndex = 1;
             this.createImageTab.Text = "Create Image";
             // 
+            // btnCreateImage
+            // 
+            this.btnCreateImage.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCreateImage.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnCreateImage.Depth = 0;
+            this.btnCreateImage.HighEmphasis = true;
+            this.btnCreateImage.Icon = null;
+            this.btnCreateImage.Location = new System.Drawing.Point(47, 488);
+            this.btnCreateImage.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnCreateImage.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCreateImage.Name = "btnCreateImage";
+            this.btnCreateImage.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnCreateImage.Size = new System.Drawing.Size(125, 36);
+            this.btnCreateImage.TabIndex = 17;
+            this.btnCreateImage.Text = "Create Image";
+            this.btnCreateImage.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnCreateImage.UseAccentColor = false;
+            this.btnCreateImage.UseVisualStyleBackColor = true;
+            this.btnCreateImage.Click += new System.EventHandler(this.btnCreateImage_Click);
+            // 
             // switchImageProtected
             // 
             this.switchImageProtected.AutoSize = true;
             this.switchImageProtected.Depth = 0;
-            this.switchImageProtected.Location = new System.Drawing.Point(336, 398);
+            this.switchImageProtected.Location = new System.Drawing.Point(336, 487);
             this.switchImageProtected.Margin = new System.Windows.Forms.Padding(0);
             this.switchImageProtected.MouseLocation = new System.Drawing.Point(-1, -1);
             this.switchImageProtected.MouseState = MaterialSkin.MouseState.HOVER;
@@ -296,7 +316,7 @@ namespace OpenStack_GUI.Forms
             this.txtImageMinimumRam.Depth = 0;
             this.txtImageMinimumRam.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtImageMinimumRam.LeadingIcon = null;
-            this.txtImageMinimumRam.Location = new System.Drawing.Point(604, 270);
+            this.txtImageMinimumRam.Location = new System.Drawing.Point(336, 384);
             this.txtImageMinimumRam.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtImageMinimumRam.MaxLength = 50;
             this.txtImageMinimumRam.MouseState = MaterialSkin.MouseState.OUT;
@@ -304,8 +324,9 @@ namespace OpenStack_GUI.Forms
             this.txtImageMinimumRam.Name = "txtImageMinimumRam";
             this.txtImageMinimumRam.Size = new System.Drawing.Size(155, 50);
             this.txtImageMinimumRam.TabIndex = 13;
-            this.txtImageMinimumRam.Text = "";
+            this.txtImageMinimumRam.Text = "0";
             this.txtImageMinimumRam.TrailingIcon = null;
+            this.txtImageMinimumRam.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinimumRam_KeyPress);
             // 
             // txtImageMinimumDisk
             // 
@@ -322,15 +343,16 @@ namespace OpenStack_GUI.Forms
             this.txtImageMinimumDisk.Name = "txtImageMinimumDisk";
             this.txtImageMinimumDisk.Size = new System.Drawing.Size(155, 50);
             this.txtImageMinimumDisk.TabIndex = 12;
-            this.txtImageMinimumDisk.Text = "";
+            this.txtImageMinimumDisk.Text = "0";
             this.txtImageMinimumDisk.TrailingIcon = null;
+            this.txtImageMinimumDisk.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinimumDisk_KeyPress);
             // 
             // lblImageMinimumRam
             // 
             this.lblImageMinimumRam.AutoSize = true;
             this.lblImageMinimumRam.Depth = 0;
             this.lblImageMinimumRam.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblImageMinimumRam.Location = new System.Drawing.Point(601, 247);
+            this.lblImageMinimumRam.Location = new System.Drawing.Point(333, 363);
             this.lblImageMinimumRam.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblImageMinimumRam.Name = "lblImageMinimumRam";
             this.lblImageMinimumRam.Size = new System.Drawing.Size(146, 19);
@@ -403,7 +425,7 @@ namespace OpenStack_GUI.Forms
             this.btnImageBrowse.Depth = 0;
             this.btnImageBrowse.HighEmphasis = true;
             this.btnImageBrowse.Icon = null;
-            this.btnImageBrowse.Location = new System.Drawing.Point(939, 151);
+            this.btnImageBrowse.Location = new System.Drawing.Point(945, 39);
             this.btnImageBrowse.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnImageBrowse.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnImageBrowse.Name = "btnImageBrowse";
@@ -423,7 +445,7 @@ namespace OpenStack_GUI.Forms
             this.txtImageFile.Depth = 0;
             this.txtImageFile.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtImageFile.LeadingIcon = null;
-            this.txtImageFile.Location = new System.Drawing.Point(47, 151);
+            this.txtImageFile.Location = new System.Drawing.Point(47, 34);
             this.txtImageFile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtImageFile.MaxLength = 260;
             this.txtImageFile.MouseState = MaterialSkin.MouseState.OUT;
@@ -439,7 +461,7 @@ namespace OpenStack_GUI.Forms
             this.lblImageFile.AutoSize = true;
             this.lblImageFile.Depth = 0;
             this.lblImageFile.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblImageFile.Location = new System.Drawing.Point(44, 129);
+            this.lblImageFile.Location = new System.Drawing.Point(44, 14);
             this.lblImageFile.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblImageFile.Name = "lblImageFile";
             this.lblImageFile.Size = new System.Drawing.Size(138, 19);
@@ -451,30 +473,12 @@ namespace OpenStack_GUI.Forms
             this.lblImageDescription.AutoSize = true;
             this.lblImageDescription.Depth = 0;
             this.lblImageDescription.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblImageDescription.Location = new System.Drawing.Point(579, 14);
+            this.lblImageDescription.Location = new System.Drawing.Point(522, 129);
             this.lblImageDescription.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblImageDescription.Name = "lblImageDescription";
             this.lblImageDescription.Size = new System.Drawing.Size(129, 19);
             this.lblImageDescription.TabIndex = 4;
             this.lblImageDescription.Text = "Image Description";
-            // 
-            // txtImageDescription
-            // 
-            this.txtImageDescription.AnimateReadOnly = false;
-            this.txtImageDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtImageDescription.Depth = 0;
-            this.txtImageDescription.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtImageDescription.LeadingIcon = null;
-            this.txtImageDescription.Location = new System.Drawing.Point(581, 34);
-            this.txtImageDescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtImageDescription.MaxLength = 200;
-            this.txtImageDescription.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtImageDescription.Multiline = false;
-            this.txtImageDescription.Name = "txtImageDescription";
-            this.txtImageDescription.Size = new System.Drawing.Size(617, 50);
-            this.txtImageDescription.TabIndex = 3;
-            this.txtImageDescription.Text = "";
-            this.txtImageDescription.TrailingIcon = null;
             // 
             // txtImageName
             // 
@@ -483,7 +487,7 @@ namespace OpenStack_GUI.Forms
             this.txtImageName.Depth = 0;
             this.txtImageName.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtImageName.LeadingIcon = null;
-            this.txtImageName.Location = new System.Drawing.Point(47, 34);
+            this.txtImageName.Location = new System.Drawing.Point(47, 150);
             this.txtImageName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtImageName.MaxLength = 50;
             this.txtImageName.MouseState = MaterialSkin.MouseState.OUT;
@@ -499,32 +503,29 @@ namespace OpenStack_GUI.Forms
             this.lblImageName.AutoSize = true;
             this.lblImageName.Depth = 0;
             this.lblImageName.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblImageName.Location = new System.Drawing.Point(44, 14);
+            this.lblImageName.Location = new System.Drawing.Point(44, 129);
             this.lblImageName.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblImageName.Name = "lblImageName";
             this.lblImageName.Size = new System.Drawing.Size(91, 19);
             this.lblImageName.TabIndex = 0;
             this.lblImageName.Text = "Image Name";
             // 
-            // btnCreateImage
+            // txtImageDescription
             // 
-            this.btnCreateImage.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCreateImage.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnCreateImage.Depth = 0;
-            this.btnCreateImage.HighEmphasis = true;
-            this.btnCreateImage.Icon = null;
-            this.btnCreateImage.Location = new System.Drawing.Point(47, 488);
-            this.btnCreateImage.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnCreateImage.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnCreateImage.Name = "btnCreateImage";
-            this.btnCreateImage.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnCreateImage.Size = new System.Drawing.Size(125, 36);
-            this.btnCreateImage.TabIndex = 17;
-            this.btnCreateImage.Text = "Create Image";
-            this.btnCreateImage.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnCreateImage.UseAccentColor = false;
-            this.btnCreateImage.UseVisualStyleBackColor = true;
-            this.btnCreateImage.Click += new System.EventHandler(this.btnCreateImage_Click);
+            this.txtImageDescription.AnimateReadOnly = false;
+            this.txtImageDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtImageDescription.Depth = 0;
+            this.txtImageDescription.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtImageDescription.LeadingIcon = null;
+            this.txtImageDescription.Location = new System.Drawing.Point(525, 151);
+            this.txtImageDescription.MaxLength = 255;
+            this.txtImageDescription.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtImageDescription.Multiline = false;
+            this.txtImageDescription.Name = "txtImageDescription";
+            this.txtImageDescription.Size = new System.Drawing.Size(500, 50);
+            this.txtImageDescription.TabIndex = 18;
+            this.txtImageDescription.Text = "";
+            this.txtImageDescription.TrailingIcon = null;
             // 
             // ImagesForm
             // 
@@ -580,9 +581,9 @@ namespace OpenStack_GUI.Forms
         private MaterialSkin.Controls.MaterialTextBox txtImageFile;
         private MaterialSkin.Controls.MaterialLabel lblImageFile;
         private MaterialSkin.Controls.MaterialLabel lblImageDescription;
-        private MaterialSkin.Controls.MaterialTextBox txtImageDescription;
         private MaterialSkin.Controls.MaterialTextBox txtImageName;
         private MaterialSkin.Controls.MaterialLabel lblImageName;
         private MaterialSkin.Controls.MaterialButton btnCreateImage;
+        private MaterialSkin.Controls.MaterialTextBox txtImageDescription;
     }
 }
