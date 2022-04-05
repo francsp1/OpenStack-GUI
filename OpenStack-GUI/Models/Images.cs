@@ -102,4 +102,31 @@ namespace OpenStack_GUI.Models
             return this.Name.ToString();
         }
     }
+
+    public partial class CreateImageFields
+    {
+        [JsonProperty("disk_format")]  
+        public string DiskFormat { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("description")]
+        public string Desccription { get; set; }
+
+        [JsonProperty("protected")]
+        public bool Protected { get; set; }
+
+        [JsonProperty("visibility")]
+        public string Visibility { get; set; }
+
+        [JsonProperty("container_format")]
+        public string ContainerFormat { get; set; }
+
+        [JsonProperty("min_ram")]
+        public int MinimumRam { get; set; }
+
+        [JsonProperty("min_disk")]
+        public int MinimumDisk { get; set; }
+    }
 }
