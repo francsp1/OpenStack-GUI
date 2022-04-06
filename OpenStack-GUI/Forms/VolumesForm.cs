@@ -26,7 +26,7 @@ namespace OpenStack_GUI.Forms
                 myWebClient.Headers.Add("x-auth-token", GlobalSessionDetails.ScopedToken);
 
                 string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/volume/v3/" + GlobalSessionDetails.ProjectId + "/volumes/detail";
-                Console.WriteLine(url);
+                
                 var responseString = myWebClient.DownloadString(url);
 
                 var myObject = JObject.Parse(responseString);
@@ -34,11 +34,18 @@ namespace OpenStack_GUI.Forms
 
                 volumesGridView.Rows.Clear();
                 volumesGridView.Refresh();
+
                 for (int i = 0; i < volumes.Count; i++)
                 {
-
+                   
                     var currentVolume = volumes[i];
-                    volumesGridView.Rows.Add(false, currentVolume["name"].ToString(), currentVolume["description"].ToString(), currentVolume["size"].ToString() + " GiB", currentVolume["status"].ToString(), currentVolume["metadata"].ToString(), currentVolume["volume_type"].ToString(), currentVolume["availability_zone"].ToString(), bool.Parse(currentVolume["bootable"].ToString()) ? "Yes" : "No", bool.Parse(currentVolume["encrypted"].ToString()) ? "Yes" : "No");
+                   
+                    //var attach = currentVolume["attachments"][0];
+
+                    volumesGridView.Rows.Add(false, currentVolume["name"].ToString(), currentVolume["description"].ToString(), currentVolume["size"].ToString() + " GiB", 
+                        currentVolume["status"].ToString(), currentVolume["metadata"].ToString(), currentVolume["volume_type"].ToString(),
+                        currentVolume["availability_zone"].ToString(), bool.Parse(currentVolume["bootable"].ToString()) ? "Yes" : "No", 
+                        bool.Parse(currentVolume["encrypted"].ToString()) ? "Yes" : "No");
                 }
                 
             }

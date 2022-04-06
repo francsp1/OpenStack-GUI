@@ -44,9 +44,22 @@ namespace OpenStack_GUI.Forms
             this.columnAvailabilityZone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnBootable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnEncrypted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VolumeTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            this.sourceComboBox = new MaterialSkin.Controls.MaterialComboBox();
+            this.TypeComboBox = new MaterialSkin.Controls.MaterialComboBox();
+            this.sizeTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            this.availabilityComboBox = new MaterialSkin.Controls.MaterialComboBox();
+            this.DescriptionTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            this.lblVolumeName = new MaterialSkin.Controls.MaterialLabel();
+            this.DescriptionLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.sourceLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.typeLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.SizeLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.availabilityLabel = new MaterialSkin.Controls.MaterialLabel();
             this.volumesTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumesGridView)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // volumesTabSelector
@@ -118,6 +131,19 @@ namespace OpenStack_GUI.Forms
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.availabilityLabel);
+            this.tabPage2.Controls.Add(this.SizeLabel);
+            this.tabPage2.Controls.Add(this.typeLabel1);
+            this.tabPage2.Controls.Add(this.sourceLabel);
+            this.tabPage2.Controls.Add(this.DescriptionLabel);
+            this.tabPage2.Controls.Add(this.lblVolumeName);
+            this.tabPage2.Controls.Add(this.DescriptionTextBox);
+            this.tabPage2.Controls.Add(this.availabilityComboBox);
+            this.tabPage2.Controls.Add(this.sizeTextBox);
+            this.tabPage2.Controls.Add(this.TypeComboBox);
+            this.tabPage2.Controls.Add(this.sourceComboBox);
+            this.tabPage2.Controls.Add(this.VolumeTextBox);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
@@ -125,7 +151,6 @@ namespace OpenStack_GUI.Forms
             this.tabPage2.Size = new System.Drawing.Size(1131, 517);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Create Volumes";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // ID
             // 
@@ -180,6 +205,209 @@ namespace OpenStack_GUI.Forms
             this.columnEncrypted.HeaderText = "Encrypted";
             this.columnEncrypted.Name = "columnEncrypted";
             // 
+            // VolumeTextBox
+            // 
+            this.VolumeTextBox.AnimateReadOnly = false;
+            this.VolumeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.VolumeTextBox.Depth = 0;
+            this.VolumeTextBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.VolumeTextBox.LeadingIcon = null;
+            this.VolumeTextBox.Location = new System.Drawing.Point(8, 42);
+            this.VolumeTextBox.MaxLength = 50;
+            this.VolumeTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.VolumeTextBox.Multiline = false;
+            this.VolumeTextBox.Name = "VolumeTextBox";
+            this.VolumeTextBox.Size = new System.Drawing.Size(332, 50);
+            this.VolumeTextBox.TabIndex = 0;
+            this.VolumeTextBox.Text = "";
+            this.VolumeTextBox.TrailingIcon = null;
+            // 
+            // sourceComboBox
+            // 
+            this.sourceComboBox.AutoResize = false;
+            this.sourceComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.sourceComboBox.Depth = 0;
+            this.sourceComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.sourceComboBox.DropDownHeight = 174;
+            this.sourceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sourceComboBox.DropDownWidth = 121;
+            this.sourceComboBox.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.sourceComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.sourceComboBox.FormattingEnabled = true;
+            this.sourceComboBox.IntegralHeight = false;
+            this.sourceComboBox.ItemHeight = 43;
+            this.sourceComboBox.Items.AddRange(new object[] {
+            "No source, empty volume",
+            "Image",
+            "Volume"});
+            this.sourceComboBox.Location = new System.Drawing.Point(11, 167);
+            this.sourceComboBox.MaxDropDownItems = 4;
+            this.sourceComboBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.sourceComboBox.Name = "sourceComboBox";
+            this.sourceComboBox.Size = new System.Drawing.Size(329, 49);
+            this.sourceComboBox.StartIndex = 0;
+            this.sourceComboBox.TabIndex = 6;
+            // 
+            // TypeComboBox
+            // 
+            this.TypeComboBox.AutoResize = false;
+            this.TypeComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.TypeComboBox.Depth = 0;
+            this.TypeComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.TypeComboBox.DropDownHeight = 174;
+            this.TypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TypeComboBox.DropDownWidth = 121;
+            this.TypeComboBox.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.TypeComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TypeComboBox.FormattingEnabled = true;
+            this.TypeComboBox.IntegralHeight = false;
+            this.TypeComboBox.ItemHeight = 43;
+            this.TypeComboBox.Items.AddRange(new object[] {
+            "_DEFAULT_"});
+            this.TypeComboBox.Location = new System.Drawing.Point(459, 167);
+            this.TypeComboBox.MaxDropDownItems = 4;
+            this.TypeComboBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.TypeComboBox.Name = "TypeComboBox";
+            this.TypeComboBox.Size = new System.Drawing.Size(332, 49);
+            this.TypeComboBox.StartIndex = 0;
+            this.TypeComboBox.TabIndex = 8;
+            // 
+            // sizeTextBox
+            // 
+            this.sizeTextBox.AnimateReadOnly = false;
+            this.sizeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.sizeTextBox.Depth = 0;
+            this.sizeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.sizeTextBox.LeadingIcon = null;
+            this.sizeTextBox.Location = new System.Drawing.Point(11, 288);
+            this.sizeTextBox.MaxLength = 50;
+            this.sizeTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.sizeTextBox.Multiline = false;
+            this.sizeTextBox.Name = "sizeTextBox";
+            this.sizeTextBox.Size = new System.Drawing.Size(329, 50);
+            this.sizeTextBox.TabIndex = 10;
+            this.sizeTextBox.Text = "";
+            this.sizeTextBox.TrailingIcon = null;
+            // 
+            // availabilityComboBox
+            // 
+            this.availabilityComboBox.AutoResize = false;
+            this.availabilityComboBox.BackColor = System.Drawing.Color.White;
+            this.availabilityComboBox.Depth = 0;
+            this.availabilityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.availabilityComboBox.DropDownHeight = 174;
+            this.availabilityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.availabilityComboBox.DropDownWidth = 121;
+            this.availabilityComboBox.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.availabilityComboBox.ForeColor = System.Drawing.Color.Black;
+            this.availabilityComboBox.FormattingEnabled = true;
+            this.availabilityComboBox.IntegralHeight = false;
+            this.availabilityComboBox.ItemHeight = 43;
+            this.availabilityComboBox.Items.AddRange(new object[] {
+            "nova"});
+            this.availabilityComboBox.Location = new System.Drawing.Point(459, 289);
+            this.availabilityComboBox.MaxDropDownItems = 4;
+            this.availabilityComboBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.availabilityComboBox.Name = "availabilityComboBox";
+            this.availabilityComboBox.Size = new System.Drawing.Size(332, 49);
+            this.availabilityComboBox.StartIndex = 0;
+            this.availabilityComboBox.TabIndex = 12;
+            // 
+            // DescriptionTextBox
+            // 
+            this.DescriptionTextBox.AnimateReadOnly = false;
+            this.DescriptionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DescriptionTextBox.Depth = 0;
+            this.DescriptionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.DescriptionTextBox.LeadingIcon = null;
+            this.DescriptionTextBox.Location = new System.Drawing.Point(459, 42);
+            this.DescriptionTextBox.MaxLength = 50;
+            this.DescriptionTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.DescriptionTextBox.Multiline = false;
+            this.DescriptionTextBox.Name = "DescriptionTextBox";
+            this.DescriptionTextBox.Size = new System.Drawing.Size(332, 50);
+            this.DescriptionTextBox.TabIndex = 13;
+            this.DescriptionTextBox.Text = "";
+            this.DescriptionTextBox.TrailingIcon = null;
+            // 
+            // lblVolumeName
+            // 
+            this.lblVolumeName.AutoSize = true;
+            this.lblVolumeName.Depth = 0;
+            this.lblVolumeName.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblVolumeName.Location = new System.Drawing.Point(8, 20);
+            this.lblVolumeName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblVolumeName.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblVolumeName.Name = "lblVolumeName";
+            this.lblVolumeName.Size = new System.Drawing.Size(101, 19);
+            this.lblVolumeName.TabIndex = 14;
+            this.lblVolumeName.Text = "Volume Name";
+            // 
+            // DescriptionLabel
+            // 
+            this.DescriptionLabel.AutoSize = true;
+            this.DescriptionLabel.Depth = 0;
+            this.DescriptionLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.DescriptionLabel.Location = new System.Drawing.Point(456, 20);
+            this.DescriptionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.DescriptionLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.DescriptionLabel.Name = "DescriptionLabel";
+            this.DescriptionLabel.Size = new System.Drawing.Size(81, 19);
+            this.DescriptionLabel.TabIndex = 15;
+            this.DescriptionLabel.Text = "Description";
+            // 
+            // sourceLabel
+            // 
+            this.sourceLabel.AutoSize = true;
+            this.sourceLabel.Depth = 0;
+            this.sourceLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.sourceLabel.Location = new System.Drawing.Point(8, 136);
+            this.sourceLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.sourceLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.sourceLabel.Name = "sourceLabel";
+            this.sourceLabel.Size = new System.Drawing.Size(108, 19);
+            this.sourceLabel.TabIndex = 16;
+            this.sourceLabel.Text = "Volume Source";
+            // 
+            // typeLabel1
+            // 
+            this.typeLabel1.AutoSize = true;
+            this.typeLabel1.Depth = 0;
+            this.typeLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.typeLabel1.Location = new System.Drawing.Point(456, 136);
+            this.typeLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.typeLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.typeLabel1.Name = "typeLabel1";
+            this.typeLabel1.Size = new System.Drawing.Size(36, 19);
+            this.typeLabel1.TabIndex = 17;
+            this.typeLabel1.Text = "Type";
+            // 
+            // SizeLabel
+            // 
+            this.SizeLabel.AutoSize = true;
+            this.SizeLabel.Depth = 0;
+            this.SizeLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.SizeLabel.Location = new System.Drawing.Point(8, 266);
+            this.SizeLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.SizeLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.SizeLabel.Name = "SizeLabel";
+            this.SizeLabel.Size = new System.Drawing.Size(31, 19);
+            this.SizeLabel.TabIndex = 18;
+            this.SizeLabel.Text = "Size";
+            // 
+            // availabilityLabel
+            // 
+            this.availabilityLabel.AutoSize = true;
+            this.availabilityLabel.Depth = 0;
+            this.availabilityLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.availabilityLabel.Location = new System.Drawing.Point(461, 266);
+            this.availabilityLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.availabilityLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.availabilityLabel.Name = "availabilityLabel";
+            this.availabilityLabel.Size = new System.Drawing.Size(119, 19);
+            this.availabilityLabel.TabIndex = 19;
+            this.availabilityLabel.Text = "Availability Zone";
+            // 
             // VolumesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,6 +429,8 @@ namespace OpenStack_GUI.Forms
             this.volumesTabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.volumesGridView)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -222,5 +452,17 @@ namespace OpenStack_GUI.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn columnAvailabilityZone;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnBootable;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnEncrypted;
+        private MaterialSkin.Controls.MaterialTextBox VolumeTextBox;
+        private MaterialSkin.Controls.MaterialComboBox sourceComboBox;
+        private MaterialSkin.Controls.MaterialComboBox TypeComboBox;
+        private MaterialSkin.Controls.MaterialComboBox availabilityComboBox;
+        private MaterialSkin.Controls.MaterialTextBox sizeTextBox;
+        private MaterialSkin.Controls.MaterialTextBox DescriptionTextBox;
+        private MaterialSkin.Controls.MaterialLabel DescriptionLabel;
+        private MaterialSkin.Controls.MaterialLabel lblVolumeName;
+        private MaterialSkin.Controls.MaterialLabel sourceLabel;
+        private MaterialSkin.Controls.MaterialLabel typeLabel1;
+        private MaterialSkin.Controls.MaterialLabel SizeLabel;
+        private MaterialSkin.Controls.MaterialLabel availabilityLabel;
     }
 }
