@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -113,29 +114,52 @@ namespace OpenStack_GUI.Forms
                 ContainerFormat = "bare",
             };
 
-            try
+            using (var client = new HttpClient())
             {
+                var endpoint = new Uri(GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images");
+
                 string requestJson = JsonConvert.SerializeObject(image);
+                var payload = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
-                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images";
+                client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
 
+                client.DefaultRequestHeaders.ExpectContinue = false;
+                var result = client.PostAsync(endpoint, payload).Result;
+                var json = result.Content.ReadAsStringAsync().Result;
+
+                if (!result.IsSuccessStatusCode)
+                {
+                    MessageBox.Show(result.ReasonPhrase, "Could not create the Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var jo = JObject.Parse(json);
+                var imageId = jo["id"].ToString();
+
+                var url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images/" + imageId + "/file";
                 
-                WebClient myWebClient = new WebClient();
 
-                myWebClient.Headers.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
-                myWebClient.Headers.Add("Content-Type", "application/json");
-                //myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+                try
+                {
+                    var myWebClient = new WebClient();
 
-                var responseString = myWebClient.UploadString(url, requestJson);
+                    myWebClient.Headers.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+                    myWebClient.Headers.Add("Content-Type", "application/octet-stream");
 
-                MessageBox.Show("Image created with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    myWebClient.UploadFile(url, "PUT", filePath);
+
+                    MessageBox.Show("Image created with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception excp)
+                {
+                    MessageBox.Show(excp.Message, "Could not create upload the image file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
             }
-            catch (Exception excp)
-            {
-                MessageBox.Show(excp.Message, "Could not create the Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+
+
         }
 
         private void btnImageBrowse_Click(object sender, EventArgs e)
