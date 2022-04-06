@@ -33,15 +33,6 @@ namespace OpenStack_GUI.Forms
             this.imagesTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.imagesTab = new System.Windows.Forms.TabPage();
             this.imagesDataGridView = new System.Windows.Forms.DataGridView();
-            this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.collumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnProjectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnVisibility = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnProtected = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnDiskFormat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createImageTab = new System.Windows.Forms.TabPage();
             this.txtImageDescription = new MaterialSkin.Controls.MaterialTextBox();
             this.btnCreateImage = new MaterialSkin.Controls.MaterialButton();
@@ -60,6 +51,16 @@ namespace OpenStack_GUI.Forms
             this.lblImageDescription = new MaterialSkin.Controls.MaterialLabel();
             this.txtImageName = new MaterialSkin.Controls.MaterialTextBox();
             this.lblImageName = new MaterialSkin.Controls.MaterialLabel();
+            this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.collumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnProjectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnVisibility = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnProtected = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnDiskFormat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnContainerFormt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imagesTabControl.SuspendLayout();
             this.imagesTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imagesDataGridView)).BeginInit();
@@ -123,6 +124,7 @@ namespace OpenStack_GUI.Forms
             this.collumnVisibility,
             this.collumnProtected,
             this.collumnDiskFormat,
+            this.collumnContainerFormt,
             this.collumnSize});
             this.imagesDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imagesDataGridView.GridColor = System.Drawing.Color.White;
@@ -133,78 +135,6 @@ namespace OpenStack_GUI.Forms
             this.imagesDataGridView.RowTemplate.Height = 24;
             this.imagesDataGridView.Size = new System.Drawing.Size(1505, 635);
             this.imagesDataGridView.TabIndex = 1;
-            // 
-            // check
-            // 
-            this.check.HeaderText = "";
-            this.check.MinimumWidth = 6;
-            this.check.Name = "check";
-            this.check.ReadOnly = true;
-            this.check.Width = 40;
-            // 
-            // collumnID
-            // 
-            this.collumnID.HeaderText = "ID";
-            this.collumnID.MinimumWidth = 6;
-            this.collumnID.Name = "collumnID";
-            this.collumnID.Visible = false;
-            this.collumnID.Width = 6;
-            // 
-            // collumnProjectId
-            // 
-            this.collumnProjectId.HeaderText = "Project ID";
-            this.collumnProjectId.MinimumWidth = 6;
-            this.collumnProjectId.Name = "collumnProjectId";
-            this.collumnProjectId.ReadOnly = true;
-            this.collumnProjectId.Width = 250;
-            // 
-            // collumnName
-            // 
-            this.collumnName.HeaderText = "Name";
-            this.collumnName.MinimumWidth = 6;
-            this.collumnName.Name = "collumnName";
-            this.collumnName.ReadOnly = true;
-            this.collumnName.Width = 200;
-            // 
-            // collumnStatus
-            // 
-            this.collumnStatus.HeaderText = "Status";
-            this.collumnStatus.MinimumWidth = 6;
-            this.collumnStatus.Name = "collumnStatus";
-            this.collumnStatus.ReadOnly = true;
-            this.collumnStatus.Width = 110;
-            // 
-            // collumnVisibility
-            // 
-            this.collumnVisibility.HeaderText = "Visibility";
-            this.collumnVisibility.MinimumWidth = 6;
-            this.collumnVisibility.Name = "collumnVisibility";
-            this.collumnVisibility.ReadOnly = true;
-            this.collumnVisibility.Width = 110;
-            // 
-            // collumnProtected
-            // 
-            this.collumnProtected.HeaderText = "Protected";
-            this.collumnProtected.MinimumWidth = 6;
-            this.collumnProtected.Name = "collumnProtected";
-            this.collumnProtected.ReadOnly = true;
-            this.collumnProtected.Width = 110;
-            // 
-            // collumnDiskFormat
-            // 
-            this.collumnDiskFormat.HeaderText = "Disk Format";
-            this.collumnDiskFormat.MinimumWidth = 6;
-            this.collumnDiskFormat.Name = "collumnDiskFormat";
-            this.collumnDiskFormat.ReadOnly = true;
-            this.collumnDiskFormat.Width = 110;
-            // 
-            // collumnSize
-            // 
-            this.collumnSize.HeaderText = "Size";
-            this.collumnSize.MinimumWidth = 6;
-            this.collumnSize.Name = "collumnSize";
-            this.collumnSize.ReadOnly = true;
-            this.collumnSize.Width = 110;
             // 
             // createImageTab
             // 
@@ -527,6 +457,86 @@ namespace OpenStack_GUI.Forms
             this.lblImageName.TabIndex = 0;
             this.lblImageName.Text = "Image Name";
             // 
+            // check
+            // 
+            this.check.HeaderText = "";
+            this.check.MinimumWidth = 6;
+            this.check.Name = "check";
+            this.check.ReadOnly = true;
+            this.check.Width = 40;
+            // 
+            // collumnID
+            // 
+            this.collumnID.HeaderText = "ID";
+            this.collumnID.MinimumWidth = 6;
+            this.collumnID.Name = "collumnID";
+            this.collumnID.Visible = false;
+            this.collumnID.Width = 6;
+            // 
+            // collumnProjectId
+            // 
+            this.collumnProjectId.HeaderText = "Project ID";
+            this.collumnProjectId.MinimumWidth = 6;
+            this.collumnProjectId.Name = "collumnProjectId";
+            this.collumnProjectId.ReadOnly = true;
+            this.collumnProjectId.Visible = false;
+            this.collumnProjectId.Width = 250;
+            // 
+            // collumnName
+            // 
+            this.collumnName.HeaderText = "Name";
+            this.collumnName.MinimumWidth = 6;
+            this.collumnName.Name = "collumnName";
+            this.collumnName.ReadOnly = true;
+            this.collumnName.Width = 200;
+            // 
+            // collumnStatus
+            // 
+            this.collumnStatus.HeaderText = "Status";
+            this.collumnStatus.MinimumWidth = 6;
+            this.collumnStatus.Name = "collumnStatus";
+            this.collumnStatus.ReadOnly = true;
+            this.collumnStatus.Width = 110;
+            // 
+            // collumnVisibility
+            // 
+            this.collumnVisibility.HeaderText = "Visibility";
+            this.collumnVisibility.MinimumWidth = 6;
+            this.collumnVisibility.Name = "collumnVisibility";
+            this.collumnVisibility.ReadOnly = true;
+            this.collumnVisibility.Width = 110;
+            // 
+            // collumnProtected
+            // 
+            this.collumnProtected.HeaderText = "Protected";
+            this.collumnProtected.MinimumWidth = 6;
+            this.collumnProtected.Name = "collumnProtected";
+            this.collumnProtected.ReadOnly = true;
+            this.collumnProtected.Width = 110;
+            // 
+            // collumnDiskFormat
+            // 
+            this.collumnDiskFormat.HeaderText = "Disk Format";
+            this.collumnDiskFormat.MinimumWidth = 6;
+            this.collumnDiskFormat.Name = "collumnDiskFormat";
+            this.collumnDiskFormat.ReadOnly = true;
+            this.collumnDiskFormat.Width = 110;
+            // 
+            // collumnContainerFormt
+            // 
+            this.collumnContainerFormt.HeaderText = "Container Format";
+            this.collumnContainerFormt.MinimumWidth = 6;
+            this.collumnContainerFormt.Name = "collumnContainerFormt";
+            this.collumnContainerFormt.Width = 110;
+            // 
+            // collumnSize
+            // 
+            this.collumnSize.HeaderText = "Size";
+            this.collumnSize.MinimumWidth = 6;
+            this.collumnSize.Name = "collumnSize";
+            this.collumnSize.ReadOnly = true;
+            this.collumnSize.Width = 110;
+            // 
             // ImagesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -558,15 +568,6 @@ namespace OpenStack_GUI.Forms
         private MaterialSkin.Controls.MaterialTabControl imagesTabControl;
         private System.Windows.Forms.TabPage imagesTab;
         private System.Windows.Forms.DataGridView imagesDataGridView;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn check;
-        private System.Windows.Forms.DataGridViewTextBoxColumn collumnID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn collumnProjectId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn collumnName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn collumnStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn collumnVisibility;
-        private System.Windows.Forms.DataGridViewTextBoxColumn collumnProtected;
-        private System.Windows.Forms.DataGridViewTextBoxColumn collumnDiskFormat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn collumnSize;
         private System.Windows.Forms.TabPage createImageTab;
         private MaterialSkin.Controls.MaterialSwitch switchImageProtected;
         private MaterialSkin.Controls.MaterialComboBox cmbImageBoxVisibility;
@@ -585,5 +586,15 @@ namespace OpenStack_GUI.Forms
         private MaterialSkin.Controls.MaterialLabel lblImageName;
         private MaterialSkin.Controls.MaterialButton btnCreateImage;
         private MaterialSkin.Controls.MaterialTextBox txtImageDescription;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn check;
+        private System.Windows.Forms.DataGridViewTextBoxColumn collumnID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn collumnProjectId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn collumnName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn collumnStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn collumnVisibility;
+        private System.Windows.Forms.DataGridViewTextBoxColumn collumnProtected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn collumnDiskFormat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn collumnContainerFormt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn collumnSize;
     }
 }

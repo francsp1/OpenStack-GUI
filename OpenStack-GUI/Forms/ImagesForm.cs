@@ -23,14 +23,24 @@ namespace OpenStack_GUI.Forms
         {
             InitializeComponent();
 
-            //////////Images tab
+            fillImagesDataGridView();
+
+            txtImageFile.Text = "C:\\Users\\franc\\Downloads\\cirros-0.4.0-x86_64-disk.img";
+            txtImageName.Text = "Teste";
+            txtImageDescription.Text = "T desc";
+
+
+        }
+
+        private void fillImagesDataGridView()
+        {
             try
             {
                 WebClient myWebClient = new WebClient();
 
                 myWebClient.Headers.Add("x-auth-token", GlobalSessionDetails.ScopedToken);
 
-                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port +  "/image/v2/images";
+                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images";
 
                 var responseString = myWebClient.DownloadString(url);
 
@@ -41,9 +51,9 @@ namespace OpenStack_GUI.Forms
                 imagesDataGridView.Refresh();
                 for (int i = 0; i < images.Count; i++)
                 {
-                    
+
                     var currentImage = images[i];
-                    imagesDataGridView.Rows.Add(false, currentImage["id"].ToString(), currentImage["owner"].ToString(), currentImage["name"].ToString(), currentImage["status"].ToString(), currentImage["visibility"].ToString(), bool.Parse(currentImage["protected"].ToString()) ? "Yes" : "No", currentImage["disk_format"].ToString(), (((float)long.Parse(currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB");
+                    imagesDataGridView.Rows.Add(false, currentImage["id"].ToString(), currentImage["owner"].ToString(), currentImage["name"].ToString(), currentImage["status"].ToString(), currentImage["visibility"].ToString(), bool.Parse(currentImage["protected"].ToString()) ? "Yes" : "No", currentImage["disk_format"].ToString(), currentImage["container_format"].ToString(), (((float)long.Parse(currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB");
 
                 }
             }
@@ -51,13 +61,6 @@ namespace OpenStack_GUI.Forms
             {
                 MessageBox.Show(excp.Message, "Could not get the Images", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //////////
-
-            txtImageFile.Text = "C:\\Users\\franc\\Downloads\\cirros-0.4.0-x86_64-disk.img";
-            txtImageName.Text = "Teste";
-            txtImageDescription.Text = "T desc";
-
-
         }
 
         private void btnCreateImage_Click(object sender, EventArgs e)
@@ -138,7 +141,6 @@ namespace OpenStack_GUI.Forms
 
                 var url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images/" + imageId + "/file";
                 
-
                 try
                 {
                     var myWebClient = new WebClient();
@@ -150,15 +152,15 @@ namespace OpenStack_GUI.Forms
                     myWebClient.UploadFile(url, "PUT", filePath);
 
                     MessageBox.Show("Image created with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    fillImagesDataGridView();
                 }
                 catch (Exception excp)
                 {
-                    MessageBox.Show(excp.Message, "Could not create upload the image file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(excp.Message, "Could not upload the image file", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
-
-
 
         }
 
