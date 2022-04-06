@@ -43,6 +43,7 @@ namespace OpenStack_GUI.Forms
             this.collumnDiskFormat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.collumnSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createImageTab = new System.Windows.Forms.TabPage();
+            this.txtImageDescription = new MaterialSkin.Controls.MaterialTextBox();
             this.btnCreateImage = new MaterialSkin.Controls.MaterialButton();
             this.switchImageProtected = new MaterialSkin.Controls.MaterialSwitch();
             this.cmbImageBoxVisibility = new MaterialSkin.Controls.MaterialComboBox();
@@ -59,7 +60,6 @@ namespace OpenStack_GUI.Forms
             this.lblImageDescription = new MaterialSkin.Controls.MaterialLabel();
             this.txtImageName = new MaterialSkin.Controls.MaterialTextBox();
             this.lblImageName = new MaterialSkin.Controls.MaterialLabel();
-            this.txtImageDescription = new MaterialSkin.Controls.MaterialTextBox();
             this.imagesTabControl.SuspendLayout();
             this.imagesTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imagesDataGridView)).BeginInit();
@@ -234,6 +234,23 @@ namespace OpenStack_GUI.Forms
             this.createImageTab.TabIndex = 1;
             this.createImageTab.Text = "Create Image";
             // 
+            // txtImageDescription
+            // 
+            this.txtImageDescription.AnimateReadOnly = false;
+            this.txtImageDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtImageDescription.Depth = 0;
+            this.txtImageDescription.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtImageDescription.LeadingIcon = null;
+            this.txtImageDescription.Location = new System.Drawing.Point(525, 151);
+            this.txtImageDescription.MaxLength = 255;
+            this.txtImageDescription.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtImageDescription.Multiline = false;
+            this.txtImageDescription.Name = "txtImageDescription";
+            this.txtImageDescription.Size = new System.Drawing.Size(500, 50);
+            this.txtImageDescription.TabIndex = 18;
+            this.txtImageDescription.Text = "";
+            this.txtImageDescription.TrailingIcon = null;
+            // 
             // btnCreateImage
             // 
             this.btnCreateImage.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -284,9 +301,9 @@ namespace OpenStack_GUI.Forms
             this.cmbImageBoxVisibility.IntegralHeight = false;
             this.cmbImageBoxVisibility.ItemHeight = 43;
             this.cmbImageBoxVisibility.Items.AddRange(new object[] {
+            "shared",
             "public",
             "private",
-            "shared",
             "community"});
             this.cmbImageBoxVisibility.Location = new System.Drawing.Point(47, 385);
             this.cmbImageBoxVisibility.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -314,7 +331,7 @@ namespace OpenStack_GUI.Forms
             this.txtImageMinimumRam.AnimateReadOnly = false;
             this.txtImageMinimumRam.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtImageMinimumRam.Depth = 0;
-            this.txtImageMinimumRam.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtImageMinimumRam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.6F);
             this.txtImageMinimumRam.LeadingIcon = null;
             this.txtImageMinimumRam.Location = new System.Drawing.Point(336, 384);
             this.txtImageMinimumRam.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -333,7 +350,7 @@ namespace OpenStack_GUI.Forms
             this.txtImageMinimumDisk.AnimateReadOnly = false;
             this.txtImageMinimumDisk.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtImageMinimumDisk.Depth = 0;
-            this.txtImageMinimumDisk.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtImageMinimumDisk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.6F);
             this.txtImageMinimumDisk.LeadingIcon = null;
             this.txtImageMinimumDisk.Location = new System.Drawing.Point(336, 270);
             this.txtImageMinimumDisk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -398,6 +415,7 @@ namespace OpenStack_GUI.Forms
             this.cmbBoxImageDiskFormat.IntegralHeight = false;
             this.cmbBoxImageDiskFormat.ItemHeight = 43;
             this.cmbBoxImageDiskFormat.Items.AddRange(new object[] {
+            "QCOW2",
             "AMI",
             "ARI",
             "AKI",
@@ -405,7 +423,6 @@ namespace OpenStack_GUI.Forms
             "VHDX",
             "VMDK",
             "RAW",
-            "QCOW2",
             "VDI",
             "PLOOP",
             "ISO"});
@@ -509,23 +526,6 @@ namespace OpenStack_GUI.Forms
             this.lblImageName.Size = new System.Drawing.Size(91, 19);
             this.lblImageName.TabIndex = 0;
             this.lblImageName.Text = "Image Name";
-            // 
-            // txtImageDescription
-            // 
-            this.txtImageDescription.AnimateReadOnly = false;
-            this.txtImageDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtImageDescription.Depth = 0;
-            this.txtImageDescription.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtImageDescription.LeadingIcon = null;
-            this.txtImageDescription.Location = new System.Drawing.Point(525, 151);
-            this.txtImageDescription.MaxLength = 255;
-            this.txtImageDescription.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtImageDescription.Multiline = false;
-            this.txtImageDescription.Name = "txtImageDescription";
-            this.txtImageDescription.Size = new System.Drawing.Size(500, 50);
-            this.txtImageDescription.TabIndex = 18;
-            this.txtImageDescription.Text = "";
-            this.txtImageDescription.TrailingIcon = null;
             // 
             // ImagesForm
             // 

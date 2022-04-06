@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OpenStack_GUI.Models;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -50,7 +51,12 @@ namespace OpenStack_GUI.Forms
                 MessageBox.Show(excp.Message, "Could not get the Images", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //////////
-            
+
+            txtImageFile.Text = "C:\\Users\\franc\\Downloads\\cirros-0.4.0-x86_64-disk.img";
+            txtImageName.Text = "Teste";
+            txtImageDescription.Text = "T desc";
+
+
         }
 
         private void btnCreateImage_Click(object sender, EventArgs e)
@@ -90,13 +96,46 @@ namespace OpenStack_GUI.Forms
             string minimumRam = txtImageMinimumRam.Text;
             if (String.IsNullOrWhiteSpace(minimumRam) || !int.TryParse(minimumRam, out int it2))
             {
-                MessageBox.Show("Please, enter a valid disk size", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please, enter a valid disk RAM Size", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             bool imageProtected = switchImageProtected.Checked;
 
-            MessageBox.Show("Boas", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            CreateImageModel image = new CreateImageModel()
+            {
+                Name = name,
+                Desccription = description,
+                DiskFormat = diskFormat.ToLower(),
+                Visibility = visibility,
+                MinimumDisk = int.Parse(minimumDisk),
+                MinimumRam = int.Parse(minimumRam),
+                Protected = imageProtected,
+                ContainerFormat = "bare",
+            };
 
+            try
+            {
+                string requestJson = JsonConvert.SerializeObject(image);
+
+                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images";
+
+                
+                WebClient myWebClient = new WebClient();
+
+                myWebClient.Headers.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+                myWebClient.Headers.Add("Content-Type", "application/json");
+                //myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+
+                var responseString = myWebClient.UploadString(url, requestJson);
+
+                MessageBox.Show("Image created with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            }
+            catch (Exception excp)
+            {
+                MessageBox.Show(excp.Message, "Could not create the Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnImageBrowse_Click(object sender, EventArgs e)
