@@ -51,6 +51,7 @@ namespace OpenStack_GUI.Forms
             this.lblImageDescription = new MaterialSkin.Controls.MaterialLabel();
             this.txtImageName = new MaterialSkin.Controls.MaterialTextBox();
             this.lblImageName = new MaterialSkin.Controls.MaterialLabel();
+            this.collumnLineNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.collumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.collumnProjectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -116,6 +117,7 @@ namespace OpenStack_GUI.Forms
             this.imagesDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.imagesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.imagesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.collumnLineNumber,
             this.check,
             this.collumnID,
             this.collumnProjectId,
@@ -457,6 +459,13 @@ namespace OpenStack_GUI.Forms
             this.lblImageName.TabIndex = 0;
             this.lblImageName.Text = "Image Name";
             // 
+            // collumnLineNumber
+            // 
+            this.collumnLineNumber.HeaderText = "";
+            this.collumnLineNumber.MinimumWidth = 6;
+            this.collumnLineNumber.Name = "collumnLineNumber";
+            this.collumnLineNumber.Width = 40;
+            // 
             // check
             // 
             this.check.HeaderText = "";
@@ -586,6 +595,7 @@ namespace OpenStack_GUI.Forms
         private MaterialSkin.Controls.MaterialLabel lblImageName;
         private MaterialSkin.Controls.MaterialButton btnCreateImage;
         private MaterialSkin.Controls.MaterialTextBox txtImageDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn collumnLineNumber;
         private System.Windows.Forms.DataGridViewCheckBoxColumn check;
         private System.Windows.Forms.DataGridViewTextBoxColumn collumnID;
         private System.Windows.Forms.DataGridViewTextBoxColumn collumnProjectId;
