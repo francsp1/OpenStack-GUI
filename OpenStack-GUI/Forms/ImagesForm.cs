@@ -172,9 +172,7 @@ namespace OpenStack_GUI.Forms
                 {
                     MessageBox.Show(excp.Message, "Could not upload the image file", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
-
         }
 
         private void btnImageBrowse_Click(object sender, EventArgs e)
