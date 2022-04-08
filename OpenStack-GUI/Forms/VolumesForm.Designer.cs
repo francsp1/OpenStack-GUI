@@ -46,6 +46,7 @@ namespace OpenStack_GUI.Forms
             this.TypeComboBox = new MaterialSkin.Controls.MaterialComboBox();
             this.sourceComboBox = new MaterialSkin.Controls.MaterialComboBox();
             this.VolumeTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            this.CreateVolumeButton = new MaterialSkin.Controls.MaterialButton();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,7 +58,6 @@ namespace OpenStack_GUI.Forms
             this.columnBootable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnEncrypted = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.CreateVolumeButton = new MaterialSkin.Controls.MaterialButton();
             this.volumesTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumesGridView)).BeginInit();
@@ -131,7 +131,7 @@ namespace OpenStack_GUI.Forms
             this.volumesGridView.RowHeadersWidth = 51;
             this.volumesGridView.Size = new System.Drawing.Size(1127, 513);
             this.volumesGridView.TabIndex = 0;
-            this.volumesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.volumesGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // tabPage2
             // 
@@ -360,6 +360,26 @@ namespace OpenStack_GUI.Forms
             this.VolumeTextBox.Text = "";
             this.VolumeTextBox.TrailingIcon = null;
             // 
+            // CreateVolumeButton
+            // 
+            this.CreateVolumeButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CreateVolumeButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.CreateVolumeButton.Depth = 0;
+            this.CreateVolumeButton.HighEmphasis = true;
+            this.CreateVolumeButton.Icon = null;
+            this.CreateVolumeButton.Location = new System.Drawing.Point(31, 388);
+            this.CreateVolumeButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CreateVolumeButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CreateVolumeButton.Name = "CreateVolumeButton";
+            this.CreateVolumeButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.CreateVolumeButton.Size = new System.Drawing.Size(138, 36);
+            this.CreateVolumeButton.TabIndex = 20;
+            this.CreateVolumeButton.Text = "Create Volume";
+            this.CreateVolumeButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CreateVolumeButton.UseAccentColor = false;
+            this.CreateVolumeButton.UseVisualStyleBackColor = true;
+            this.CreateVolumeButton.Click += new System.EventHandler(this.CreateVolumeButton_Click);
+            // 
             // ID
             // 
             this.ID.HeaderText = "ID";
@@ -419,26 +439,6 @@ namespace OpenStack_GUI.Forms
             this.deleteColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.deleteColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // CreateVolumeButton
-            // 
-            this.CreateVolumeButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CreateVolumeButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.CreateVolumeButton.Depth = 0;
-            this.CreateVolumeButton.HighEmphasis = true;
-            this.CreateVolumeButton.Icon = null;
-            this.CreateVolumeButton.Location = new System.Drawing.Point(31, 388);
-            this.CreateVolumeButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.CreateVolumeButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CreateVolumeButton.Name = "CreateVolumeButton";
-            this.CreateVolumeButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.CreateVolumeButton.Size = new System.Drawing.Size(138, 36);
-            this.CreateVolumeButton.TabIndex = 20;
-            this.CreateVolumeButton.Text = "Create Volume";
-            this.CreateVolumeButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.CreateVolumeButton.UseAccentColor = false;
-            this.CreateVolumeButton.UseVisualStyleBackColor = true;
-            this.CreateVolumeButton.Click += new System.EventHandler(this.CreateVolumeButton_Click);
-            // 
             // VolumesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -485,6 +485,7 @@ namespace OpenStack_GUI.Forms
         private MaterialSkin.Controls.MaterialLabel typeLabel1;
         private MaterialSkin.Controls.MaterialLabel SizeLabel;
         private MaterialSkin.Controls.MaterialLabel availabilityLabel;
+        private MaterialSkin.Controls.MaterialButton CreateVolumeButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnName;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnDescription;
@@ -496,6 +497,5 @@ namespace OpenStack_GUI.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn columnBootable;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnEncrypted;
         private System.Windows.Forms.DataGridViewButtonColumn deleteColumn;
-        private MaterialSkin.Controls.MaterialButton CreateVolumeButton;
     }
 }

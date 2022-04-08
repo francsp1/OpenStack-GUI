@@ -53,7 +53,7 @@ namespace OpenStack_GUI.Forms
 
                     //var attach = currentVolume["attachments"][0];
 
-                    volumesGridView.Rows.Add(false, currentVolume["name"].ToString(), currentVolume["description"].ToString(), currentVolume["size"].ToString() + " GiB",
+                    volumesGridView.Rows.Add(currentVolume["id"].ToString(), currentVolume["name"].ToString(), currentVolume["description"].ToString(), currentVolume["size"].ToString() + " GiB",
                         currentVolume["status"].ToString(), currentVolume["metadata"].ToString(), currentVolume["volume_type"].ToString(),
                         currentVolume["availability_zone"].ToString(), bool.Parse(currentVolume["bootable"].ToString()) ? "Yes" : "No",
                         bool.Parse(currentVolume["encrypted"].ToString()) ? "Yes" : "No");
@@ -69,11 +69,6 @@ namespace OpenStack_GUI.Forms
         private void Volumes_Load(object sender, EventArgs e)
         {
            
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void CreateVolumeButton_Click(object sender, EventArgs e)
@@ -132,10 +127,43 @@ namespace OpenStack_GUI.Forms
                 var result = client.PostAsync(endpoint, payload).Result;
                 var json = result.Content.ReadAsStringAsync().Result;
 
-                MessageBox.Show("Volume created sucessesfully", "Sucess!", MessageBoxButtons.OK);
+                MessageBox.Show("Volume created sucessesfully", "Sucess!", MessageBoxButtons.OK, MessageBoxIcon.Information);               
+                
                 volumesTabControl.SelectedTab = tabPage1;
-                refresh();
 
+            }
+            refresh();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == volumesGridView.Columns["deleteColumn"].Index)
+            {
+
+                deleteVolume(volumesGridView[0, e.RowIndex].Value.ToString());
+            }
+        }
+
+        private void deleteVolume(string volumeID)
+        {
+            var volumeIdentifier = volumeID;
+            using (var client = new HttpClient())
+            {
+                var endpoint = new Uri(GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/volume/v3/" + GlobalSessionDetails.ProjectId + "/volumes/" + volumeID);
+
+                client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+
+                client.DefaultRequestHeaders.ExpectContinue = false;
+                var result = client.DeleteAsync(endpoint).Result;
+                var json = result.Content.ReadAsStringAsync().Result;
+
+                if (!result.IsSuccessStatusCode)
+                {
+                    MessageBox.Show(result.ReasonPhrase, "Could not Delete the Volume", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                MessageBox.Show("Volume deleted with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                refresh();
             }
         }
     }
