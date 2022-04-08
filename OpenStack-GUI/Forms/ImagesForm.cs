@@ -57,7 +57,7 @@ namespace OpenStack_GUI.Forms
                         for (int i = 0; i < images.Count; i++)
                         {
                             var currentImage = images[i];
-                            imagesDataGridView.Rows.Add(imagesDataGridView.Rows.Count + 1, false, currentImage["id"].ToString(), currentImage["owner"].ToString(), currentImage["name"].ToString(), currentImage["status"].ToString(), currentImage["visibility"].ToString(), bool.Parse(currentImage["protected"].ToString()) ? "Yes" : "No", currentImage["disk_format"].ToString(), currentImage["container_format"].ToString(), (((float)long.Parse(currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB");
+                            imagesDataGridView.Rows.Add(imagesDataGridView.Rows.Count + 1, false, currentImage["id"].ToString(), currentImage["owner"].ToString(), currentImage["name"].ToString(), currentImage["status"].ToString(), currentImage["visibility"].ToString(), bool.Parse(currentImage["protected"].ToString()) ? "Yes" : "No", currentImage["disk_format"].ToString(), currentImage["container_format"].ToString(), (((float)long.Parse(currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB", "Delete");
                         }
                         if(responseJsonObject["next"] != null)
                         {
@@ -212,7 +212,6 @@ namespace OpenStack_GUI.Forms
         {
             if(e.ColumnIndex == imagesDataGridView.Columns["columnDeleteImage"].Index)
             {
-
                 deleteImage(imagesDataGridView[2, e.RowIndex].Value.ToString());
             }
         }
@@ -252,6 +251,7 @@ namespace OpenStack_GUI.Forms
                 }
                 MessageBox.Show("Image deleted with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            fillImagesDataGridView();
 
         }
     }
