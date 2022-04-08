@@ -1,4 +1,5 @@
-﻿using OpenStack_GUI.Forms;
+﻿using Microsoft.Extensions.DependencyInjection;
+using OpenStack_GUI.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,16 @@ namespace OpenStack_GUI
 {
     static class Program
     {
+
+        public static IServiceProvider ServiceProvider { get; set; }
+
+        static void ConfigureServices()
+        {
+            var services = new ServiceCollection();
+            services.AddHttpClient("OpenStack");
+            ServiceProvider = services.BuildServiceProvider();
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -17,6 +28,9 @@ namespace OpenStack_GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            ConfigureServices();
+
             Application.Run(new LoginForm());
         }
     }

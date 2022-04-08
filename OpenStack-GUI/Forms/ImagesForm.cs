@@ -218,6 +218,21 @@ namespace OpenStack_GUI.Forms
 
         private void deleteImage(string imageId)
         {
+            var request = new HttpRequestMessage(HttpMethod.Delete, GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images/" + imageId);
+            var client = GlobalSessionDetails._clientFactory.CreateClient();
+
+            client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+
+            HttpResponseMessage response = client.SendAsync(request).Result;
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show(response.ReasonPhrase, "Could not Delete the image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("Image deleted with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            fillImagesDataGridView();
+
             /*
             try
             {
@@ -233,6 +248,10 @@ namespace OpenStack_GUI.Forms
                 MessageBox.Show(excp.Message, "Could not delete the image", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             */
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            /*
             var imageIdentifier = imageId;
             using (var client = new HttpClient())
             {
@@ -241,7 +260,7 @@ namespace OpenStack_GUI.Forms
                 client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
 
                 client.DefaultRequestHeaders.ExpectContinue = false;
-                var result = client.DeleteAsync(endpoint).Result;
+                HttpResponseMessage result = client.DeleteAsync(endpoint).Result;
                 var json = result.Content.ReadAsStringAsync().Result;
 
                 if (!result.IsSuccessStatusCode)
@@ -251,7 +270,7 @@ namespace OpenStack_GUI.Forms
                 }
                 MessageBox.Show("Image deleted with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            fillImagesDataGridView();
+            */
 
         }
     }
