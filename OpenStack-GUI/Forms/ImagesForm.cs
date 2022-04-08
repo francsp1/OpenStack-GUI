@@ -167,6 +167,7 @@ namespace OpenStack_GUI.Forms
                     MessageBox.Show("Image created with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     fillImagesDataGridView();
+                    imagesTabControl.SelectedTab = imagesTab;
                 }
                 catch (Exception excp)
                 {
