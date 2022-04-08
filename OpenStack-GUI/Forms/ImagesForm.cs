@@ -206,5 +206,52 @@ namespace OpenStack_GUI.Forms
                 e.Handled = true;
         }
         #endregion SecundaryEvents
+
+        private void imagesDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == imagesDataGridView.Columns["columnDeleteImage"].Index)
+            {
+
+                deleteImage(imagesDataGridView[2, e.RowIndex].Value.ToString());
+            }
+        }
+
+        private void deleteImage(string imageId)
+        {
+            /*
+            try
+            {
+                var url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images/" + imageId + "\r\n";
+                WebRequest request = WebRequest.Create(url);
+                request.Headers.Add("x-auth-token", GlobalSessionDetails.UnscopedToken);
+                request.Method = "DELETE";
+
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            }
+            catch (Exception excp)
+            {
+                MessageBox.Show(excp.Message, "Could not delete the image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            */
+            var imageIdentifier = imageId;
+            using (var client = new HttpClient())
+            {
+                var endpoint = new Uri(GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images/" + imageIdentifier);
+
+                client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+
+                client.DefaultRequestHeaders.ExpectContinue = false;
+                var result = client.DeleteAsync(endpoint).Result;
+                var json = result.Content.ReadAsStringAsync().Result;
+
+                if (!result.IsSuccessStatusCode)
+                {
+                    MessageBox.Show(result.ReasonPhrase, "Could not Delete the image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                MessageBox.Show("Image deleted with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
     }
 }

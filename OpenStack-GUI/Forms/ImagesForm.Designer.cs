@@ -141,6 +141,7 @@ namespace OpenStack_GUI.Forms
             this.imagesDataGridView.RowTemplate.Height = 24;
             this.imagesDataGridView.Size = new System.Drawing.Size(1505, 635);
             this.imagesDataGridView.TabIndex = 1;
+            this.imagesDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.imagesDataGridView_CellClick);
             // 
             // createImageTab
             // 
@@ -562,6 +563,7 @@ namespace OpenStack_GUI.Forms
             this.columnDeleteImage.MinimumWidth = 6;
             this.columnDeleteImage.Name = "columnDeleteImage";
             this.columnDeleteImage.ReadOnly = true;
+            this.columnDeleteImage.Text = "Delete";
             // 
             // ImagesForm
             // 
