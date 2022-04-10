@@ -52,11 +52,20 @@ namespace OpenStack_GUI.Forms
                     var currentVolume = volumes[i];
 
                     //var attach = currentVolume["attachments"][0];
-
-                    volumesGridView.Rows.Add(currentVolume["id"].ToString(), currentVolume["name"].ToString(), currentVolume["description"].ToString(), currentVolume["size"].ToString() + " GiB",
-                        currentVolume["status"].ToString(), currentVolume["metadata"].ToString(), currentVolume["volume_type"].ToString(),
+                    if (currentVolume["name"].ToString() == "")
+                    {
+                        volumesGridView.Rows.Add(currentVolume["id"].ToString(), currentVolume["id"].ToString(), currentVolume["description"].ToString(), currentVolume["size"].ToString() + " GiB",
+                        currentVolume["status"].ToString(), currentVolume["consistencygroup_id"].ToString(), currentVolume["volume_type"].ToString(),
                         currentVolume["availability_zone"].ToString(), bool.Parse(currentVolume["bootable"].ToString()) ? "Yes" : "No",
                         bool.Parse(currentVolume["encrypted"].ToString()) ? "Yes" : "No");
+                    }
+                    else
+                    {
+                        volumesGridView.Rows.Add(currentVolume["id"].ToString(), currentVolume["name"].ToString(), currentVolume["description"].ToString(), currentVolume["size"].ToString() + " GiB",
+                        currentVolume["status"].ToString(), currentVolume["consistencygroup_id"].ToString(), currentVolume["volume_type"].ToString(),
+                        currentVolume["availability_zone"].ToString(), bool.Parse(currentVolume["bootable"].ToString()) ? "Yes" : "No",
+                        bool.Parse(currentVolume["encrypted"].ToString()) ? "Yes" : "No");
+                    }
                 }
 
             }
@@ -127,17 +136,24 @@ namespace OpenStack_GUI.Forms
                 var result = client.PostAsync(endpoint, payload).Result;
                 var json = result.Content.ReadAsStringAsync().Result;
 
-                MessageBox.Show("Volume created sucessesfully", "Sucess!", MessageBoxButtons.OK, MessageBoxIcon.Information);               
-                
-                volumesTabControl.SelectedTab = tabPage1;
+                MessageBox.Show("Volume created sucessesfully", "Sucess!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                volumesTabControl.SelectedTab = tabPage1;
+                
+                refresh();
             }
-            refresh();
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == volumesGridView.Columns["deleteColumn"].Index)
+           /* if (e.ColumnIndex == volumesGridView.Columns["deleteColumn"].Index)
+            {
+
+                deleteVolume(volumesGridView[0, e.RowIndex].Value.ToString());
+            }*/
+
+            if (e.ColumnIndex == volumesGridView.Columns["delete"].Index)
             {
 
                 deleteVolume(volumesGridView[0, e.RowIndex].Value.ToString());
@@ -163,8 +179,10 @@ namespace OpenStack_GUI.Forms
                     return;
                 }
                 MessageBox.Show("Volume deleted with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                refresh();
+                
             }
+            refresh();
         }
+
     }
 }
