@@ -23,6 +23,8 @@ namespace OpenStack_GUI.Forms
         {
             InitializeComponent();
 
+            imagesTabControl.TabPages.Remove(editImageTab);
+
             fillImagesDataGridView();
 
             txtImageFile.Text = "C:\\Users\\franc\\Downloads\\cirros-0.4.0-x86_64-disk.img";
@@ -99,7 +101,7 @@ namespace OpenStack_GUI.Forms
                 for (int i = 0; i < images.Count; i++)
                 {
                     var currentImage = images[i];
-                    imagesDataGridView.Rows.Add(imagesDataGridView.Rows.Count + 1, false, currentImage["id"].ToString(), currentImage["owner"].ToString(), currentImage["name"].ToString(), currentImage["status"].ToString(), currentImage["visibility"].ToString(), bool.Parse(currentImage["protected"].ToString()) ? "Yes" : "No", currentImage["disk_format"].ToString(), currentImage["container_format"].ToString(), (((float)long.Parse(currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB", "Delete");
+                    imagesDataGridView.Rows.Add(imagesDataGridView.Rows.Count + 1, false, currentImage["id"].ToString(), currentImage["owner"].ToString(), currentImage["name"].ToString(), currentImage["status"].ToString(), currentImage["visibility"].ToString(), bool.Parse(currentImage["protected"].ToString()) ? "Yes" : "No", currentImage["disk_format"].ToString(), currentImage["container_format"].ToString(), (((float)long.Parse(currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB", "Delete", "Edit");
                 }
                 if (responseJsonObject["next"] != null)
                 {
@@ -222,31 +224,22 @@ namespace OpenStack_GUI.Forms
 
         }
 
-        #region SecundaryEvents
-        private void txtMinimumDisk_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!char.IsDigit(ch) &&
-                ch != Convert.ToChar(Keys.Back) &&
-                    ch != Convert.ToChar(Keys.Delete))
-                e.Handled = true;
-        }
-
-        private void txtMinimumRam_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!char.IsDigit(ch) &&
-                ch != Convert.ToChar(Keys.Back) &&
-                    ch != Convert.ToChar(Keys.Delete))
-                e.Handled = true;
-        }
-        #endregion SecundaryEvents
-
         private void imagesDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.ColumnIndex == imagesDataGridView.Columns["columnDeleteImage"].Index)
             {
                 deleteImage(imagesDataGridView[2, e.RowIndex].Value.ToString());
+                fillImagesDataGridView();
+
+            }
+            if (e.ColumnIndex == imagesDataGridView.Columns["collumnEditImage"].Index)
+            {
+                if (!imagesTabControl.TabPages.Contains(editImageTab))
+                {
+                    imagesTabControl.TabPages.Add(editImageTab);
+                }
+                imagesTabControl.SelectedTab = editImageTab;
+
             }
         }
 
@@ -264,9 +257,6 @@ namespace OpenStack_GUI.Forms
                 return;
             }
             MessageBox.Show("Image deleted with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            fillImagesDataGridView();
-
             /*
             try
             {
@@ -307,5 +297,33 @@ namespace OpenStack_GUI.Forms
             */
 
         }
+
+        private void editImage(string imageId)
+        {
+
+
+
+            MessageBox.Show("Image Updated with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        #region SecundaryEvents
+        private void txtMinimumDisk_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) &&
+                ch != Convert.ToChar(Keys.Back) &&
+                    ch != Convert.ToChar(Keys.Delete))
+                e.Handled = true;
+        }
+
+        private void txtMinimumRam_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) &&
+                ch != Convert.ToChar(Keys.Back) &&
+                    ch != Convert.ToChar(Keys.Delete))
+                e.Handled = true;
+        }
+        #endregion SecundaryEvents
     }
 }
