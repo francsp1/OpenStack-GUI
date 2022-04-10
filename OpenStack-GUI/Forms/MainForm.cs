@@ -106,6 +106,17 @@ namespace OpenStack_GUI.Forms
             imagesForm.Dock = DockStyle.Fill;
         }
 
+        private void fillinstanceTab()
+        {
+            panelImageService.Controls.Clear();
+            ImagesForm imagesForm = new ImagesForm();
+            imagesForm.TopLevel = false;
+            imagesForm.AutoScroll = true;
+            panelImageService.Controls.Add(imagesForm);
+            imagesForm.Show();
+            imagesForm.Dock = DockStyle.Fill;
+        }
+
         private string getSelectedProjectId() //Get the id of the project currently selected
         {
             try

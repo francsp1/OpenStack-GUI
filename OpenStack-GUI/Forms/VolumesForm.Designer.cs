@@ -59,8 +59,8 @@ namespace OpenStack_GUI.Forms
             this.columnBootable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnEncrypted = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.editVolume = new System.Windows.Forms.DataGridViewImageColumn();
+            this.delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.volumesTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumesGridView)).BeginInit();
@@ -127,8 +127,8 @@ namespace OpenStack_GUI.Forms
             this.columnBootable,
             this.columnEncrypted,
             this.deleteColumn,
-            this.delete,
-            this.editVolume});
+            this.editVolume,
+            this.delete});
             this.volumesGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.volumesGridView.GridColor = System.Drawing.Color.White;
             this.volumesGridView.Location = new System.Drawing.Point(2, 2);
@@ -445,14 +445,6 @@ namespace OpenStack_GUI.Forms
             this.deleteColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.deleteColumn.Visible = false;
             // 
-            // delete
-            // 
-            this.delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.delete.HeaderText = "Delete";
-            this.delete.Image = ((System.Drawing.Image)(resources.GetObject("delete.Image")));
-            this.delete.Name = "delete";
-            this.delete.Width = 44;
-            // 
             // editVolume
             // 
             this.editVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -462,6 +454,14 @@ namespace OpenStack_GUI.Forms
             this.editVolume.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.editVolume.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.editVolume.Width = 50;
+            // 
+            // delete
+            // 
+            this.delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.delete.HeaderText = "Delete";
+            this.delete.Image = ((System.Drawing.Image)(resources.GetObject("delete.Image")));
+            this.delete.Name = "delete";
+            this.delete.Width = 44;
             // 
             // VolumesForm
             // 
@@ -521,7 +521,7 @@ namespace OpenStack_GUI.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn columnBootable;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnEncrypted;
         private System.Windows.Forms.DataGridViewButtonColumn deleteColumn;
-        private System.Windows.Forms.DataGridViewImageColumn delete;
         private System.Windows.Forms.DataGridViewImageColumn editVolume;
+        private System.Windows.Forms.DataGridViewImageColumn delete;
     }
 }

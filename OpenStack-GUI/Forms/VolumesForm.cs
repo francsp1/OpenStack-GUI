@@ -162,7 +162,7 @@ namespace OpenStack_GUI.Forms
 
         private void deleteVolume(string volumeID)
         {
-            var volumeIdentifier = volumeID;
+            //var volumeIdentifier = volumeID;
             using (var client = new HttpClient())
             {
                 var endpoint = new Uri(GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/volume/v3/" + GlobalSessionDetails.ProjectId + "/volumes/" + volumeID);
@@ -184,5 +184,19 @@ namespace OpenStack_GUI.Forms
             refresh();
         }
 
+       /* private void dataGridView1_CellContentClick2(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.ColumnIndex == volumesGridView.Columns["editVolume"].Index)
+            {
+
+                editVolume(volumesGridView[0, e.RowIndex].Value.ToString());
+            }
+        }
+
+        private void editVolume(string volumeID)
+        {
+
+        }*/
     }
 }
