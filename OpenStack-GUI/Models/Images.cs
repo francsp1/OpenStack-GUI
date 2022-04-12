@@ -106,12 +106,12 @@ namespace OpenStack_GUI.Models
     [Serializable]
     public class CreateImageModel
     {
-        [JsonProperty("disk_format")]  
+        [JsonProperty("disk_format")]
         public string DiskFormat { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
-        
+
         [JsonProperty("description")]
         public string Desccription { get; set; }
 
@@ -130,4 +130,23 @@ namespace OpenStack_GUI.Models
         [JsonProperty("min_disk")]
         public int MinimumDisk { get; set; }
     }
+
+
+    public class UpdateImageModel
+    {
+        public List<UpdateImageField> updateImageField { get; set; } 
+
+        public UpdateImageModel()
+        {
+            this.updateImageField = new List<UpdateImageField>();
+        }
+    }
+
+    public class UpdateImageField
+    {
+        public string op { get; set; }
+        public string path { get; set; }
+        public object value { get; set; }
+    }
+
 }

@@ -101,7 +101,7 @@ namespace OpenStack_GUI.Forms
                 for (int i = 0; i < images.Count; i++)
                 {
                     var currentImage = images[i];
-                    imagesDataGridView.Rows.Add(imagesDataGridView.Rows.Count + 1, false, currentImage["id"].ToString(), currentImage["owner"].ToString(), currentImage["name"].ToString(), currentImage["status"].ToString(), currentImage["visibility"].ToString(), bool.Parse(currentImage["protected"].ToString()) ? "Yes" : "No", currentImage["disk_format"].ToString(), currentImage["container_format"].ToString(), (((float)long.Parse(currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB", "Delete", "Edit");
+                    imagesDataGridView.Rows.Add(imagesDataGridView.Rows.Count + 1, false, currentImage["id"].ToString(), currentImage["owner"].ToString(), currentImage["name"].ToString(), currentImage["description"] is null ? "" : currentImage["description"].ToString(), currentImage["status"].ToString(), currentImage["visibility"].ToString(), bool.Parse(currentImage["protected"].ToString()) ? "Yes" : "No", currentImage["disk_format"].ToString(), currentImage["min_disk"].ToString(), currentImage["min_ram"].ToString(), currentImage["container_format"].ToString(), (((float)long.Parse(currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB", "Delete", "Edit");
                 }
                 if (responseJsonObject["next"] != null)
                 {
@@ -220,8 +220,6 @@ namespace OpenStack_GUI.Forms
             {
                 txtImageFile.Text = file.FileName;
             }
-
-
         }
 
         private void imagesDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -234,12 +232,7 @@ namespace OpenStack_GUI.Forms
             }
             if (e.ColumnIndex == imagesDataGridView.Columns["collumnEditImage"].Index)
             {
-                if (!imagesTabControl.TabPages.Contains(editImageTab))
-                {
-                    imagesTabControl.TabPages.Add(editImageTab);
-                }
-                imagesTabControl.SelectedTab = editImageTab;
-
+                editImage(e.RowIndex);
             }
         }
 
@@ -298,12 +291,157 @@ namespace OpenStack_GUI.Forms
 
         }
 
-        private void editImage(string imageId)
+        private void editImage(int rowIndex)
         {
+            if (!imagesTabControl.TabPages.Contains(editImageTab))
+            {
+                imagesTabControl.TabPages.Add(editImageTab);
+            }
+            imagesTabControl.SelectedTab = editImageTab;
+
+            var selectedRow = imagesDataGridView.Rows[rowIndex].Cells;
+
+            txtEditImageName.Text = selectedRow[4].Value.ToString();
+            txtEditImageDescription.Text = selectedRow[5].Value.ToString();
+            try
+            {
+                cmbBoxEditImageVisibility.SelectedIndex = cmbBoxEditImageVisibility.Items.IndexOf(selectedRow[7].Value.ToString().ToLower());
+
+            }
+            catch (Exception excp)
+            {
+                MessageBox.Show("Something went wrong displaing the image Visibility", "Can not edit the image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            switchEditImageProtected.Checked = selectedRow[8].Value.ToString() == "Yes" ? true : false;
+            try
+            {
+                cmbBoxEditImageDiskFormat.SelectedIndex = cmbBoxEditImageDiskFormat.Items.IndexOf(selectedRow[9].Value.ToString().ToUpper());
+            }
+            catch (Exception excp)
+            {
+                MessageBox.Show("Something went wrong displaing the image Disk format", "Can not edit the image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            txtEditImageMinimumDisk.Text = selectedRow[10].Value.ToString();
+            txtEditImageMinimumRam.Text = selectedRow[11].Value.ToString();
+            editImageRow.Value = rowIndex;
+
+        }
 
 
+        private void btnUpdateImage_Click(object sender, EventArgs e)
+        {
+            var rowIndex = (int)editImageRow.Value;
+            if(rowIndex < 0)
+            {
+                return;
+            }
 
-            MessageBox.Show("Image Updated with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string name = txtEditImageName.Text;
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("Please, enter a valid Image Name", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string description = txtEditImageDescription.Text;
+            if (description == null || description.Length > 255)
+            {
+                MessageBox.Show("Please, enter a valid description", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string diskFormat = cmbBoxEditImageDiskFormat.Text;
+            string visibility = cmbBoxEditImageVisibility.Text;
+
+            string minimumDisk = txtEditImageMinimumDisk.Text;
+            if (String.IsNullOrWhiteSpace(minimumDisk) || !int.TryParse(minimumDisk, out int it))
+            {
+                MessageBox.Show("Please, enter a valid disk size", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string minimumRam = txtEditImageMinimumRam.Text;
+            if (String.IsNullOrWhiteSpace(minimumRam) || !int.TryParse(minimumRam, out int it2))
+            {
+                MessageBox.Show("Please, enter a valid disk RAM Size", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            bool imageProtected = switchEditImageProtected.Checked;
+
+            UpdateImageModel updateImageModel = new UpdateImageModel();
+
+            var parametersToUpdate = updateImageModel.updateImageField ;
+
+            var imageRow = imagesDataGridView.Rows[rowIndex].Cells;
+
+
+            if (name != (imageRow[4].Value.ToString()) ) //if the value in the image name textbox is diferent from the one stored int the collumn "Name" of the images grid view
+            {
+                parametersToUpdate.Add(new UpdateImageField
+                {
+                    op = "replace",
+                    path = "/name",
+                    value = name,
+                });
+            }
+
+            if (parametersToUpdate == null || !parametersToUpdate.Any())
+            {
+                return;
+            }
+
+            updateImage(imageRow[2].Value.ToString(), parametersToUpdate);
+
+
+            fillImagesDataGridView();
+
+            btnCancelEditImage_Click(null, null);
+
+            imagesTabControl.TabPages.Remove(editImageTab);
+
+        }
+
+        private void updateImage(string imageId, List<UpdateImageField> body)
+        {
+            var endpoint = new Uri(GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images/" + imageId);
+
+            var client = GlobalSessionDetails._clientFactory.CreateClient();
+
+            var httpVerb = new HttpMethod("PATCH");
+
+            string requestJson = JsonConvert.SerializeObject(body);
+            var payload = new StringContent(requestJson, Encoding.UTF8, "application/openstack-images-v2.1-json-patch");
+
+            var httpRequestMessage = new HttpRequestMessage(httpVerb, endpoint)
+            {
+                Content = payload,
+            };
+
+            client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+            client.DefaultRequestHeaders.ExpectContinue = false;
+
+
+            HttpResponseMessage response = client.SendAsync(httpRequestMessage).Result;
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show(response.ReasonPhrase, "Could not Update the image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("Image updated with success", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        private void btnCancelEditImage_Click(object sender, EventArgs e)
+        {
+            txtEditImageName.Text = "";
+            txtEditImageDescription.Text = "";
+            cmbBoxEditImageDiskFormat.SelectedIndex = 0;
+            txtEditImageMinimumDisk.Text = "0";
+            cmbBoxEditImageVisibility.SelectedIndex = 0;
+            txtEditImageMinimumRam.Text = "0";
+            switchEditImageProtected.Checked = false;
+            editImageRow.Value = -1;
+
+            imagesTabControl.TabPages.Remove(editImageTab);
         }
 
         #region SecundaryEvents
@@ -324,6 +462,10 @@ namespace OpenStack_GUI.Forms
                     ch != Convert.ToChar(Keys.Delete))
                 e.Handled = true;
         }
+
+
+
         #endregion SecundaryEvents
+
     }
 }

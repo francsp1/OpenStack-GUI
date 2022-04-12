@@ -33,19 +33,6 @@ namespace OpenStack_GUI.Forms
             this.imagesTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.imagesTab = new System.Windows.Forms.TabPage();
             this.imagesDataGridView = new System.Windows.Forms.DataGridView();
-            this.collumnLineNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.collumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnProjectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnVisibility = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnProtected = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnDiskFormat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnContainerFormt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnDeleteImage = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.collumnEditImage = new System.Windows.Forms.DataGridViewButtonColumn();
             this.createImageTab = new System.Windows.Forms.TabPage();
             this.txtImageDescription = new MaterialSkin.Controls.MaterialTextBox();
             this.btnCreateImage = new MaterialSkin.Controls.MaterialButton();
@@ -65,28 +52,44 @@ namespace OpenStack_GUI.Forms
             this.txtImageName = new MaterialSkin.Controls.MaterialTextBox();
             this.lblImageName = new MaterialSkin.Controls.MaterialLabel();
             this.editImageTab = new System.Windows.Forms.TabPage();
-            this.materialTextBox6 = new MaterialSkin.Controls.MaterialTextBox();
-            this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
-            this.materialSwitch2 = new MaterialSkin.Controls.MaterialSwitch();
-            this.materialComboBox3 = new MaterialSkin.Controls.MaterialComboBox();
-            this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialTextBox7 = new MaterialSkin.Controls.MaterialTextBox();
-            this.materialTextBox8 = new MaterialSkin.Controls.MaterialTextBox();
-            this.materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel11 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialComboBox4 = new MaterialSkin.Controls.MaterialComboBox();
-            this.materialButton4 = new MaterialSkin.Controls.MaterialButton();
-            this.materialTextBox9 = new MaterialSkin.Controls.MaterialTextBox();
-            this.materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel13 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialTextBox10 = new MaterialSkin.Controls.MaterialTextBox();
-            this.materialLabel14 = new MaterialSkin.Controls.MaterialLabel();
+            this.txtEditImageDescription = new MaterialSkin.Controls.MaterialTextBox();
+            this.btnUpdateImage = new MaterialSkin.Controls.MaterialButton();
+            this.switchEditImageProtected = new MaterialSkin.Controls.MaterialSwitch();
+            this.cmbBoxEditImageVisibility = new MaterialSkin.Controls.MaterialComboBox();
+            this.lblEditVisibility = new MaterialSkin.Controls.MaterialLabel();
+            this.txtEditImageMinimumRam = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtEditImageMinimumDisk = new MaterialSkin.Controls.MaterialTextBox();
+            this.lblEditImageMinimumRam = new MaterialSkin.Controls.MaterialLabel();
+            this.lblEditMinimumDisk = new MaterialSkin.Controls.MaterialLabel();
+            this.lblEditDisskFormat = new MaterialSkin.Controls.MaterialLabel();
+            this.cmbBoxEditImageDiskFormat = new MaterialSkin.Controls.MaterialComboBox();
+            this.lblEditImageDescription = new MaterialSkin.Controls.MaterialLabel();
+            this.txtEditImageName = new MaterialSkin.Controls.MaterialTextBox();
+            this.lblEditImageName = new MaterialSkin.Controls.MaterialLabel();
+            this.btnCancelEditImage = new MaterialSkin.Controls.MaterialButton();
+            this.collumnLineNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.collumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnProjectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnImageDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnVisibility = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnProtected = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnDiskFormat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnMinimumDisk = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnMinimumRam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnContainerFormt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnDeleteImage = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.collumnEditImage = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.editImageRow = new System.Windows.Forms.NumericUpDown();
             this.imagesTabControl.SuspendLayout();
             this.imagesTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imagesDataGridView)).BeginInit();
             this.createImageTab.SuspendLayout();
             this.editImageTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.editImageRow)).BeginInit();
             this.SuspendLayout();
             // 
             // imagesTabSelector
@@ -145,10 +148,13 @@ namespace OpenStack_GUI.Forms
             this.collumnID,
             this.collumnProjectId,
             this.collumnName,
+            this.collumnImageDescription,
             this.collumnStatus,
             this.collumnVisibility,
             this.collumnProtected,
             this.collumnDiskFormat,
+            this.collumnMinimumDisk,
+            this.collumnMinimumRam,
             this.collumnContainerFormt,
             this.collumnSize,
             this.columnDeleteImage,
@@ -164,118 +170,6 @@ namespace OpenStack_GUI.Forms
             this.imagesDataGridView.Size = new System.Drawing.Size(1505, 635);
             this.imagesDataGridView.TabIndex = 1;
             this.imagesDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.imagesDataGridView_CellClick);
-            // 
-            // collumnLineNumber
-            // 
-            this.collumnLineNumber.HeaderText = "";
-            this.collumnLineNumber.MinimumWidth = 6;
-            this.collumnLineNumber.Name = "collumnLineNumber";
-            this.collumnLineNumber.ReadOnly = true;
-            this.collumnLineNumber.Visible = false;
-            // 
-            // check
-            // 
-            this.check.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.check.FillWeight = 28.877F;
-            this.check.HeaderText = "";
-            this.check.MinimumWidth = 6;
-            this.check.Name = "check";
-            this.check.ReadOnly = true;
-            this.check.Width = 20;
-            // 
-            // collumnID
-            // 
-            this.collumnID.HeaderText = "ID";
-            this.collumnID.MinimumWidth = 6;
-            this.collumnID.Name = "collumnID";
-            this.collumnID.ReadOnly = true;
-            this.collumnID.Visible = false;
-            // 
-            // collumnProjectId
-            // 
-            this.collumnProjectId.HeaderText = "Project ID";
-            this.collumnProjectId.MinimumWidth = 6;
-            this.collumnProjectId.Name = "collumnProjectId";
-            this.collumnProjectId.ReadOnly = true;
-            this.collumnProjectId.Visible = false;
-            // 
-            // collumnName
-            // 
-            this.collumnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.collumnName.FillWeight = 668.984F;
-            this.collumnName.HeaderText = "Name";
-            this.collumnName.MinimumWidth = 6;
-            this.collumnName.Name = "collumnName";
-            this.collumnName.ReadOnly = true;
-            this.collumnName.Width = 200;
-            // 
-            // collumnStatus
-            // 
-            this.collumnStatus.FillWeight = 28.877F;
-            this.collumnStatus.HeaderText = "Status";
-            this.collumnStatus.MinimumWidth = 6;
-            this.collumnStatus.Name = "collumnStatus";
-            this.collumnStatus.ReadOnly = true;
-            // 
-            // collumnVisibility
-            // 
-            this.collumnVisibility.FillWeight = 28.877F;
-            this.collumnVisibility.HeaderText = "Visibility";
-            this.collumnVisibility.MinimumWidth = 6;
-            this.collumnVisibility.Name = "collumnVisibility";
-            this.collumnVisibility.ReadOnly = true;
-            // 
-            // collumnProtected
-            // 
-            this.collumnProtected.FillWeight = 28.877F;
-            this.collumnProtected.HeaderText = "Protected";
-            this.collumnProtected.MinimumWidth = 6;
-            this.collumnProtected.Name = "collumnProtected";
-            this.collumnProtected.ReadOnly = true;
-            // 
-            // collumnDiskFormat
-            // 
-            this.collumnDiskFormat.FillWeight = 28.877F;
-            this.collumnDiskFormat.HeaderText = "Disk Format";
-            this.collumnDiskFormat.MinimumWidth = 6;
-            this.collumnDiskFormat.Name = "collumnDiskFormat";
-            this.collumnDiskFormat.ReadOnly = true;
-            // 
-            // collumnContainerFormt
-            // 
-            this.collumnContainerFormt.FillWeight = 28.877F;
-            this.collumnContainerFormt.HeaderText = "Container Format";
-            this.collumnContainerFormt.MinimumWidth = 6;
-            this.collumnContainerFormt.Name = "collumnContainerFormt";
-            this.collumnContainerFormt.ReadOnly = true;
-            // 
-            // collumnSize
-            // 
-            this.collumnSize.FillWeight = 28.877F;
-            this.collumnSize.HeaderText = "Size";
-            this.collumnSize.MinimumWidth = 6;
-            this.collumnSize.Name = "collumnSize";
-            this.collumnSize.ReadOnly = true;
-            // 
-            // columnDeleteImage
-            // 
-            this.columnDeleteImage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.columnDeleteImage.FillWeight = 28.877F;
-            this.columnDeleteImage.HeaderText = "Delete";
-            this.columnDeleteImage.MinimumWidth = 6;
-            this.columnDeleteImage.Name = "columnDeleteImage";
-            this.columnDeleteImage.ReadOnly = true;
-            this.columnDeleteImage.Text = "Delete";
-            this.columnDeleteImage.Width = 50;
-            // 
-            // collumnEditImage
-            // 
-            this.collumnEditImage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.collumnEditImage.HeaderText = "Edit";
-            this.collumnEditImage.MinimumWidth = 6;
-            this.collumnEditImage.Name = "collumnEditImage";
-            this.collumnEditImage.ReadOnly = true;
-            this.collumnEditImage.Width = 50;
             // 
             // createImageTab
             // 
@@ -601,23 +495,22 @@ namespace OpenStack_GUI.Forms
             // editImageTab
             // 
             this.editImageTab.BackColor = System.Drawing.Color.White;
-            this.editImageTab.Controls.Add(this.materialTextBox6);
-            this.editImageTab.Controls.Add(this.materialButton3);
-            this.editImageTab.Controls.Add(this.materialSwitch2);
-            this.editImageTab.Controls.Add(this.materialComboBox3);
-            this.editImageTab.Controls.Add(this.materialLabel8);
-            this.editImageTab.Controls.Add(this.materialTextBox7);
-            this.editImageTab.Controls.Add(this.materialTextBox8);
-            this.editImageTab.Controls.Add(this.materialLabel9);
-            this.editImageTab.Controls.Add(this.materialLabel10);
-            this.editImageTab.Controls.Add(this.materialLabel11);
-            this.editImageTab.Controls.Add(this.materialComboBox4);
-            this.editImageTab.Controls.Add(this.materialButton4);
-            this.editImageTab.Controls.Add(this.materialTextBox9);
-            this.editImageTab.Controls.Add(this.materialLabel12);
-            this.editImageTab.Controls.Add(this.materialLabel13);
-            this.editImageTab.Controls.Add(this.materialTextBox10);
-            this.editImageTab.Controls.Add(this.materialLabel14);
+            this.editImageTab.Controls.Add(this.editImageRow);
+            this.editImageTab.Controls.Add(this.btnCancelEditImage);
+            this.editImageTab.Controls.Add(this.txtEditImageDescription);
+            this.editImageTab.Controls.Add(this.btnUpdateImage);
+            this.editImageTab.Controls.Add(this.switchEditImageProtected);
+            this.editImageTab.Controls.Add(this.cmbBoxEditImageVisibility);
+            this.editImageTab.Controls.Add(this.lblEditVisibility);
+            this.editImageTab.Controls.Add(this.txtEditImageMinimumRam);
+            this.editImageTab.Controls.Add(this.txtEditImageMinimumDisk);
+            this.editImageTab.Controls.Add(this.lblEditImageMinimumRam);
+            this.editImageTab.Controls.Add(this.lblEditMinimumDisk);
+            this.editImageTab.Controls.Add(this.lblEditDisskFormat);
+            this.editImageTab.Controls.Add(this.cmbBoxEditImageDiskFormat);
+            this.editImageTab.Controls.Add(this.lblEditImageDescription);
+            this.editImageTab.Controls.Add(this.txtEditImageName);
+            this.editImageTab.Controls.Add(this.lblEditImageName);
             this.editImageTab.Location = new System.Drawing.Point(4, 25);
             this.editImageTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.editImageTab.Name = "editImageTab";
@@ -626,184 +519,187 @@ namespace OpenStack_GUI.Forms
             this.editImageTab.TabIndex = 3;
             this.editImageTab.Text = "Edit Image";
             // 
-            // materialTextBox6
+            // txtEditImageDescription
             // 
-            this.materialTextBox6.AnimateReadOnly = false;
-            this.materialTextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialTextBox6.Depth = 0;
-            this.materialTextBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTextBox6.LeadingIcon = null;
-            this.materialTextBox6.Location = new System.Drawing.Point(525, 151);
-            this.materialTextBox6.MaxLength = 255;
-            this.materialTextBox6.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialTextBox6.Multiline = false;
-            this.materialTextBox6.Name = "materialTextBox6";
-            this.materialTextBox6.Size = new System.Drawing.Size(500, 50);
-            this.materialTextBox6.TabIndex = 18;
-            this.materialTextBox6.Text = "";
-            this.materialTextBox6.TrailingIcon = null;
+            this.txtEditImageDescription.AnimateReadOnly = false;
+            this.txtEditImageDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEditImageDescription.Depth = 0;
+            this.txtEditImageDescription.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtEditImageDescription.LeadingIcon = null;
+            this.txtEditImageDescription.Location = new System.Drawing.Point(525, 35);
+            this.txtEditImageDescription.MaxLength = 255;
+            this.txtEditImageDescription.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtEditImageDescription.Multiline = false;
+            this.txtEditImageDescription.Name = "txtEditImageDescription";
+            this.txtEditImageDescription.Size = new System.Drawing.Size(500, 50);
+            this.txtEditImageDescription.TabIndex = 18;
+            this.txtEditImageDescription.Text = "";
+            this.txtEditImageDescription.TrailingIcon = null;
             // 
-            // materialButton3
+            // btnUpdateImage
             // 
-            this.materialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton3.Depth = 0;
-            this.materialButton3.HighEmphasis = true;
-            this.materialButton3.Icon = null;
-            this.materialButton3.Location = new System.Drawing.Point(47, 488);
-            this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton3.Name = "materialButton3";
-            this.materialButton3.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton3.Size = new System.Drawing.Size(125, 36);
-            this.materialButton3.TabIndex = 17;
-            this.materialButton3.Text = "Create Image";
-            this.materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton3.UseAccentColor = false;
-            this.materialButton3.UseVisualStyleBackColor = true;
+            this.btnUpdateImage.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnUpdateImage.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnUpdateImage.Depth = 0;
+            this.btnUpdateImage.HighEmphasis = true;
+            this.btnUpdateImage.Icon = null;
+            this.btnUpdateImage.Location = new System.Drawing.Point(686, 372);
+            this.btnUpdateImage.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnUpdateImage.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnUpdateImage.Name = "btnUpdateImage";
+            this.btnUpdateImage.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnUpdateImage.Size = new System.Drawing.Size(126, 36);
+            this.btnUpdateImage.TabIndex = 17;
+            this.btnUpdateImage.Text = "Update Image";
+            this.btnUpdateImage.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnUpdateImage.UseAccentColor = false;
+            this.btnUpdateImage.UseVisualStyleBackColor = true;
+            this.btnUpdateImage.Click += new System.EventHandler(this.btnUpdateImage_Click);
             // 
-            // materialSwitch2
+            // switchEditImageProtected
             // 
-            this.materialSwitch2.AutoSize = true;
-            this.materialSwitch2.Depth = 0;
-            this.materialSwitch2.Location = new System.Drawing.Point(336, 487);
-            this.materialSwitch2.Margin = new System.Windows.Forms.Padding(0);
-            this.materialSwitch2.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialSwitch2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSwitch2.Name = "materialSwitch2";
-            this.materialSwitch2.Ripple = true;
-            this.materialSwitch2.Size = new System.Drawing.Size(125, 37);
-            this.materialSwitch2.TabIndex = 16;
-            this.materialSwitch2.Text = "Protected";
-            this.materialSwitch2.UseVisualStyleBackColor = true;
+            this.switchEditImageProtected.AutoSize = true;
+            this.switchEditImageProtected.Depth = 0;
+            this.switchEditImageProtected.Location = new System.Drawing.Point(47, 373);
+            this.switchEditImageProtected.Margin = new System.Windows.Forms.Padding(0);
+            this.switchEditImageProtected.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.switchEditImageProtected.MouseState = MaterialSkin.MouseState.HOVER;
+            this.switchEditImageProtected.Name = "switchEditImageProtected";
+            this.switchEditImageProtected.Ripple = true;
+            this.switchEditImageProtected.Size = new System.Drawing.Size(125, 37);
+            this.switchEditImageProtected.TabIndex = 16;
+            this.switchEditImageProtected.Text = "Protected";
+            this.switchEditImageProtected.UseVisualStyleBackColor = true;
             // 
-            // materialComboBox3
+            // cmbBoxEditImageVisibility
             // 
-            this.materialComboBox3.AutoResize = false;
-            this.materialComboBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialComboBox3.Depth = 0;
-            this.materialComboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.materialComboBox3.DropDownHeight = 174;
-            this.materialComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.materialComboBox3.DropDownWidth = 121;
-            this.materialComboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialComboBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialComboBox3.FormattingEnabled = true;
-            this.materialComboBox3.IntegralHeight = false;
-            this.materialComboBox3.ItemHeight = 43;
-            this.materialComboBox3.Items.AddRange(new object[] {
+            this.cmbBoxEditImageVisibility.AutoResize = false;
+            this.cmbBoxEditImageVisibility.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cmbBoxEditImageVisibility.Depth = 0;
+            this.cmbBoxEditImageVisibility.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cmbBoxEditImageVisibility.DropDownHeight = 174;
+            this.cmbBoxEditImageVisibility.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBoxEditImageVisibility.DropDownWidth = 121;
+            this.cmbBoxEditImageVisibility.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cmbBoxEditImageVisibility.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmbBoxEditImageVisibility.FormattingEnabled = true;
+            this.cmbBoxEditImageVisibility.IntegralHeight = false;
+            this.cmbBoxEditImageVisibility.ItemHeight = 43;
+            this.cmbBoxEditImageVisibility.Items.AddRange(new object[] {
             "shared",
             "public",
             "private",
             "community"});
-            this.materialComboBox3.Location = new System.Drawing.Point(47, 385);
-            this.materialComboBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.materialComboBox3.MaxDropDownItems = 4;
-            this.materialComboBox3.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialComboBox3.Name = "materialComboBox3";
-            this.materialComboBox3.Size = new System.Drawing.Size(185, 49);
-            this.materialComboBox3.StartIndex = 0;
-            this.materialComboBox3.TabIndex = 15;
+            this.cmbBoxEditImageVisibility.Location = new System.Drawing.Point(47, 269);
+            this.cmbBoxEditImageVisibility.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbBoxEditImageVisibility.MaxDropDownItems = 4;
+            this.cmbBoxEditImageVisibility.MouseState = MaterialSkin.MouseState.OUT;
+            this.cmbBoxEditImageVisibility.Name = "cmbBoxEditImageVisibility";
+            this.cmbBoxEditImageVisibility.Size = new System.Drawing.Size(185, 49);
+            this.cmbBoxEditImageVisibility.StartIndex = 0;
+            this.cmbBoxEditImageVisibility.TabIndex = 15;
             // 
-            // materialLabel8
+            // lblEditVisibility
             // 
-            this.materialLabel8.AutoSize = true;
-            this.materialLabel8.Depth = 0;
-            this.materialLabel8.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel8.Location = new System.Drawing.Point(44, 363);
-            this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel8.Name = "materialLabel8";
-            this.materialLabel8.Size = new System.Drawing.Size(61, 19);
-            this.materialLabel8.TabIndex = 14;
-            this.materialLabel8.Text = "Visibility";
+            this.lblEditVisibility.AutoSize = true;
+            this.lblEditVisibility.Depth = 0;
+            this.lblEditVisibility.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblEditVisibility.Location = new System.Drawing.Point(44, 247);
+            this.lblEditVisibility.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblEditVisibility.Name = "lblEditVisibility";
+            this.lblEditVisibility.Size = new System.Drawing.Size(61, 19);
+            this.lblEditVisibility.TabIndex = 14;
+            this.lblEditVisibility.Text = "Visibility";
             // 
-            // materialTextBox7
+            // txtEditImageMinimumRam
             // 
-            this.materialTextBox7.AnimateReadOnly = false;
-            this.materialTextBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialTextBox7.Depth = 0;
-            this.materialTextBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.6F);
-            this.materialTextBox7.LeadingIcon = null;
-            this.materialTextBox7.Location = new System.Drawing.Point(336, 384);
-            this.materialTextBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.materialTextBox7.MaxLength = 50;
-            this.materialTextBox7.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialTextBox7.Multiline = false;
-            this.materialTextBox7.Name = "materialTextBox7";
-            this.materialTextBox7.Size = new System.Drawing.Size(155, 50);
-            this.materialTextBox7.TabIndex = 13;
-            this.materialTextBox7.Text = "0";
-            this.materialTextBox7.TrailingIcon = null;
+            this.txtEditImageMinimumRam.AnimateReadOnly = false;
+            this.txtEditImageMinimumRam.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEditImageMinimumRam.Depth = 0;
+            this.txtEditImageMinimumRam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.6F);
+            this.txtEditImageMinimumRam.LeadingIcon = null;
+            this.txtEditImageMinimumRam.Location = new System.Drawing.Point(336, 268);
+            this.txtEditImageMinimumRam.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtEditImageMinimumRam.MaxLength = 50;
+            this.txtEditImageMinimumRam.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtEditImageMinimumRam.Multiline = false;
+            this.txtEditImageMinimumRam.Name = "txtEditImageMinimumRam";
+            this.txtEditImageMinimumRam.Size = new System.Drawing.Size(155, 50);
+            this.txtEditImageMinimumRam.TabIndex = 13;
+            this.txtEditImageMinimumRam.Text = "0";
+            this.txtEditImageMinimumRam.TrailingIcon = null;
+            this.txtEditImageMinimumRam.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinimumRam_KeyPress);
             // 
-            // materialTextBox8
+            // txtEditImageMinimumDisk
             // 
-            this.materialTextBox8.AnimateReadOnly = false;
-            this.materialTextBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialTextBox8.Depth = 0;
-            this.materialTextBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.6F);
-            this.materialTextBox8.LeadingIcon = null;
-            this.materialTextBox8.Location = new System.Drawing.Point(336, 270);
-            this.materialTextBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.materialTextBox8.MaxLength = 50;
-            this.materialTextBox8.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialTextBox8.Multiline = false;
-            this.materialTextBox8.Name = "materialTextBox8";
-            this.materialTextBox8.Size = new System.Drawing.Size(155, 50);
-            this.materialTextBox8.TabIndex = 12;
-            this.materialTextBox8.Text = "0";
-            this.materialTextBox8.TrailingIcon = null;
+            this.txtEditImageMinimumDisk.AnimateReadOnly = false;
+            this.txtEditImageMinimumDisk.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEditImageMinimumDisk.Depth = 0;
+            this.txtEditImageMinimumDisk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.6F);
+            this.txtEditImageMinimumDisk.LeadingIcon = null;
+            this.txtEditImageMinimumDisk.Location = new System.Drawing.Point(336, 154);
+            this.txtEditImageMinimumDisk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtEditImageMinimumDisk.MaxLength = 50;
+            this.txtEditImageMinimumDisk.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtEditImageMinimumDisk.Multiline = false;
+            this.txtEditImageMinimumDisk.Name = "txtEditImageMinimumDisk";
+            this.txtEditImageMinimumDisk.Size = new System.Drawing.Size(155, 50);
+            this.txtEditImageMinimumDisk.TabIndex = 12;
+            this.txtEditImageMinimumDisk.Text = "0";
+            this.txtEditImageMinimumDisk.TrailingIcon = null;
+            this.txtEditImageMinimumDisk.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinimumDisk_KeyPress);
             // 
-            // materialLabel9
+            // lblEditImageMinimumRam
             // 
-            this.materialLabel9.AutoSize = true;
-            this.materialLabel9.Depth = 0;
-            this.materialLabel9.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel9.Location = new System.Drawing.Point(333, 363);
-            this.materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel9.Name = "materialLabel9";
-            this.materialLabel9.Size = new System.Drawing.Size(146, 19);
-            this.materialLabel9.TabIndex = 11;
-            this.materialLabel9.Text = "Minimum RAM (MB)";
+            this.lblEditImageMinimumRam.AutoSize = true;
+            this.lblEditImageMinimumRam.Depth = 0;
+            this.lblEditImageMinimumRam.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblEditImageMinimumRam.Location = new System.Drawing.Point(333, 247);
+            this.lblEditImageMinimumRam.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblEditImageMinimumRam.Name = "lblEditImageMinimumRam";
+            this.lblEditImageMinimumRam.Size = new System.Drawing.Size(146, 19);
+            this.lblEditImageMinimumRam.TabIndex = 11;
+            this.lblEditImageMinimumRam.Text = "Minimum RAM (MB)";
             // 
-            // materialLabel10
+            // lblEditMinimumDisk
             // 
-            this.materialLabel10.AutoSize = true;
-            this.materialLabel10.Depth = 0;
-            this.materialLabel10.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel10.Location = new System.Drawing.Point(333, 247);
-            this.materialLabel10.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel10.Name = "materialLabel10";
-            this.materialLabel10.Size = new System.Drawing.Size(140, 19);
-            this.materialLabel10.TabIndex = 10;
-            this.materialLabel10.Text = "Minimum Disk (GB)";
+            this.lblEditMinimumDisk.AutoSize = true;
+            this.lblEditMinimumDisk.Depth = 0;
+            this.lblEditMinimumDisk.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblEditMinimumDisk.Location = new System.Drawing.Point(333, 131);
+            this.lblEditMinimumDisk.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblEditMinimumDisk.Name = "lblEditMinimumDisk";
+            this.lblEditMinimumDisk.Size = new System.Drawing.Size(140, 19);
+            this.lblEditMinimumDisk.TabIndex = 10;
+            this.lblEditMinimumDisk.Text = "Minimum Disk (GB)";
             // 
-            // materialLabel11
+            // lblEditDisskFormat
             // 
-            this.materialLabel11.AutoSize = true;
-            this.materialLabel11.Depth = 0;
-            this.materialLabel11.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel11.Location = new System.Drawing.Point(44, 247);
-            this.materialLabel11.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel11.Name = "materialLabel11";
-            this.materialLabel11.Size = new System.Drawing.Size(87, 19);
-            this.materialLabel11.TabIndex = 9;
-            this.materialLabel11.Text = "Disk Format";
+            this.lblEditDisskFormat.AutoSize = true;
+            this.lblEditDisskFormat.Depth = 0;
+            this.lblEditDisskFormat.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblEditDisskFormat.Location = new System.Drawing.Point(44, 131);
+            this.lblEditDisskFormat.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblEditDisskFormat.Name = "lblEditDisskFormat";
+            this.lblEditDisskFormat.Size = new System.Drawing.Size(87, 19);
+            this.lblEditDisskFormat.TabIndex = 9;
+            this.lblEditDisskFormat.Text = "Disk Format";
             // 
-            // materialComboBox4
+            // cmbBoxEditImageDiskFormat
             // 
-            this.materialComboBox4.AutoResize = false;
-            this.materialComboBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialComboBox4.Depth = 0;
-            this.materialComboBox4.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.materialComboBox4.DropDownHeight = 174;
-            this.materialComboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.materialComboBox4.DropDownWidth = 121;
-            this.materialComboBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialComboBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialComboBox4.FormattingEnabled = true;
-            this.materialComboBox4.IntegralHeight = false;
-            this.materialComboBox4.ItemHeight = 43;
-            this.materialComboBox4.Items.AddRange(new object[] {
+            this.cmbBoxEditImageDiskFormat.AutoResize = false;
+            this.cmbBoxEditImageDiskFormat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cmbBoxEditImageDiskFormat.Depth = 0;
+            this.cmbBoxEditImageDiskFormat.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cmbBoxEditImageDiskFormat.DropDownHeight = 174;
+            this.cmbBoxEditImageDiskFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBoxEditImageDiskFormat.DropDownWidth = 121;
+            this.cmbBoxEditImageDiskFormat.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cmbBoxEditImageDiskFormat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmbBoxEditImageDiskFormat.FormattingEnabled = true;
+            this.cmbBoxEditImageDiskFormat.IntegralHeight = false;
+            this.cmbBoxEditImageDiskFormat.ItemHeight = 43;
+            this.cmbBoxEditImageDiskFormat.Items.AddRange(new object[] {
             "QCOW2",
             "AMI",
             "ARI",
@@ -815,105 +711,237 @@ namespace OpenStack_GUI.Forms
             "VDI",
             "PLOOP",
             "ISO"});
-            this.materialComboBox4.Location = new System.Drawing.Point(47, 270);
-            this.materialComboBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.materialComboBox4.MaxDropDownItems = 4;
-            this.materialComboBox4.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialComboBox4.Name = "materialComboBox4";
-            this.materialComboBox4.Size = new System.Drawing.Size(185, 49);
-            this.materialComboBox4.StartIndex = 0;
-            this.materialComboBox4.TabIndex = 8;
+            this.cmbBoxEditImageDiskFormat.Location = new System.Drawing.Point(47, 154);
+            this.cmbBoxEditImageDiskFormat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbBoxEditImageDiskFormat.MaxDropDownItems = 4;
+            this.cmbBoxEditImageDiskFormat.MouseState = MaterialSkin.MouseState.OUT;
+            this.cmbBoxEditImageDiskFormat.Name = "cmbBoxEditImageDiskFormat";
+            this.cmbBoxEditImageDiskFormat.Size = new System.Drawing.Size(185, 49);
+            this.cmbBoxEditImageDiskFormat.StartIndex = 0;
+            this.cmbBoxEditImageDiskFormat.TabIndex = 8;
             // 
-            // materialButton4
+            // lblEditImageDescription
             // 
-            this.materialButton4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton4.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton4.Depth = 0;
-            this.materialButton4.HighEmphasis = true;
-            this.materialButton4.Icon = null;
-            this.materialButton4.Location = new System.Drawing.Point(945, 39);
-            this.materialButton4.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton4.Name = "materialButton4";
-            this.materialButton4.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton4.Size = new System.Drawing.Size(80, 36);
-            this.materialButton4.TabIndex = 7;
-            this.materialButton4.Text = "Browse";
-            this.materialButton4.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton4.UseAccentColor = false;
-            this.materialButton4.UseVisualStyleBackColor = true;
+            this.lblEditImageDescription.AutoSize = true;
+            this.lblEditImageDescription.Depth = 0;
+            this.lblEditImageDescription.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblEditImageDescription.Location = new System.Drawing.Point(522, 13);
+            this.lblEditImageDescription.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblEditImageDescription.Name = "lblEditImageDescription";
+            this.lblEditImageDescription.Size = new System.Drawing.Size(129, 19);
+            this.lblEditImageDescription.TabIndex = 4;
+            this.lblEditImageDescription.Text = "Image Description";
             // 
-            // materialTextBox9
+            // txtEditImageName
             // 
-            this.materialTextBox9.AnimateReadOnly = false;
-            this.materialTextBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialTextBox9.Depth = 0;
-            this.materialTextBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTextBox9.LeadingIcon = null;
-            this.materialTextBox9.Location = new System.Drawing.Point(47, 34);
-            this.materialTextBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.materialTextBox9.MaxLength = 260;
-            this.materialTextBox9.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialTextBox9.Multiline = false;
-            this.materialTextBox9.Name = "materialTextBox9";
-            this.materialTextBox9.Size = new System.Drawing.Size(873, 50);
-            this.materialTextBox9.TabIndex = 6;
-            this.materialTextBox9.Text = "";
-            this.materialTextBox9.TrailingIcon = null;
+            this.txtEditImageName.AnimateReadOnly = false;
+            this.txtEditImageName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEditImageName.Depth = 0;
+            this.txtEditImageName.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtEditImageName.LeadingIcon = null;
+            this.txtEditImageName.Location = new System.Drawing.Point(47, 34);
+            this.txtEditImageName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtEditImageName.MaxLength = 50;
+            this.txtEditImageName.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtEditImageName.Multiline = false;
+            this.txtEditImageName.Name = "txtEditImageName";
+            this.txtEditImageName.Size = new System.Drawing.Size(421, 50);
+            this.txtEditImageName.TabIndex = 2;
+            this.txtEditImageName.Text = "";
+            this.txtEditImageName.TrailingIcon = null;
             // 
-            // materialLabel12
+            // lblEditImageName
             // 
-            this.materialLabel12.AutoSize = true;
-            this.materialLabel12.Depth = 0;
-            this.materialLabel12.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel12.Location = new System.Drawing.Point(44, 14);
-            this.materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel12.Name = "materialLabel12";
-            this.materialLabel12.Size = new System.Drawing.Size(138, 19);
-            this.materialLabel12.TabIndex = 5;
-            this.materialLabel12.Text = "Image Source (File)";
+            this.lblEditImageName.AutoSize = true;
+            this.lblEditImageName.Depth = 0;
+            this.lblEditImageName.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblEditImageName.Location = new System.Drawing.Point(44, 13);
+            this.lblEditImageName.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblEditImageName.Name = "lblEditImageName";
+            this.lblEditImageName.Size = new System.Drawing.Size(91, 19);
+            this.lblEditImageName.TabIndex = 0;
+            this.lblEditImageName.Text = "Image Name";
             // 
-            // materialLabel13
+            // btnCancelEditImage
             // 
-            this.materialLabel13.AutoSize = true;
-            this.materialLabel13.Depth = 0;
-            this.materialLabel13.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel13.Location = new System.Drawing.Point(522, 129);
-            this.materialLabel13.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel13.Name = "materialLabel13";
-            this.materialLabel13.Size = new System.Drawing.Size(129, 19);
-            this.materialLabel13.TabIndex = 4;
-            this.materialLabel13.Text = "Image Description";
+            this.btnCancelEditImage.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCancelEditImage.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnCancelEditImage.Depth = 0;
+            this.btnCancelEditImage.HighEmphasis = true;
+            this.btnCancelEditImage.Icon = null;
+            this.btnCancelEditImage.Location = new System.Drawing.Point(948, 372);
+            this.btnCancelEditImage.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnCancelEditImage.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCancelEditImage.Name = "btnCancelEditImage";
+            this.btnCancelEditImage.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnCancelEditImage.Size = new System.Drawing.Size(77, 36);
+            this.btnCancelEditImage.TabIndex = 19;
+            this.btnCancelEditImage.Text = "Cancel";
+            this.btnCancelEditImage.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnCancelEditImage.UseAccentColor = false;
+            this.btnCancelEditImage.UseVisualStyleBackColor = true;
+            this.btnCancelEditImage.Click += new System.EventHandler(this.btnCancelEditImage_Click);
             // 
-            // materialTextBox10
+            // collumnLineNumber
             // 
-            this.materialTextBox10.AnimateReadOnly = false;
-            this.materialTextBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialTextBox10.Depth = 0;
-            this.materialTextBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTextBox10.LeadingIcon = null;
-            this.materialTextBox10.Location = new System.Drawing.Point(47, 150);
-            this.materialTextBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.materialTextBox10.MaxLength = 50;
-            this.materialTextBox10.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialTextBox10.Multiline = false;
-            this.materialTextBox10.Name = "materialTextBox10";
-            this.materialTextBox10.Size = new System.Drawing.Size(421, 50);
-            this.materialTextBox10.TabIndex = 2;
-            this.materialTextBox10.Text = "";
-            this.materialTextBox10.TrailingIcon = null;
+            this.collumnLineNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.collumnLineNumber.HeaderText = "";
+            this.collumnLineNumber.MinimumWidth = 6;
+            this.collumnLineNumber.Name = "collumnLineNumber";
+            this.collumnLineNumber.ReadOnly = true;
+            this.collumnLineNumber.Visible = false;
+            this.collumnLineNumber.Width = 20;
             // 
-            // materialLabel14
+            // check
             // 
-            this.materialLabel14.AutoSize = true;
-            this.materialLabel14.Depth = 0;
-            this.materialLabel14.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel14.Location = new System.Drawing.Point(44, 129);
-            this.materialLabel14.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel14.Name = "materialLabel14";
-            this.materialLabel14.Size = new System.Drawing.Size(91, 19);
-            this.materialLabel14.TabIndex = 0;
-            this.materialLabel14.Text = "Image Name";
+            this.check.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.check.FillWeight = 28.877F;
+            this.check.HeaderText = "";
+            this.check.MinimumWidth = 6;
+            this.check.Name = "check";
+            this.check.ReadOnly = true;
+            this.check.Width = 20;
+            // 
+            // collumnID
+            // 
+            this.collumnID.HeaderText = "ID";
+            this.collumnID.MinimumWidth = 6;
+            this.collumnID.Name = "collumnID";
+            this.collumnID.ReadOnly = true;
+            this.collumnID.Visible = false;
+            // 
+            // collumnProjectId
+            // 
+            this.collumnProjectId.HeaderText = "Project ID";
+            this.collumnProjectId.MinimumWidth = 6;
+            this.collumnProjectId.Name = "collumnProjectId";
+            this.collumnProjectId.ReadOnly = true;
+            this.collumnProjectId.Visible = false;
+            // 
+            // collumnName
+            // 
+            this.collumnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.collumnName.FillWeight = 668.984F;
+            this.collumnName.HeaderText = "Name";
+            this.collumnName.MinimumWidth = 6;
+            this.collumnName.Name = "collumnName";
+            this.collumnName.ReadOnly = true;
+            this.collumnName.Width = 200;
+            // 
+            // collumnImageDescription
+            // 
+            this.collumnImageDescription.HeaderText = "Description";
+            this.collumnImageDescription.MinimumWidth = 6;
+            this.collumnImageDescription.Name = "collumnImageDescription";
+            this.collumnImageDescription.ReadOnly = true;
+            this.collumnImageDescription.Visible = false;
+            // 
+            // collumnStatus
+            // 
+            this.collumnStatus.FillWeight = 28.877F;
+            this.collumnStatus.HeaderText = "Status";
+            this.collumnStatus.MinimumWidth = 6;
+            this.collumnStatus.Name = "collumnStatus";
+            this.collumnStatus.ReadOnly = true;
+            // 
+            // collumnVisibility
+            // 
+            this.collumnVisibility.FillWeight = 28.877F;
+            this.collumnVisibility.HeaderText = "Visibility";
+            this.collumnVisibility.MinimumWidth = 6;
+            this.collumnVisibility.Name = "collumnVisibility";
+            this.collumnVisibility.ReadOnly = true;
+            // 
+            // collumnProtected
+            // 
+            this.collumnProtected.FillWeight = 28.877F;
+            this.collumnProtected.HeaderText = "Protected";
+            this.collumnProtected.MinimumWidth = 6;
+            this.collumnProtected.Name = "collumnProtected";
+            this.collumnProtected.ReadOnly = true;
+            // 
+            // collumnDiskFormat
+            // 
+            this.collumnDiskFormat.FillWeight = 28.877F;
+            this.collumnDiskFormat.HeaderText = "Disk Format";
+            this.collumnDiskFormat.MinimumWidth = 6;
+            this.collumnDiskFormat.Name = "collumnDiskFormat";
+            this.collumnDiskFormat.ReadOnly = true;
+            // 
+            // collumnMinimumDisk
+            // 
+            this.collumnMinimumDisk.HeaderText = "Minimum Disk";
+            this.collumnMinimumDisk.MinimumWidth = 6;
+            this.collumnMinimumDisk.Name = "collumnMinimumDisk";
+            this.collumnMinimumDisk.ReadOnly = true;
+            this.collumnMinimumDisk.Visible = false;
+            // 
+            // collumnMinimumRam
+            // 
+            this.collumnMinimumRam.HeaderText = "Minimum Ram";
+            this.collumnMinimumRam.MinimumWidth = 6;
+            this.collumnMinimumRam.Name = "collumnMinimumRam";
+            this.collumnMinimumRam.ReadOnly = true;
+            this.collumnMinimumRam.Visible = false;
+            // 
+            // collumnContainerFormt
+            // 
+            this.collumnContainerFormt.FillWeight = 28.877F;
+            this.collumnContainerFormt.HeaderText = "Container Format";
+            this.collumnContainerFormt.MinimumWidth = 6;
+            this.collumnContainerFormt.Name = "collumnContainerFormt";
+            this.collumnContainerFormt.ReadOnly = true;
+            // 
+            // collumnSize
+            // 
+            this.collumnSize.FillWeight = 28.877F;
+            this.collumnSize.HeaderText = "Size";
+            this.collumnSize.MinimumWidth = 6;
+            this.collumnSize.Name = "collumnSize";
+            this.collumnSize.ReadOnly = true;
+            // 
+            // columnDeleteImage
+            // 
+            this.columnDeleteImage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.columnDeleteImage.FillWeight = 28.877F;
+            this.columnDeleteImage.HeaderText = "Delete";
+            this.columnDeleteImage.MinimumWidth = 6;
+            this.columnDeleteImage.Name = "columnDeleteImage";
+            this.columnDeleteImage.ReadOnly = true;
+            this.columnDeleteImage.Text = "Delete";
+            this.columnDeleteImage.Width = 50;
+            // 
+            // collumnEditImage
+            // 
+            this.collumnEditImage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.collumnEditImage.HeaderText = "Edit";
+            this.collumnEditImage.MinimumWidth = 6;
+            this.collumnEditImage.Name = "collumnEditImage";
+            this.collumnEditImage.ReadOnly = true;
+            this.collumnEditImage.Width = 50;
+            // 
+            // editImageRow
+            // 
+            this.editImageRow.Location = new System.Drawing.Point(596, 128);
+            this.editImageRow.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.editImageRow.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.editImageRow.Name = "editImageRow";
+            this.editImageRow.Size = new System.Drawing.Size(120, 22);
+            this.editImageRow.TabIndex = 20;
+            this.editImageRow.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.editImageRow.Visible = false;
             // 
             // ImagesForm
             // 
@@ -938,6 +966,7 @@ namespace OpenStack_GUI.Forms
             this.createImageTab.PerformLayout();
             this.editImageTab.ResumeLayout(false);
             this.editImageTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.editImageRow)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -966,36 +995,38 @@ namespace OpenStack_GUI.Forms
         private MaterialSkin.Controls.MaterialLabel lblImageName;
         private MaterialSkin.Controls.MaterialButton btnCreateImage;
         private MaterialSkin.Controls.MaterialTextBox txtImageDescription;
+        private System.Windows.Forms.TabPage editImageTab;
+        private MaterialSkin.Controls.MaterialTextBox txtEditImageDescription;
+        private MaterialSkin.Controls.MaterialButton btnUpdateImage;
+        private MaterialSkin.Controls.MaterialSwitch switchEditImageProtected;
+        private MaterialSkin.Controls.MaterialComboBox cmbBoxEditImageVisibility;
+        private MaterialSkin.Controls.MaterialLabel lblEditVisibility;
+        private MaterialSkin.Controls.MaterialTextBox txtEditImageMinimumRam;
+        private MaterialSkin.Controls.MaterialTextBox txtEditImageMinimumDisk;
+        private MaterialSkin.Controls.MaterialLabel lblEditImageMinimumRam;
+        private MaterialSkin.Controls.MaterialLabel lblEditMinimumDisk;
+        private MaterialSkin.Controls.MaterialLabel lblEditDisskFormat;
+        private MaterialSkin.Controls.MaterialComboBox cmbBoxEditImageDiskFormat;
+        private MaterialSkin.Controls.MaterialLabel lblEditImageDescription;
+        private MaterialSkin.Controls.MaterialTextBox txtEditImageName;
+        private MaterialSkin.Controls.MaterialLabel lblEditImageName;
+        private MaterialSkin.Controls.MaterialButton btnCancelEditImage;
         private System.Windows.Forms.DataGridViewTextBoxColumn collumnLineNumber;
         private System.Windows.Forms.DataGridViewCheckBoxColumn check;
         private System.Windows.Forms.DataGridViewTextBoxColumn collumnID;
         private System.Windows.Forms.DataGridViewTextBoxColumn collumnProjectId;
         private System.Windows.Forms.DataGridViewTextBoxColumn collumnName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn collumnImageDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn collumnStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn collumnVisibility;
         private System.Windows.Forms.DataGridViewTextBoxColumn collumnProtected;
         private System.Windows.Forms.DataGridViewTextBoxColumn collumnDiskFormat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn collumnMinimumDisk;
+        private System.Windows.Forms.DataGridViewTextBoxColumn collumnMinimumRam;
         private System.Windows.Forms.DataGridViewTextBoxColumn collumnContainerFormt;
         private System.Windows.Forms.DataGridViewTextBoxColumn collumnSize;
         private System.Windows.Forms.DataGridViewButtonColumn columnDeleteImage;
         private System.Windows.Forms.DataGridViewButtonColumn collumnEditImage;
-        private System.Windows.Forms.TabPage editImageTab;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox6;
-        private MaterialSkin.Controls.MaterialButton materialButton3;
-        private MaterialSkin.Controls.MaterialSwitch materialSwitch2;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox3;
-        private MaterialSkin.Controls.MaterialLabel materialLabel8;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox7;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox8;
-        private MaterialSkin.Controls.MaterialLabel materialLabel9;
-        private MaterialSkin.Controls.MaterialLabel materialLabel10;
-        private MaterialSkin.Controls.MaterialLabel materialLabel11;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox4;
-        private MaterialSkin.Controls.MaterialButton materialButton4;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox9;
-        private MaterialSkin.Controls.MaterialLabel materialLabel12;
-        private MaterialSkin.Controls.MaterialLabel materialLabel13;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox10;
-        private MaterialSkin.Controls.MaterialLabel materialLabel14;
+        private System.Windows.Forms.NumericUpDown editImageRow;
     }
 }
