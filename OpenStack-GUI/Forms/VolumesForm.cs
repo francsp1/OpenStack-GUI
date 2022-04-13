@@ -21,6 +21,8 @@ namespace OpenStack_GUI.Forms
         {
             InitializeComponent();
 
+            volumesTabControl.TabPages.Remove(tabPage3);
+
             refresh();
         }
 
@@ -28,7 +30,7 @@ namespace OpenStack_GUI.Forms
         {
             volumesGridView.Rows.Clear();
             volumesGridView.Refresh();
-            
+
 
             try
             {
@@ -77,7 +79,7 @@ namespace OpenStack_GUI.Forms
 
         private void Volumes_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void CreateVolumeButton_Click(object sender, EventArgs e)
@@ -131,7 +133,7 @@ namespace OpenStack_GUI.Forms
                 var payload = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
                 client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
-                
+
                 client.DefaultRequestHeaders.ExpectContinue = false;
                 var result = client.PostAsync(endpoint, payload).Result;
                 var json = result.Content.ReadAsStringAsync().Result;
@@ -139,19 +141,20 @@ namespace OpenStack_GUI.Forms
                 MessageBox.Show("Volume created sucessesfully", "Sucess!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 volumesTabControl.SelectedTab = tabPage1;
-                
+
                 refresh();
             }
-            
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           /* if (e.ColumnIndex == volumesGridView.Columns["deleteColumn"].Index)
-            {
 
-                deleteVolume(volumesGridView[0, e.RowIndex].Value.ToString());
-            }*/
+            if (e.ColumnIndex == volumesGridView.Columns["edit"].Index)
+            {
+                //editVolume(e.RowIndex);
+                updateVolume(volumesGridView[0, e.RowIndex].Value.ToString());
+            }
 
             if (e.ColumnIndex == volumesGridView.Columns["delete"].Index)
             {
@@ -179,24 +182,95 @@ namespace OpenStack_GUI.Forms
                     return;
                 }
                 MessageBox.Show("Volume deleted with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
             }
             refresh();
         }
 
-       /* private void dataGridView1_CellContentClick2(object sender, DataGridViewCellEventArgs e)
+        private void btnUpdateVolume_Click(object sender, EventArgs e)
         {
-
-            if (e.ColumnIndex == volumesGridView.Columns["editVolume"].Index)
+            string name = editTextBoxName.Text;
+            if (String.IsNullOrWhiteSpace(name))
             {
-
-                editVolume(volumesGridView[0, e.RowIndex].Value.ToString());
+                MessageBox.Show("Please, enter a valid Image Name", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+            string description = editTextBoxDesc.Text;
+            if (description == null || description.Length > 255)
+            {
+                MessageBox.Show("Please, enter a valid description", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            bool volumeBoot = switchEditBoot.Checked;
+
+            //???
+            updateVolume("");
+
+            btnCancelEditVolume_Click(null, null);
+
+            volumesTabControl.TabPages.Remove(tabPage3);
         }
 
-        private void editVolume(string volumeID)
+        private void updateVolume(string volumeID)
         {
+            int rowIndex = 0;
 
-        }*/
+            if (!volumesTabControl.TabPages.Contains(tabPage3))
+            {
+                volumesTabControl.TabPages.Add(tabPage3);
+            }
+            volumesTabControl.SelectedTab = tabPage3;
+
+            var selectedRow = volumesGridView.Rows[rowIndex].Cells;
+
+            editTextBoxName.Text = selectedRow[1].Value.ToString();
+            editTextBoxDesc.Text = selectedRow[2].Value.ToString();
+
+            switchEditBoot.Checked = selectedRow[8].Value.ToString() == "Yes" ? true : false;
+
+            Volume volume = new Volume
+            {
+                volume = new
+
+                CreateVolumesModel()
+                {
+                    Name = editTextBoxName.Text,
+                    Description = editTextBoxDesc.Text
+                }
+            };
+
+            var endpoint = new Uri(GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/volume/v3/" + GlobalSessionDetails.ProjectId + "/volumes/" + volumeID);
+
+            var client = GlobalSessionDetails._clientFactory.CreateClient();
+
+            var httpVerb = new HttpMethod("PUT");
+
+            string requestJson = JsonConvert.SerializeObject(volume);
+            var payload = new StringContent(requestJson, Encoding.UTF8, "application/openstack-images-v2.1-json-patch");
+
+            var httpRequestMessage = new HttpRequestMessage(httpVerb, endpoint)
+            {
+                Content = payload,
+            };
+
+            client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+            client.DefaultRequestHeaders.ExpectContinue = false;
+
+            HttpResponseMessage response = client.SendAsync(httpRequestMessage).Result;
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show(response.ReasonPhrase, "Could not Update the image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("Image updated with success", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnCancelEditVolume_Click(object sender, EventArgs e)
+        {
+            editTextBoxName.Text = "";
+            editTextBoxDesc.Text = "";
+            switchEditBoot.Checked = false;
+            volumesTabControl.TabPages.Remove(tabPage3);
+        }
     }
 }

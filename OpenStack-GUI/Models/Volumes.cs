@@ -36,5 +36,9 @@ namespace OpenStack_GUI.Models
 
         [JsonProperty("availabilityZone")]
         public string AvailabilityZone { get; set; }
+
+        [JsonProperty("bootable")]
+        public string Bootable { get; set; }
+
     }
 }

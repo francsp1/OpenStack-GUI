@@ -48,7 +48,17 @@ namespace OpenStack_GUI.Forms
             this.TypeComboBox = new MaterialSkin.Controls.MaterialComboBox();
             this.sourceComboBox = new MaterialSkin.Controls.MaterialComboBox();
             this.VolumeTextBox = new MaterialSkin.Controls.MaterialTextBox();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnCancelEditVolume = new MaterialSkin.Controls.MaterialButton();
+            this.btnUpdateVolume = new MaterialSkin.Controls.MaterialButton();
+            this.switchEditBoot = new MaterialSkin.Controls.MaterialSwitch();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.editTextBoxDesc = new MaterialSkin.Controls.MaterialTextBox();
+            this.editTextBoxName = new MaterialSkin.Controls.MaterialTextBox();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.IDVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,12 +69,13 @@ namespace OpenStack_GUI.Forms
             this.columnBootable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnEncrypted = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.editVolume = new System.Windows.Forms.DataGridViewImageColumn();
+            this.edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.volumesTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumesGridView)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // volumesTabSelector
@@ -86,6 +97,7 @@ namespace OpenStack_GUI.Forms
             // 
             this.volumesTabControl.Controls.Add(this.tabPage1);
             this.volumesTabControl.Controls.Add(this.tabPage2);
+            this.volumesTabControl.Controls.Add(this.tabPage3);
             this.volumesTabControl.Depth = 0;
             this.volumesTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.volumesTabControl.Location = new System.Drawing.Point(0, 39);
@@ -116,7 +128,7 @@ namespace OpenStack_GUI.Forms
             this.volumesGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.volumesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.volumesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
+            this.IDVolume,
             this.columnName,
             this.columnDescription,
             this.columnSize,
@@ -127,7 +139,7 @@ namespace OpenStack_GUI.Forms
             this.columnBootable,
             this.columnEncrypted,
             this.deleteColumn,
-            this.editVolume,
+            this.edit,
             this.delete});
             this.volumesGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.volumesGridView.GridColor = System.Drawing.Color.White;
@@ -385,12 +397,163 @@ namespace OpenStack_GUI.Forms
             this.VolumeTextBox.Text = "";
             this.VolumeTextBox.TrailingIcon = null;
             // 
-            // ID
+            // tabPage3
             // 
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.Visible = false;
+            this.tabPage3.BackColor = System.Drawing.Color.White;
+            this.tabPage3.Controls.Add(this.btnCancelEditVolume);
+            this.tabPage3.Controls.Add(this.btnUpdateVolume);
+            this.tabPage3.Controls.Add(this.switchEditBoot);
+            this.tabPage3.Controls.Add(this.materialLabel1);
+            this.tabPage3.Controls.Add(this.materialLabel2);
+            this.tabPage3.Controls.Add(this.editTextBoxDesc);
+            this.tabPage3.Controls.Add(this.editTextBoxName);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1131, 517);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Edit Volume";
+            // 
+            // btnCancelEditVolume
+            // 
+            this.btnCancelEditVolume.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCancelEditVolume.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnCancelEditVolume.Depth = 0;
+            this.btnCancelEditVolume.HighEmphasis = true;
+            this.btnCancelEditVolume.Icon = null;
+            this.btnCancelEditVolume.Location = new System.Drawing.Point(174, 266);
+            this.btnCancelEditVolume.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnCancelEditVolume.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCancelEditVolume.Name = "btnCancelEditVolume";
+            this.btnCancelEditVolume.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnCancelEditVolume.Size = new System.Drawing.Size(77, 36);
+            this.btnCancelEditVolume.TabIndex = 22;
+            this.btnCancelEditVolume.Text = "Cancel";
+            this.btnCancelEditVolume.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnCancelEditVolume.UseAccentColor = false;
+            this.btnCancelEditVolume.UseVisualStyleBackColor = true;
+            this.btnCancelEditVolume.Click += new System.EventHandler(this.btnCancelEditVolume_Click);
+            // 
+            // btnUpdateVolume
+            // 
+            this.btnUpdateVolume.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnUpdateVolume.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnUpdateVolume.Depth = 0;
+            this.btnUpdateVolume.HighEmphasis = true;
+            this.btnUpdateVolume.Icon = null;
+            this.btnUpdateVolume.Location = new System.Drawing.Point(10, 266);
+            this.btnUpdateVolume.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnUpdateVolume.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnUpdateVolume.Name = "btnUpdateVolume";
+            this.btnUpdateVolume.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnUpdateVolume.Size = new System.Drawing.Size(139, 36);
+            this.btnUpdateVolume.TabIndex = 21;
+            this.btnUpdateVolume.Text = "Update Volume";
+            this.btnUpdateVolume.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnUpdateVolume.UseAccentColor = false;
+            this.btnUpdateVolume.UseVisualStyleBackColor = true;
+            this.btnUpdateVolume.Click += new System.EventHandler(this.btnUpdateVolume_Click);
+            // 
+            // switchEditBoot
+            // 
+            this.switchEditBoot.AutoSize = true;
+            this.switchEditBoot.Depth = 0;
+            this.switchEditBoot.Location = new System.Drawing.Point(10, 174);
+            this.switchEditBoot.Margin = new System.Windows.Forms.Padding(0);
+            this.switchEditBoot.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.switchEditBoot.MouseState = MaterialSkin.MouseState.HOVER;
+            this.switchEditBoot.Name = "switchEditBoot";
+            this.switchEditBoot.Ripple = true;
+            this.switchEditBoot.Size = new System.Drawing.Size(125, 37);
+            this.switchEditBoot.TabIndex = 20;
+            this.switchEditBoot.Text = "Bootable ";
+            this.switchEditBoot.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel1
+            // 
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.Location = new System.Drawing.Point(435, 38);
+            this.materialLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(81, 19);
+            this.materialLabel1.TabIndex = 19;
+            this.materialLabel1.Text = "Description";
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.BackColor = System.Drawing.Color.White;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel2.ForeColor = System.Drawing.Color.White;
+            this.materialLabel2.Location = new System.Drawing.Point(7, 38);
+            this.materialLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(101, 19);
+            this.materialLabel2.TabIndex = 18;
+            this.materialLabel2.Text = "Volume Name";
+            // 
+            // editTextBoxDesc
+            // 
+            this.editTextBoxDesc.AnimateReadOnly = false;
+            this.editTextBoxDesc.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.editTextBoxDesc.Depth = 0;
+            this.editTextBoxDesc.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.editTextBoxDesc.LeadingIcon = null;
+            this.editTextBoxDesc.Location = new System.Drawing.Point(438, 60);
+            this.editTextBoxDesc.MaxLength = 50;
+            this.editTextBoxDesc.MouseState = MaterialSkin.MouseState.OUT;
+            this.editTextBoxDesc.Multiline = false;
+            this.editTextBoxDesc.Name = "editTextBoxDesc";
+            this.editTextBoxDesc.Size = new System.Drawing.Size(332, 50);
+            this.editTextBoxDesc.TabIndex = 17;
+            this.editTextBoxDesc.Text = "";
+            this.editTextBoxDesc.TrailingIcon = null;
+            // 
+            // editTextBoxName
+            // 
+            this.editTextBoxName.AnimateReadOnly = false;
+            this.editTextBoxName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.editTextBoxName.Depth = 0;
+            this.editTextBoxName.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.editTextBoxName.ForeColor = System.Drawing.Color.White;
+            this.editTextBoxName.LeadingIcon = null;
+            this.editTextBoxName.Location = new System.Drawing.Point(10, 60);
+            this.editTextBoxName.MaxLength = 50;
+            this.editTextBoxName.MouseState = MaterialSkin.MouseState.OUT;
+            this.editTextBoxName.Multiline = false;
+            this.editTextBoxName.Name = "editTextBoxName";
+            this.editTextBoxName.Size = new System.Drawing.Size(332, 50);
+            this.editTextBoxName.TabIndex = 16;
+            this.editTextBoxName.Text = "";
+            this.editTextBoxName.TrailingIcon = null;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dataGridViewImageColumn1.HeaderText = "Edit";
+            this.dataGridViewImageColumn1.Image = global::OpenStack_GUI.Properties.Resources.edit_button;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.dataGridViewImageColumn2.HeaderText = "Delete";
+            this.dataGridViewImageColumn2.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn2.Image")));
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            // 
+            // IDVolume
+            // 
+            this.IDVolume.HeaderText = "ID";
+            this.IDVolume.MinimumWidth = 6;
+            this.IDVolume.Name = "IDVolume";
+            this.IDVolume.Visible = false;
             // 
             // columnName
             // 
@@ -445,21 +608,20 @@ namespace OpenStack_GUI.Forms
             this.deleteColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.deleteColumn.Visible = false;
             // 
-            // editVolume
+            // edit
             // 
-            this.editVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.editVolume.HeaderText = "Edit";
-            this.editVolume.Image = ((System.Drawing.Image)(resources.GetObject("editVolume.Image")));
-            this.editVolume.Name = "editVolume";
-            this.editVolume.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.editVolume.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.editVolume.Width = 50;
+            this.edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.edit.HeaderText = "Edit";
+            this.edit.Image = global::OpenStack_GUI.Properties.Resources.edit_button;
+            this.edit.Name = "edit";
+            this.edit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.edit.Width = 31;
             // 
             // delete
             // 
             this.delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.delete.HeaderText = "Delete";
-            this.delete.Image = ((System.Drawing.Image)(resources.GetObject("delete.Image")));
+            this.delete.Image = global::OpenStack_GUI.Properties.Resources.remove__1_;
             this.delete.Name = "delete";
             this.delete.Width = 44;
             // 
@@ -486,6 +648,8 @@ namespace OpenStack_GUI.Forms
             ((System.ComponentModel.ISupportInitialize)(this.volumesGridView)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -510,7 +674,17 @@ namespace OpenStack_GUI.Forms
         private MaterialSkin.Controls.MaterialLabel SizeLabel;
         private MaterialSkin.Controls.MaterialLabel availabilityLabel;
         private MaterialSkin.Controls.MaterialButton CreateVolumeButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialTextBox editTextBoxDesc;
+        private MaterialSkin.Controls.MaterialTextBox editTextBoxName;
+        private MaterialSkin.Controls.MaterialSwitch switchEditBoot;
+        private MaterialSkin.Controls.MaterialButton btnCancelEditVolume;
+        private MaterialSkin.Controls.MaterialButton btnUpdateVolume;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDVolume;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnName;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnSize;
@@ -521,7 +695,7 @@ namespace OpenStack_GUI.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn columnBootable;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnEncrypted;
         private System.Windows.Forms.DataGridViewButtonColumn deleteColumn;
-        private System.Windows.Forms.DataGridViewImageColumn editVolume;
+        private System.Windows.Forms.DataGridViewImageColumn edit;
         private System.Windows.Forms.DataGridViewImageColumn delete;
     }
 }
