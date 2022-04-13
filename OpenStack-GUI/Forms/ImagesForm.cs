@@ -238,7 +238,7 @@ namespace OpenStack_GUI.Forms
 
             if (!response.IsSuccessStatusCode)
             {
-                MessageBox.Show(response.ReasonPhrase, "Could not upload the image file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(response.ReasonPhrase + "(make sure the project limit has not been reached)", "Could not upload the image file", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             MessageBox.Show("Image created with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
