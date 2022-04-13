@@ -214,7 +214,7 @@ namespace OpenStack_GUI.Forms
             //Get the image ID from the response 
             var jo = JObject.Parse(json);
             var imageId = jo["id"].ToString();
-            /*
+            
             //Upload image file
 
             url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images/" + imageId + "/file";
@@ -262,7 +262,6 @@ namespace OpenStack_GUI.Forms
 
             fillImagesDataGridView();
             imagesTabControl.SelectedTab = imagesTab;
-            */
         }
 
         private void btnImageBrowse_Click(object sender, EventArgs e)
