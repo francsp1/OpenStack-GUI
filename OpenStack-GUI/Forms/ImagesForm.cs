@@ -102,6 +102,7 @@ namespace OpenStack_GUI.Forms
                 for (int i = 0; i < images.Count; i++)
                 {
                     var currentImage = images[i];
+                    var imageSize = currentImage["size"].ToString();
                     imagesDataGridView.Rows.Add(
                         imagesDataGridView.Rows.Count + 1, 
                         false, 
@@ -115,7 +116,7 @@ namespace OpenStack_GUI.Forms
                         currentImage["min_disk"].ToString(), 
                         currentImage["min_ram"].ToString(), 
                         currentImage["container_format"].ToString(), 
-                        (((float)long.Parse( string.IsNullOrWhiteSpace(currentImage["size"].ToString())  ? "0" : currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB", 
+                        (((float)long.Parse( string.IsNullOrWhiteSpace(imageSize)  ? "0" : imageSize) / 1048576)).ToString("0.00") + "MB", 
                         "Delete", 
                         "Edit"
                         );
