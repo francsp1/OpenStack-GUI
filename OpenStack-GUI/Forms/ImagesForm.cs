@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -166,50 +167,82 @@ namespace OpenStack_GUI.Forms
                 ContainerFormat = "bare",
             };
 
-            using (var client = new HttpClient())
+            //Create image
+            string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images";
+
+            string requestJson = JsonConvert.SerializeObject(image); //<<-----------------------------------------
+            var payload = new StringContent(requestJson, Encoding.UTF8, "application/json");
+
+            var request = new HttpRequestMessage(HttpMethod.Post, url)
             {
-                var endpoint = new Uri(GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images");
+                Content = payload,
 
-                string requestJson = JsonConvert.SerializeObject(image);
-                var payload = new StringContent(requestJson, Encoding.UTF8, "application/json");
+            };
 
-                client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+            var client = GlobalSessionDetails._clientFactory.CreateClient();
 
-                client.DefaultRequestHeaders.ExpectContinue = false;
-                var result = client.PostAsync(endpoint, payload).Result;
-                var json = result.Content.ReadAsStringAsync().Result;
+            client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
 
-                if (!result.IsSuccessStatusCode)
-                {
-                    MessageBox.Show(result.ReasonPhrase, "Could not create the Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            client.DefaultRequestHeaders.ExpectContinue = false;
 
-                var jo = JObject.Parse(json);
-                var imageId = jo["id"].ToString();
+            var response = client.SendAsync(request).Result;
+            var json = response.Content.ReadAsStringAsync().Result;
 
-                var url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images/" + imageId + "/file";
-                
-                try
-                {
-                    var myWebClient = new WebClient();
-
-                    myWebClient.Headers.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
-                    myWebClient.Headers.Add("Content-Type", "application/octet-stream");
-
-
-                    myWebClient.UploadFile(url, "PUT", filePath);
-
-                    MessageBox.Show("Image created with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    fillImagesDataGridView();
-                    imagesTabControl.SelectedTab = imagesTab;
-                }
-                catch (Exception excp)
-                {
-                    MessageBox.Show(excp.Message, "Could not upload the image file", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show(response.ReasonPhrase, "Could not create the Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            //Get the image ID from the response 
+            var jo = JObject.Parse(json);
+            var imageId = jo["id"].ToString();
+
+            //Upload image file
+
+            url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images/" + imageId + "/file";
+
+            var stream = File.OpenRead(filePath);
+            var payload2 = new StreamContent(stream);
+
+            request = new HttpRequestMessage(HttpMethod.Put, url)
+            {
+                Content = payload2,
+            };
+
+
+            client = GlobalSessionDetails._clientFactory.CreateClient();
+
+            client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+
+            client.DefaultRequestHeaders.ExpectContinue = false;
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //https://code-examples.net/en/q/a2f3ae
+            var field = typeof(System.Net.Http.Headers.HttpRequestHeaders)
+                .GetField("invalidHeaders", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
+                ?? typeof(System.Net.Http.Headers.HttpRequestHeaders)
+                .GetField("s_invalidHeaders", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+            if (field != null)
+            {
+                var invalidFields = (HashSet<string>)field.GetValue(null);
+                invalidFields.Remove("Content-Type");
+            }
+            client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/octet-stream");
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            
+            response = client.SendAsync(request).Result;
+            json = response.Content.ReadAsStringAsync().Result;
+            
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show(response.ReasonPhrase, "Could not upload the image file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("Image created with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
         }
 
         private void btnImageBrowse_Click(object sender, EventArgs e)
