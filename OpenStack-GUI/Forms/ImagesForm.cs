@@ -102,7 +102,23 @@ namespace OpenStack_GUI.Forms
                 for (int i = 0; i < images.Count; i++)
                 {
                     var currentImage = images[i];
-                    imagesDataGridView.Rows.Add(imagesDataGridView.Rows.Count + 1, false, currentImage["id"].ToString(), currentImage["owner"].ToString(), currentImage["name"].ToString(), currentImage["description"] is null ? "" : currentImage["description"].ToString(), currentImage["status"].ToString(), currentImage["visibility"].ToString(), bool.Parse(currentImage["protected"].ToString()) ? "Yes" : "No", currentImage["disk_format"].ToString(), currentImage["min_disk"].ToString(), currentImage["min_ram"].ToString(), currentImage["container_format"].ToString(), (((float)long.Parse(currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB", "Delete", "Edit");
+                    imagesDataGridView.Rows.Add(
+                        imagesDataGridView.Rows.Count + 1, 
+                        false, 
+                        currentImage["id"].ToString(), 
+                        currentImage["owner"].ToString(), 
+                        currentImage["name"].ToString(), 
+                        currentImage["description"] is null ? "" : currentImage["description"].ToString(), 
+                        currentImage["status"].ToString(), 
+                        currentImage["visibility"].ToString(), bool.Parse(currentImage["protected"].ToString()) ? "Yes" : "No", 
+                        currentImage["disk_format"].ToString(), 
+                        currentImage["min_disk"].ToString(), 
+                        currentImage["min_ram"].ToString(), 
+                        currentImage["container_format"].ToString(), 
+                        (((float)long.Parse( string.IsNullOrWhiteSpace(currentImage["size"].ToString())  ? "0" : currentImage["size"].ToString()) / 1048576)).ToString("0.00") + "MB", 
+                        "Delete", 
+                        "Edit"
+                        );
                 }
                 if (responseJsonObject["next"] != null)
                 {
@@ -197,7 +213,7 @@ namespace OpenStack_GUI.Forms
             //Get the image ID from the response 
             var jo = JObject.Parse(json);
             var imageId = jo["id"].ToString();
-
+            /*
             //Upload image file
 
             url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image/v2/images/" + imageId + "/file";
@@ -245,7 +261,7 @@ namespace OpenStack_GUI.Forms
 
             fillImagesDataGridView();
             imagesTabControl.SelectedTab = imagesTab;
-
+            */
         }
 
         private void btnImageBrowse_Click(object sender, EventArgs e)
