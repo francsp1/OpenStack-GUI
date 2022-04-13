@@ -157,6 +157,12 @@ namespace OpenStack_GUI.Forms
             string diskFormat = cmbBoxImageDiskFormat.Text;
             string visibility = cmbImageBoxVisibility.Text;
 
+            if(visibility == "public" && GlobalSessionDetails.Username != "admin")
+            {
+                MessageBox.Show("Only administratos can create public images!", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string minimumDisk = txtImageMinimumDisk.Text;
             if (String.IsNullOrWhiteSpace(minimumDisk) || !int.TryParse(minimumDisk, out int it))
             {
@@ -355,6 +361,8 @@ namespace OpenStack_GUI.Forms
 
             txtEditImageName.Text = selectedRow[4].Value.ToString();
             txtEditImageDescription.Text = selectedRow[5].Value.ToString();
+
+            //if()//if the state of the image is queued the user can not edit the image 
             try
             {
                 cmbBoxEditImageVisibility.SelectedIndex = cmbBoxEditImageVisibility.Items.IndexOf(selectedRow[7].Value.ToString().ToLower());
@@ -403,8 +411,14 @@ namespace OpenStack_GUI.Forms
                 return;
             }
 
-            string diskFormat = cmbBoxEditImageDiskFormat.Text;
-            string visibility = cmbBoxEditImageVisibility.Text;
+            string diskFormat = cmbBoxEditImageDiskFormat.Text.ToLower();
+            string visibility = cmbBoxEditImageVisibility.Text.ToLower();
+
+            if (visibility == "public" && GlobalSessionDetails.Username != "admin")
+            {
+                MessageBox.Show("Only administratos can change visibility to public!", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             string minimumDisk = txtEditImageMinimumDisk.Text;
             if (String.IsNullOrWhiteSpace(minimumDisk) || !int.TryParse(minimumDisk, out int it))
@@ -419,7 +433,8 @@ namespace OpenStack_GUI.Forms
                 MessageBox.Show("Please, enter a valid disk RAM Size", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            bool imageProtected = switchEditImageProtected.Checked;
+            bool imageProtectedBool = switchEditImageProtected.Checked;
+            string imageProtected = switchEditImageProtected.Checked ? "yes" : "no";
 
             UpdateImageModel updateImageModel = new UpdateImageModel();
 
@@ -438,7 +453,72 @@ namespace OpenStack_GUI.Forms
                 });
             }
 
-            if (parametersToUpdate == null || !parametersToUpdate.Any())
+            if (description != (imageRow[5].Value.ToString())) //if the value in the image description textbox is diferent from the one stored int the Hiden collumn "description" of the images grid view
+            {
+                parametersToUpdate.Add(new UpdateImageField
+                {
+                    op = "replace",
+                    path = "/description",
+                    value = description,
+                });
+            }
+
+            if (diskFormat != (imageRow[9].Value.ToString())) //if the value in the image disk format textbox is diferent from the one stored int the collumn "Disk format" of the images grid view
+            {
+                if (imageRow[6].Value.ToString() != "queued") //if the image status is not queued the user can not modify the disk format
+                {
+                    MessageBox.Show("Attribute disk_format can be only replaced for a queued image.\n", "Could not Update the image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                parametersToUpdate.Add(new UpdateImageField
+                {
+                    op = "replace",
+                    path = "/disk_format",
+                    value = diskFormat,
+                });
+            }
+
+            if (visibility != (imageRow[7].Value.ToString())) //if the value in the image Visibility Combo box is diferent from the one stored int the collumn "Visibility" of the images grid view
+            {
+                parametersToUpdate.Add(new UpdateImageField
+                {
+                    op = "replace",
+                    path = "/visibility",
+                    value = visibility,
+                });
+            }
+
+            if (minimumDisk != (imageRow[10].Value.ToString())) //if the value in the image Minimum disk TextBox is diferent from the one stored int the collumn "Visibility" of the images grid view
+            {
+                parametersToUpdate.Add(new UpdateImageField
+                {
+                    op = "replace",
+                    path = "/min_disk",
+                    value = int.Parse(minimumDisk),
+                });
+            }
+
+            if (minimumRam != (imageRow[11].Value.ToString())) //if the value in the image Minimum disk TextBox is diferent from the one stored int the collumn "Visibility" of the images grid view
+            {
+                parametersToUpdate.Add(new UpdateImageField
+                {
+                    op = "replace",
+                    path = "/min_ram",
+                    value = int.Parse(minimumRam),
+                });
+            }
+
+            if (imageProtected != (imageRow[8].Value.ToString().ToLower())) //if the value in the image Protected switch is diferent from the one stored int the collumn "Protected" of the images grid view
+            {
+                parametersToUpdate.Add(new UpdateImageField
+                {
+                    op = "replace",
+                    path = "/protected",
+                    value = imageProtectedBool,
+                });
+            }
+
+            if (parametersToUpdate == null || !parametersToUpdate.Any()) //if the list of parameters to update is empty (the user did not changed any field then do nothing)
             {
                 return;
             }
@@ -480,7 +560,7 @@ namespace OpenStack_GUI.Forms
                 MessageBox.Show(response.ReasonPhrase, "Could not Update the image", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            MessageBox.Show("Image updated with success", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Image updated with success", "Success!", MessageBoxButtons.OK, MessageBoxIcon.None);
         }
         private void btnCancelEditImage_Click(object sender, EventArgs e)
         {
