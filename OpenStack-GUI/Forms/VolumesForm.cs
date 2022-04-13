@@ -238,7 +238,7 @@ namespace OpenStack_GUI.Forms
         }
         private void updateVolume(string volumeId, string projectId, RequestUpdateVolumeObject body)
         {
-            string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/volume/v3/" + GlobalSessionDetails.ProjectId + "/volumes/" + volumeId;
+            string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/volume/v3/" + projectId + "/volumes/" + volumeId;
 
             string requestJson = JsonConvert.SerializeObject(body); //<<-----------------------------------------
             var payload = new StringContent(requestJson, Encoding.UTF8, "application/json");
