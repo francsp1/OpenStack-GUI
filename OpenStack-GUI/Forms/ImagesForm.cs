@@ -233,7 +233,9 @@ namespace OpenStack_GUI.Forms
             
             response = client.SendAsync(request).Result;
             json = response.Content.ReadAsStringAsync().Result;
-            
+
+            stream.Close();
+
             if (!response.IsSuccessStatusCode)
             {
                 MessageBox.Show(response.ReasonPhrase, "Could not upload the image file", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -241,7 +243,8 @@ namespace OpenStack_GUI.Forms
             }
             MessageBox.Show("Image created with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
+            fillImagesDataGridView();
+            imagesTabControl.SelectedTab = imagesTab;
 
         }
 
