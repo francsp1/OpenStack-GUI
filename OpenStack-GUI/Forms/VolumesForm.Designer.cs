@@ -71,6 +71,8 @@ namespace OpenStack_GUI.Forms
             this.editTextBoxName = new MaterialSkin.Controls.MaterialTextBox();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.lblId = new MaterialSkin.Controls.MaterialLabel();
+            this.lblVolumeId = new MaterialSkin.Controls.MaterialLabel();
             this.volumesTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumesGridView)).BeginInit();
@@ -147,7 +149,7 @@ namespace OpenStack_GUI.Forms
             this.volumesGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.volumesGridView.GridColor = System.Drawing.Color.White;
             this.volumesGridView.Location = new System.Drawing.Point(3, 2);
-            this.volumesGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.volumesGridView.Margin = new System.Windows.Forms.Padding(4);
             this.volumesGridView.Name = "volumesGridView";
             this.volumesGridView.ReadOnly = true;
             this.volumesGridView.RowHeadersWidth = 51;
@@ -381,7 +383,7 @@ namespace OpenStack_GUI.Forms
             this.DescriptionTextBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.DescriptionTextBox.LeadingIcon = null;
             this.DescriptionTextBox.Location = new System.Drawing.Point(612, 52);
-            this.DescriptionTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DescriptionTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.DescriptionTextBox.MaxLength = 50;
             this.DescriptionTextBox.MouseState = MaterialSkin.MouseState.OUT;
             this.DescriptionTextBox.Multiline = false;
@@ -408,7 +410,7 @@ namespace OpenStack_GUI.Forms
             this.availabilityComboBox.Items.AddRange(new object[] {
             "nova"});
             this.availabilityComboBox.Location = new System.Drawing.Point(612, 356);
-            this.availabilityComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.availabilityComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.availabilityComboBox.MaxDropDownItems = 4;
             this.availabilityComboBox.MouseState = MaterialSkin.MouseState.OUT;
             this.availabilityComboBox.Name = "availabilityComboBox";
@@ -424,7 +426,7 @@ namespace OpenStack_GUI.Forms
             this.sizeTextBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.sizeTextBox.LeadingIcon = null;
             this.sizeTextBox.Location = new System.Drawing.Point(41, 354);
-            this.sizeTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sizeTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.sizeTextBox.MaxLength = 50;
             this.sizeTextBox.MouseState = MaterialSkin.MouseState.OUT;
             this.sizeTextBox.Multiline = false;
@@ -451,7 +453,7 @@ namespace OpenStack_GUI.Forms
             this.TypeComboBox.Items.AddRange(new object[] {
             "_DEFAULT_"});
             this.TypeComboBox.Location = new System.Drawing.Point(612, 206);
-            this.TypeComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TypeComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.TypeComboBox.MaxDropDownItems = 4;
             this.TypeComboBox.MouseState = MaterialSkin.MouseState.OUT;
             this.TypeComboBox.Name = "TypeComboBox";
@@ -478,7 +480,7 @@ namespace OpenStack_GUI.Forms
             "Image",
             "Volume"});
             this.sourceComboBox.Location = new System.Drawing.Point(41, 206);
-            this.sourceComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sourceComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.sourceComboBox.MaxDropDownItems = 4;
             this.sourceComboBox.MouseState = MaterialSkin.MouseState.OUT;
             this.sourceComboBox.Name = "sourceComboBox";
@@ -494,7 +496,7 @@ namespace OpenStack_GUI.Forms
             this.VolumeTextBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.VolumeTextBox.LeadingIcon = null;
             this.VolumeTextBox.Location = new System.Drawing.Point(41, 52);
-            this.VolumeTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.VolumeTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.VolumeTextBox.MaxLength = 50;
             this.VolumeTextBox.MouseState = MaterialSkin.MouseState.OUT;
             this.VolumeTextBox.Multiline = false;
@@ -507,6 +509,8 @@ namespace OpenStack_GUI.Forms
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.White;
+            this.tabPage3.Controls.Add(this.lblVolumeId);
+            this.tabPage3.Controls.Add(this.lblId);
             this.tabPage3.Controls.Add(this.btnCancelEditVolume);
             this.tabPage3.Controls.Add(this.btnUpdateVolume);
             this.tabPage3.Controls.Add(this.switchEditBoot);
@@ -515,9 +519,9 @@ namespace OpenStack_GUI.Forms
             this.tabPage3.Controls.Add(this.editTextBoxDesc);
             this.tabPage3.Controls.Add(this.editTextBoxName);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage3.Size = new System.Drawing.Size(1511, 639);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Edit Volume";
@@ -529,7 +533,7 @@ namespace OpenStack_GUI.Forms
             this.btnCancelEditVolume.Depth = 0;
             this.btnCancelEditVolume.HighEmphasis = true;
             this.btnCancelEditVolume.Icon = null;
-            this.btnCancelEditVolume.Location = new System.Drawing.Point(232, 327);
+            this.btnCancelEditVolume.Location = new System.Drawing.Point(232, 347);
             this.btnCancelEditVolume.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnCancelEditVolume.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnCancelEditVolume.Name = "btnCancelEditVolume";
@@ -549,7 +553,7 @@ namespace OpenStack_GUI.Forms
             this.btnUpdateVolume.Depth = 0;
             this.btnUpdateVolume.HighEmphasis = true;
             this.btnUpdateVolume.Icon = null;
-            this.btnUpdateVolume.Location = new System.Drawing.Point(13, 327);
+            this.btnUpdateVolume.Location = new System.Drawing.Point(13, 347);
             this.btnUpdateVolume.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnUpdateVolume.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnUpdateVolume.Name = "btnUpdateVolume";
@@ -566,7 +570,7 @@ namespace OpenStack_GUI.Forms
             // 
             this.switchEditBoot.AutoSize = true;
             this.switchEditBoot.Depth = 0;
-            this.switchEditBoot.Location = new System.Drawing.Point(13, 214);
+            this.switchEditBoot.Location = new System.Drawing.Point(13, 234);
             this.switchEditBoot.Margin = new System.Windows.Forms.Padding(0);
             this.switchEditBoot.MouseLocation = new System.Drawing.Point(-1, -1);
             this.switchEditBoot.MouseState = MaterialSkin.MouseState.HOVER;
@@ -582,7 +586,7 @@ namespace OpenStack_GUI.Forms
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(580, 47);
+            this.materialLabel1.Location = new System.Drawing.Point(580, 67);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(81, 19);
@@ -596,7 +600,7 @@ namespace OpenStack_GUI.Forms
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel2.ForeColor = System.Drawing.Color.White;
-            this.materialLabel2.Location = new System.Drawing.Point(9, 47);
+            this.materialLabel2.Location = new System.Drawing.Point(9, 67);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(101, 19);
@@ -610,8 +614,8 @@ namespace OpenStack_GUI.Forms
             this.editTextBoxDesc.Depth = 0;
             this.editTextBoxDesc.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.editTextBoxDesc.LeadingIcon = null;
-            this.editTextBoxDesc.Location = new System.Drawing.Point(584, 74);
-            this.editTextBoxDesc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.editTextBoxDesc.Location = new System.Drawing.Point(584, 94);
+            this.editTextBoxDesc.Margin = new System.Windows.Forms.Padding(4);
             this.editTextBoxDesc.MaxLength = 50;
             this.editTextBoxDesc.MouseState = MaterialSkin.MouseState.OUT;
             this.editTextBoxDesc.Multiline = false;
@@ -629,8 +633,8 @@ namespace OpenStack_GUI.Forms
             this.editTextBoxName.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.editTextBoxName.ForeColor = System.Drawing.Color.White;
             this.editTextBoxName.LeadingIcon = null;
-            this.editTextBoxName.Location = new System.Drawing.Point(13, 74);
-            this.editTextBoxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.editTextBoxName.Location = new System.Drawing.Point(13, 94);
+            this.editTextBoxName.Margin = new System.Windows.Forms.Padding(4);
             this.editTextBoxName.MaxLength = 50;
             this.editTextBoxName.MouseState = MaterialSkin.MouseState.OUT;
             this.editTextBoxName.Multiline = false;
@@ -660,6 +664,30 @@ namespace OpenStack_GUI.Forms
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.Width = 125;
             // 
+            // lblId
+            // 
+            this.lblId.AutoSize = true;
+            this.lblId.Depth = 0;
+            this.lblId.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblId.Location = new System.Drawing.Point(10, 20);
+            this.lblId.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(24, 19);
+            this.lblId.TabIndex = 23;
+            this.lblId.Text = "ID: ";
+            // 
+            // lblVolumeId
+            // 
+            this.lblVolumeId.AutoSize = true;
+            this.lblVolumeId.Depth = 0;
+            this.lblVolumeId.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblVolumeId.Location = new System.Drawing.Point(40, 20);
+            this.lblVolumeId.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblVolumeId.Name = "lblVolumeId";
+            this.lblVolumeId.Size = new System.Drawing.Size(16, 19);
+            this.lblVolumeId.TabIndex = 24;
+            this.lblVolumeId.Text = "ID";
+            // 
             // VolumesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -670,7 +698,7 @@ namespace OpenStack_GUI.Forms
             this.Controls.Add(this.volumesTabControl);
             this.Controls.Add(this.volumesTabSelector);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "VolumesForm";
@@ -733,5 +761,7 @@ namespace OpenStack_GUI.Forms
         private System.Windows.Forms.DataGridViewButtonColumn deleteColumn;
         private System.Windows.Forms.DataGridViewImageColumn edit;
         private System.Windows.Forms.DataGridViewImageColumn delete;
+        private MaterialSkin.Controls.MaterialLabel lblId;
+        private MaterialSkin.Controls.MaterialLabel lblVolumeId;
     }
 }

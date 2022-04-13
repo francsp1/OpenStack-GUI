@@ -152,14 +152,14 @@ namespace OpenStack_GUI.Forms
 
             if (e.ColumnIndex == volumesGridView.Columns["edit"].Index)
             {
-                //editVolume(e.RowIndex);
-                updateVolume(volumesGridView[0, e.RowIndex].Value.ToString());
+                editVolume(e.RowIndex);
             }
 
             if (e.ColumnIndex == volumesGridView.Columns["delete"].Index)
             {
 
                 deleteVolume(volumesGridView[0, e.RowIndex].Value.ToString());
+                refresh();
             }
         }
 
@@ -203,18 +203,25 @@ namespace OpenStack_GUI.Forms
             }
             bool volumeBoot = switchEditBoot.Checked;
 
-            //???
-            updateVolume("");
+            RequestUpdateVolumeObject volumeUpdate = new RequestUpdateVolumeObject
+            {
+                volume = new UpdateVolumeObject
+                {
+                    name = name,
+                    description = description,
+                }
+            };
 
+            updateVolume(lblVolumeId.Text, GlobalSessionDetails.ProjectId, volumeUpdate);
+
+            refresh();
             btnCancelEditVolume_Click(null, null);
 
             volumesTabControl.TabPages.Remove(tabPage3);
         }
 
-        private void updateVolume(string volumeID)
+        private void editVolume(int rowIndex)
         {
-            int rowIndex = 0;
-
             if (!volumesTabControl.TabPages.Contains(tabPage3))
             {
                 volumesTabControl.TabPages.Add(tabPage3);
@@ -223,50 +230,44 @@ namespace OpenStack_GUI.Forms
 
             var selectedRow = volumesGridView.Rows[rowIndex].Cells;
 
+            lblVolumeId.Text = selectedRow[0].Value.ToString();
             editTextBoxName.Text = selectedRow[1].Value.ToString();
             editTextBoxDesc.Text = selectedRow[2].Value.ToString();
 
             switchEditBoot.Checked = selectedRow[8].Value.ToString() == "Yes" ? true : false;
+        }
+        private void updateVolume(string volumeId, string projectId, RequestUpdateVolumeObject body)
+        {
+            string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/volume/v3/" + GlobalSessionDetails.ProjectId + "/volumes/" + volumeId;
 
-            Volume volume = new Volume
-            {
-                volume = new
+            string requestJson = JsonConvert.SerializeObject(body); //<<-----------------------------------------
+            var payload = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
-                CreateVolumesModel()
-                {
-                    Name = editTextBoxName.Text,
-                    Description = editTextBoxDesc.Text
-                }
-            };
-
-            var endpoint = new Uri(GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/volume/v3/" + GlobalSessionDetails.ProjectId + "/volumes/" + volumeID);
-
-            var client = GlobalSessionDetails._clientFactory.CreateClient();
-
-            var httpVerb = new HttpMethod("PUT");
-
-            string requestJson = JsonConvert.SerializeObject(volume);
-            var payload = new StringContent(requestJson, Encoding.UTF8, "application/openstack-images-v2.1-json-patch");
-
-            var httpRequestMessage = new HttpRequestMessage(httpVerb, endpoint)
+            var request = new HttpRequestMessage(HttpMethod.Put, url)
             {
                 Content = payload,
             };
 
+            var client = GlobalSessionDetails._clientFactory.CreateClient();
+
             client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+
             client.DefaultRequestHeaders.ExpectContinue = false;
 
-            HttpResponseMessage response = client.SendAsync(httpRequestMessage).Result;
+            var response = client.SendAsync(request).Result;
+            var json = response.Content.ReadAsStringAsync().Result;
+
             if (!response.IsSuccessStatusCode)
             {
-                MessageBox.Show(response.ReasonPhrase, "Could not Update the image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(response.ReasonPhrase, "Could not update the volume", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            MessageBox.Show("Image updated with success", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Volume update with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnCancelEditVolume_Click(object sender, EventArgs e)
         {
+            lblVolumeId.Text = "";
             editTextBoxName.Text = "";
             editTextBoxDesc.Text = "";
             switchEditBoot.Checked = false;

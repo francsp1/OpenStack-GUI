@@ -7,9 +7,6 @@ using System.Threading.Tasks;
 
 namespace OpenStack_GUI.Models
 {
-    class Volumes
-    {
-    }
 
     public class Volume
     {
@@ -41,4 +38,24 @@ namespace OpenStack_GUI.Models
         public string Bootable { get; set; }
 
     }
+
+
+
+    public class RequestUpdateVolumeObject
+    {
+        public UpdateVolumeObject volume { get; set; }
+    }
+
+    public class UpdateVolumeObject
+    {
+        public string name { get; set; }
+        public string description { get; set; }
+        //public UpdateVolumeMetadataObject metadata { get; set; }
+    }
+
+    public class UpdateVolumeMetadataObject
+    {
+        public string name { get; set; }
+    }
+
 }

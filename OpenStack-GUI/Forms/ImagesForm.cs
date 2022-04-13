@@ -362,7 +362,6 @@ namespace OpenStack_GUI.Forms
             txtEditImageName.Text = selectedRow[4].Value.ToString();
             txtEditImageDescription.Text = selectedRow[5].Value.ToString();
 
-            //if()//if the state of the image is queued the user can not edit the image 
             try
             {
                 cmbBoxEditImageVisibility.SelectedIndex = cmbBoxEditImageVisibility.Items.IndexOf(selectedRow[7].Value.ToString().ToLower());
