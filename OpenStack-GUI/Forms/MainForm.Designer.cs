@@ -42,10 +42,13 @@ namespace OpenStack_GUI.Forms
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.comboBoxProjects = new System.Windows.Forms.ComboBox();
             this.btnLogout = new MaterialSkin.Controls.MaterialButton();
+            this.testTab = new System.Windows.Forms.TabPage();
+            this.panelTest = new System.Windows.Forms.Panel();
             this.mainTabControl.SuspendLayout();
             this.ImageServiceTab.SuspendLayout();
             this.volumesTab.SuspendLayout();
             this.instanceTab.SuspendLayout();
+            this.testTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTabControl
@@ -53,6 +56,7 @@ namespace OpenStack_GUI.Forms
             this.mainTabControl.Controls.Add(this.ImageServiceTab);
             this.mainTabControl.Controls.Add(this.volumesTab);
             this.mainTabControl.Controls.Add(this.instanceTab);
+            this.mainTabControl.Controls.Add(this.testTab);
             this.mainTabControl.Depth = 0;
             this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTabControl.ImageList = this.mainTabControlImageList;
@@ -90,7 +94,7 @@ namespace OpenStack_GUI.Forms
             // 
             // volumesTab
             // 
-            this.volumesTab.BackColor = System.Drawing.Color.Transparent;
+            this.volumesTab.BackColor = System.Drawing.Color.White;
             this.volumesTab.Controls.Add(this.panelVolumes);
             this.volumesTab.ImageKey = "hard-drive.png";
             this.volumesTab.Location = new System.Drawing.Point(4, 39);
@@ -117,8 +121,9 @@ namespace OpenStack_GUI.Forms
             this.instanceTab.Controls.Add(this.panelInstances);
             this.instanceTab.ImageKey = "data-server.png";
             this.instanceTab.Location = new System.Drawing.Point(4, 39);
-            this.instanceTab.Margin = new System.Windows.Forms.Padding(4);
+            this.instanceTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.instanceTab.Name = "instanceTab";
+            this.instanceTab.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.instanceTab.Size = new System.Drawing.Size(1542, 775);
             this.instanceTab.TabIndex = 2;
             this.instanceTab.Text = "Instances";
@@ -126,10 +131,10 @@ namespace OpenStack_GUI.Forms
             // panelInstances
             // 
             this.panelInstances.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelInstances.Location = new System.Drawing.Point(0, 0);
+            this.panelInstances.Location = new System.Drawing.Point(3, 2);
             this.panelInstances.Margin = new System.Windows.Forms.Padding(4);
             this.panelInstances.Name = "panelInstances";
-            this.panelInstances.Size = new System.Drawing.Size(1542, 775);
+            this.panelInstances.Size = new System.Drawing.Size(1536, 771);
             this.panelInstances.TabIndex = 0;
             // 
             // mainTabControlImageList
@@ -177,6 +182,26 @@ namespace OpenStack_GUI.Forms
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
+            // testTab
+            // 
+            this.testTab.BackColor = System.Drawing.Color.White;
+            this.testTab.Controls.Add(this.panelTest);
+            this.testTab.Location = new System.Drawing.Point(4, 39);
+            this.testTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.testTab.Name = "testTab";
+            this.testTab.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.testTab.Size = new System.Drawing.Size(1542, 775);
+            this.testTab.TabIndex = 3;
+            this.testTab.Text = "testTab";
+            // 
+            // panelTest
+            // 
+            this.panelTest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTest.Location = new System.Drawing.Point(3, 2);
+            this.panelTest.Name = "panelTest";
+            this.panelTest.Size = new System.Drawing.Size(1536, 771);
+            this.panelTest.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -195,6 +220,7 @@ namespace OpenStack_GUI.Forms
             this.ImageServiceTab.ResumeLayout(false);
             this.volumesTab.ResumeLayout(false);
             this.instanceTab.ResumeLayout(false);
+            this.testTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,5 +239,7 @@ namespace OpenStack_GUI.Forms
         private System.Windows.Forms.Panel panelImageService;
         private System.Windows.Forms.TabPage instanceTab;
         private System.Windows.Forms.Panel panelInstances;
+        private System.Windows.Forms.TabPage testTab;
+        private System.Windows.Forms.Panel panelTest;
     }
 }

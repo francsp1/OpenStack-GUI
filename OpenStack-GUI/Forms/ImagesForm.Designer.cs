@@ -33,6 +33,22 @@ namespace OpenStack_GUI.Forms
             this.imagesTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.imagesTab = new System.Windows.Forms.TabPage();
             this.imagesDataGridView = new System.Windows.Forms.DataGridView();
+            this.collumnLineNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.collumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnProjectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnImageDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnVisibility = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnProtected = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnDiskFormat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnMinimumDisk = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnMinimumRam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnContainerFormt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collumnSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnDeleteImage = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.collumnEditImage = new System.Windows.Forms.DataGridViewButtonColumn();
             this.createImageTab = new System.Windows.Forms.TabPage();
             this.txtImageDescription = new MaterialSkin.Controls.MaterialTextBox();
             this.btnCreateImage = new MaterialSkin.Controls.MaterialButton();
@@ -52,6 +68,8 @@ namespace OpenStack_GUI.Forms
             this.txtImageName = new MaterialSkin.Controls.MaterialTextBox();
             this.lblImageName = new MaterialSkin.Controls.MaterialLabel();
             this.editImageTab = new System.Windows.Forms.TabPage();
+            this.editImageRow = new System.Windows.Forms.NumericUpDown();
+            this.btnCancelEditImage = new MaterialSkin.Controls.MaterialButton();
             this.txtEditImageDescription = new MaterialSkin.Controls.MaterialTextBox();
             this.btnUpdateImage = new MaterialSkin.Controls.MaterialButton();
             this.switchEditImageProtected = new MaterialSkin.Controls.MaterialSwitch();
@@ -66,24 +84,6 @@ namespace OpenStack_GUI.Forms
             this.lblEditImageDescription = new MaterialSkin.Controls.MaterialLabel();
             this.txtEditImageName = new MaterialSkin.Controls.MaterialTextBox();
             this.lblEditImageName = new MaterialSkin.Controls.MaterialLabel();
-            this.btnCancelEditImage = new MaterialSkin.Controls.MaterialButton();
-            this.collumnLineNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.collumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnProjectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnImageDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnVisibility = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnProtected = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnDiskFormat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnMinimumDisk = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnMinimumRam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnContainerFormt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collumnSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnDeleteImage = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.collumnEditImage = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.editImageRow = new System.Windows.Forms.NumericUpDown();
             this.imagesTabControl.SuspendLayout();
             this.imagesTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imagesDataGridView)).BeginInit();
@@ -170,6 +170,144 @@ namespace OpenStack_GUI.Forms
             this.imagesDataGridView.Size = new System.Drawing.Size(1505, 635);
             this.imagesDataGridView.TabIndex = 1;
             this.imagesDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.imagesDataGridView_CellClick);
+            // 
+            // collumnLineNumber
+            // 
+            this.collumnLineNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.collumnLineNumber.HeaderText = "";
+            this.collumnLineNumber.MinimumWidth = 6;
+            this.collumnLineNumber.Name = "collumnLineNumber";
+            this.collumnLineNumber.ReadOnly = true;
+            this.collumnLineNumber.Visible = false;
+            this.collumnLineNumber.Width = 20;
+            // 
+            // check
+            // 
+            this.check.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.check.FillWeight = 28.877F;
+            this.check.HeaderText = "";
+            this.check.MinimumWidth = 6;
+            this.check.Name = "check";
+            this.check.ReadOnly = true;
+            this.check.Width = 20;
+            // 
+            // collumnID
+            // 
+            this.collumnID.HeaderText = "ID";
+            this.collumnID.MinimumWidth = 6;
+            this.collumnID.Name = "collumnID";
+            this.collumnID.ReadOnly = true;
+            this.collumnID.Visible = false;
+            // 
+            // collumnProjectId
+            // 
+            this.collumnProjectId.HeaderText = "Project ID";
+            this.collumnProjectId.MinimumWidth = 6;
+            this.collumnProjectId.Name = "collumnProjectId";
+            this.collumnProjectId.ReadOnly = true;
+            this.collumnProjectId.Visible = false;
+            // 
+            // collumnName
+            // 
+            this.collumnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.collumnName.FillWeight = 668.984F;
+            this.collumnName.HeaderText = "Name";
+            this.collumnName.MinimumWidth = 6;
+            this.collumnName.Name = "collumnName";
+            this.collumnName.ReadOnly = true;
+            this.collumnName.Width = 200;
+            // 
+            // collumnImageDescription
+            // 
+            this.collumnImageDescription.HeaderText = "Description";
+            this.collumnImageDescription.MinimumWidth = 6;
+            this.collumnImageDescription.Name = "collumnImageDescription";
+            this.collumnImageDescription.ReadOnly = true;
+            this.collumnImageDescription.Visible = false;
+            // 
+            // collumnStatus
+            // 
+            this.collumnStatus.FillWeight = 28.877F;
+            this.collumnStatus.HeaderText = "Status";
+            this.collumnStatus.MinimumWidth = 6;
+            this.collumnStatus.Name = "collumnStatus";
+            this.collumnStatus.ReadOnly = true;
+            // 
+            // collumnVisibility
+            // 
+            this.collumnVisibility.FillWeight = 28.877F;
+            this.collumnVisibility.HeaderText = "Visibility";
+            this.collumnVisibility.MinimumWidth = 6;
+            this.collumnVisibility.Name = "collumnVisibility";
+            this.collumnVisibility.ReadOnly = true;
+            // 
+            // collumnProtected
+            // 
+            this.collumnProtected.FillWeight = 28.877F;
+            this.collumnProtected.HeaderText = "Protected";
+            this.collumnProtected.MinimumWidth = 6;
+            this.collumnProtected.Name = "collumnProtected";
+            this.collumnProtected.ReadOnly = true;
+            // 
+            // collumnDiskFormat
+            // 
+            this.collumnDiskFormat.FillWeight = 28.877F;
+            this.collumnDiskFormat.HeaderText = "Disk Format";
+            this.collumnDiskFormat.MinimumWidth = 6;
+            this.collumnDiskFormat.Name = "collumnDiskFormat";
+            this.collumnDiskFormat.ReadOnly = true;
+            // 
+            // collumnMinimumDisk
+            // 
+            this.collumnMinimumDisk.HeaderText = "Minimum Disk";
+            this.collumnMinimumDisk.MinimumWidth = 6;
+            this.collumnMinimumDisk.Name = "collumnMinimumDisk";
+            this.collumnMinimumDisk.ReadOnly = true;
+            this.collumnMinimumDisk.Visible = false;
+            // 
+            // collumnMinimumRam
+            // 
+            this.collumnMinimumRam.HeaderText = "Minimum Ram";
+            this.collumnMinimumRam.MinimumWidth = 6;
+            this.collumnMinimumRam.Name = "collumnMinimumRam";
+            this.collumnMinimumRam.ReadOnly = true;
+            this.collumnMinimumRam.Visible = false;
+            // 
+            // collumnContainerFormt
+            // 
+            this.collumnContainerFormt.FillWeight = 28.877F;
+            this.collumnContainerFormt.HeaderText = "Container Format";
+            this.collumnContainerFormt.MinimumWidth = 6;
+            this.collumnContainerFormt.Name = "collumnContainerFormt";
+            this.collumnContainerFormt.ReadOnly = true;
+            // 
+            // collumnSize
+            // 
+            this.collumnSize.FillWeight = 28.877F;
+            this.collumnSize.HeaderText = "Size";
+            this.collumnSize.MinimumWidth = 6;
+            this.collumnSize.Name = "collumnSize";
+            this.collumnSize.ReadOnly = true;
+            // 
+            // columnDeleteImage
+            // 
+            this.columnDeleteImage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.columnDeleteImage.FillWeight = 28.877F;
+            this.columnDeleteImage.HeaderText = "Delete";
+            this.columnDeleteImage.MinimumWidth = 6;
+            this.columnDeleteImage.Name = "columnDeleteImage";
+            this.columnDeleteImage.ReadOnly = true;
+            this.columnDeleteImage.Text = "Delete";
+            this.columnDeleteImage.Width = 50;
+            // 
+            // collumnEditImage
+            // 
+            this.collumnEditImage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.collumnEditImage.HeaderText = "Edit";
+            this.collumnEditImage.MinimumWidth = 6;
+            this.collumnEditImage.Name = "collumnEditImage";
+            this.collumnEditImage.ReadOnly = true;
+            this.collumnEditImage.Width = 50;
             // 
             // createImageTab
             // 
@@ -519,6 +657,49 @@ namespace OpenStack_GUI.Forms
             this.editImageTab.TabIndex = 3;
             this.editImageTab.Text = "Edit Image";
             // 
+            // editImageRow
+            // 
+            this.editImageRow.Location = new System.Drawing.Point(596, 128);
+            this.editImageRow.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.editImageRow.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.editImageRow.Name = "editImageRow";
+            this.editImageRow.Size = new System.Drawing.Size(120, 22);
+            this.editImageRow.TabIndex = 20;
+            this.editImageRow.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.editImageRow.Visible = false;
+            // 
+            // btnCancelEditImage
+            // 
+            this.btnCancelEditImage.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCancelEditImage.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnCancelEditImage.Depth = 0;
+            this.btnCancelEditImage.HighEmphasis = true;
+            this.btnCancelEditImage.Icon = null;
+            this.btnCancelEditImage.Location = new System.Drawing.Point(948, 372);
+            this.btnCancelEditImage.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnCancelEditImage.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCancelEditImage.Name = "btnCancelEditImage";
+            this.btnCancelEditImage.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnCancelEditImage.Size = new System.Drawing.Size(77, 36);
+            this.btnCancelEditImage.TabIndex = 19;
+            this.btnCancelEditImage.Text = "Cancel";
+            this.btnCancelEditImage.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnCancelEditImage.UseAccentColor = false;
+            this.btnCancelEditImage.UseVisualStyleBackColor = true;
+            this.btnCancelEditImage.Click += new System.EventHandler(this.btnCancelEditImage_Click);
+            // 
             // txtEditImageDescription
             // 
             this.txtEditImageDescription.AnimateReadOnly = false;
@@ -762,187 +943,6 @@ namespace OpenStack_GUI.Forms
             this.lblEditImageName.TabIndex = 0;
             this.lblEditImageName.Text = "Image Name";
             // 
-            // btnCancelEditImage
-            // 
-            this.btnCancelEditImage.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCancelEditImage.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnCancelEditImage.Depth = 0;
-            this.btnCancelEditImage.HighEmphasis = true;
-            this.btnCancelEditImage.Icon = null;
-            this.btnCancelEditImage.Location = new System.Drawing.Point(948, 372);
-            this.btnCancelEditImage.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnCancelEditImage.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnCancelEditImage.Name = "btnCancelEditImage";
-            this.btnCancelEditImage.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnCancelEditImage.Size = new System.Drawing.Size(77, 36);
-            this.btnCancelEditImage.TabIndex = 19;
-            this.btnCancelEditImage.Text = "Cancel";
-            this.btnCancelEditImage.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnCancelEditImage.UseAccentColor = false;
-            this.btnCancelEditImage.UseVisualStyleBackColor = true;
-            this.btnCancelEditImage.Click += new System.EventHandler(this.btnCancelEditImage_Click);
-            // 
-            // collumnLineNumber
-            // 
-            this.collumnLineNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.collumnLineNumber.HeaderText = "";
-            this.collumnLineNumber.MinimumWidth = 6;
-            this.collumnLineNumber.Name = "collumnLineNumber";
-            this.collumnLineNumber.ReadOnly = true;
-            this.collumnLineNumber.Visible = false;
-            this.collumnLineNumber.Width = 20;
-            // 
-            // check
-            // 
-            this.check.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.check.FillWeight = 28.877F;
-            this.check.HeaderText = "";
-            this.check.MinimumWidth = 6;
-            this.check.Name = "check";
-            this.check.ReadOnly = true;
-            this.check.Width = 20;
-            // 
-            // collumnID
-            // 
-            this.collumnID.HeaderText = "ID";
-            this.collumnID.MinimumWidth = 6;
-            this.collumnID.Name = "collumnID";
-            this.collumnID.ReadOnly = true;
-            this.collumnID.Visible = false;
-            // 
-            // collumnProjectId
-            // 
-            this.collumnProjectId.HeaderText = "Project ID";
-            this.collumnProjectId.MinimumWidth = 6;
-            this.collumnProjectId.Name = "collumnProjectId";
-            this.collumnProjectId.ReadOnly = true;
-            this.collumnProjectId.Visible = false;
-            // 
-            // collumnName
-            // 
-            this.collumnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.collumnName.FillWeight = 668.984F;
-            this.collumnName.HeaderText = "Name";
-            this.collumnName.MinimumWidth = 6;
-            this.collumnName.Name = "collumnName";
-            this.collumnName.ReadOnly = true;
-            this.collumnName.Width = 200;
-            // 
-            // collumnImageDescription
-            // 
-            this.collumnImageDescription.HeaderText = "Description";
-            this.collumnImageDescription.MinimumWidth = 6;
-            this.collumnImageDescription.Name = "collumnImageDescription";
-            this.collumnImageDescription.ReadOnly = true;
-            this.collumnImageDescription.Visible = false;
-            // 
-            // collumnStatus
-            // 
-            this.collumnStatus.FillWeight = 28.877F;
-            this.collumnStatus.HeaderText = "Status";
-            this.collumnStatus.MinimumWidth = 6;
-            this.collumnStatus.Name = "collumnStatus";
-            this.collumnStatus.ReadOnly = true;
-            // 
-            // collumnVisibility
-            // 
-            this.collumnVisibility.FillWeight = 28.877F;
-            this.collumnVisibility.HeaderText = "Visibility";
-            this.collumnVisibility.MinimumWidth = 6;
-            this.collumnVisibility.Name = "collumnVisibility";
-            this.collumnVisibility.ReadOnly = true;
-            // 
-            // collumnProtected
-            // 
-            this.collumnProtected.FillWeight = 28.877F;
-            this.collumnProtected.HeaderText = "Protected";
-            this.collumnProtected.MinimumWidth = 6;
-            this.collumnProtected.Name = "collumnProtected";
-            this.collumnProtected.ReadOnly = true;
-            // 
-            // collumnDiskFormat
-            // 
-            this.collumnDiskFormat.FillWeight = 28.877F;
-            this.collumnDiskFormat.HeaderText = "Disk Format";
-            this.collumnDiskFormat.MinimumWidth = 6;
-            this.collumnDiskFormat.Name = "collumnDiskFormat";
-            this.collumnDiskFormat.ReadOnly = true;
-            // 
-            // collumnMinimumDisk
-            // 
-            this.collumnMinimumDisk.HeaderText = "Minimum Disk";
-            this.collumnMinimumDisk.MinimumWidth = 6;
-            this.collumnMinimumDisk.Name = "collumnMinimumDisk";
-            this.collumnMinimumDisk.ReadOnly = true;
-            this.collumnMinimumDisk.Visible = false;
-            // 
-            // collumnMinimumRam
-            // 
-            this.collumnMinimumRam.HeaderText = "Minimum Ram";
-            this.collumnMinimumRam.MinimumWidth = 6;
-            this.collumnMinimumRam.Name = "collumnMinimumRam";
-            this.collumnMinimumRam.ReadOnly = true;
-            this.collumnMinimumRam.Visible = false;
-            // 
-            // collumnContainerFormt
-            // 
-            this.collumnContainerFormt.FillWeight = 28.877F;
-            this.collumnContainerFormt.HeaderText = "Container Format";
-            this.collumnContainerFormt.MinimumWidth = 6;
-            this.collumnContainerFormt.Name = "collumnContainerFormt";
-            this.collumnContainerFormt.ReadOnly = true;
-            // 
-            // collumnSize
-            // 
-            this.collumnSize.FillWeight = 28.877F;
-            this.collumnSize.HeaderText = "Size";
-            this.collumnSize.MinimumWidth = 6;
-            this.collumnSize.Name = "collumnSize";
-            this.collumnSize.ReadOnly = true;
-            // 
-            // columnDeleteImage
-            // 
-            this.columnDeleteImage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.columnDeleteImage.FillWeight = 28.877F;
-            this.columnDeleteImage.HeaderText = "Delete";
-            this.columnDeleteImage.MinimumWidth = 6;
-            this.columnDeleteImage.Name = "columnDeleteImage";
-            this.columnDeleteImage.ReadOnly = true;
-            this.columnDeleteImage.Text = "Delete";
-            this.columnDeleteImage.Width = 50;
-            // 
-            // collumnEditImage
-            // 
-            this.collumnEditImage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.collumnEditImage.HeaderText = "Edit";
-            this.collumnEditImage.MinimumWidth = 6;
-            this.collumnEditImage.Name = "collumnEditImage";
-            this.collumnEditImage.ReadOnly = true;
-            this.collumnEditImage.Width = 50;
-            // 
-            // editImageRow
-            // 
-            this.editImageRow.Location = new System.Drawing.Point(596, 128);
-            this.editImageRow.Maximum = new decimal(new int[] {
-            99999,
-            0,
-            0,
-            0});
-            this.editImageRow.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
-            this.editImageRow.Name = "editImageRow";
-            this.editImageRow.Size = new System.Drawing.Size(120, 22);
-            this.editImageRow.TabIndex = 20;
-            this.editImageRow.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
-            this.editImageRow.Visible = false;
-            // 
             // ImagesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -959,6 +959,7 @@ namespace OpenStack_GUI.Forms
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "ImagesForm";
+            this.TransparencyKey = System.Drawing.Color.White;
             this.imagesTabControl.ResumeLayout(false);
             this.imagesTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imagesDataGridView)).EndInit();
