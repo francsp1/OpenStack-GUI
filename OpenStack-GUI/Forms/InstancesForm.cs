@@ -28,38 +28,41 @@ namespace OpenStack_GUI.Forms
             instancesGridView.Refresh();
 
 
-           /* try
+            try
             {
                 WebClient myWebClient = new WebClient();
 
                 myWebClient.Headers.Add("x-auth-token", GlobalSessionDetails.ScopedToken);
 
-                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/compute/v2/servers/detail";
+                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/compute/v2/" + GlobalSessionDetails.ProjectId + "/servers/detail";
 
                 var responseString = myWebClient.DownloadString(url);
 
                 var myObject = JObject.Parse(responseString);
-                JArray instances = (JArray)myObject["instances"];
+                JArray instances = (JArray)myObject["servers"];
 
                 instancesGridView.Rows.Clear();
                 instancesGridView.Refresh();
 
+                Console.WriteLine(instances);
+
                 for (int i = 0; i < instances.Count; i++)
                 {
 
-                    var currentVolume = instances[i];
+                    var currentInstance = instances[i];
 
-                    instancesGridView.Rows.Add(currentVolume["id"].ToString(),
-                        currentVolume["name"].ToString(),
-                        currentVolume["image"].ToString(),
-                        currentVolume["addresses"][0][1].ToString(),
-                        currentVolume["flavor"].ToString(),
-                        currentVolume["key_name"].ToString(),
-                        currentVolume["OS-EXT-STS:vm_state"].ToString(),
-                        currentVolume["OS-EXT-AZ:availability_zone"].ToString(),
-                        currentVolume["OS-EXT-STS:task_state"].ToString(),
-                        currentVolume["OS-EXT-STS:power_state"].ToString(),
-                        currentVolume["OS-SRV-USG:launched_at"].ToString()
+                    instancesGridView.Rows.Add(
+                        currentInstance["id"].ToString(),
+                        currentInstance["name"].ToString(),
+                        currentInstance["image"].ToString(),
+                        currentInstance["addresses"].ToString(),
+                        currentInstance["flavor"].ToString(),
+                        currentInstance["key_name"].ToString(),
+                        currentInstance["OS-EXT-STS:vm_state"].ToString(),
+                        currentInstance["OS-EXT-AZ:availability_zone"].ToString(),
+                        currentInstance["OS-EXT-STS:task_state"].ToString(),
+                        currentInstance["OS-EXT-STS:power_state"].ToString(),
+                        currentInstance["OS-SRV-USG:launched_at"].ToString()
                     );
                 
                 }
@@ -67,8 +70,8 @@ namespace OpenStack_GUI.Forms
             }
             catch (Exception excp)
             {
-                MessageBox.Show(excp.Message, "Could not get the Volumes", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
+                MessageBox.Show(excp.Message, "Could not get the Instances", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
