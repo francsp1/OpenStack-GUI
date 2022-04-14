@@ -79,6 +79,7 @@ namespace OpenStack_GUI.Forms
         {
             fillmageServiceTab();
             fillVolumesTab();
+            fillinstanceTab();
 
         }
 
@@ -108,13 +109,13 @@ namespace OpenStack_GUI.Forms
 
         private void fillinstanceTab()
         {
-            panelImageService.Controls.Clear();
-            ImagesForm imagesForm = new ImagesForm();
-            imagesForm.TopLevel = false;
-            imagesForm.AutoScroll = true;
-            panelImageService.Controls.Add(imagesForm);
-            imagesForm.Show();
-            imagesForm.Dock = DockStyle.Fill;
+            panelInstances.Controls.Clear();
+            InstancesForm instancesForm = new InstancesForm();
+            instancesForm.TopLevel = false;
+            instancesForm.AutoScroll = true;
+            panelInstances.Controls.Add(instancesForm);
+            instancesForm.Show();
+            instancesForm.Dock = DockStyle.Fill;
         }
 
         private string getSelectedProjectId() //Get the id of the project currently selected
