@@ -44,25 +44,57 @@ namespace OpenStack_GUI.Forms
                 instancesGridView.Rows.Clear();
                 instancesGridView.Refresh();
 
-                Console.WriteLine(instances);
-
                 for (int i = 0; i < instances.Count; i++)
                 {
 
                     var currentInstance = instances[i];
+
+                    var task = currentInstance["OS-EXT-STS:task_state"].ToString();
+
+                    if (task == "")
+                    {
+                        task = "None";
+                    }
+
+                    var powerState = currentInstance["OS-EXT-STS:power_state"].ToString();
+
+                    if (powerState == "1")
+                    {
+                        powerState = "Running";
+                    }
+                    else if (powerState == "0")
+                    {
+                        powerState = "Not Running";
+                    }
+
+                    var lauched = Convert.ToDateTime(currentInstance["OS-SRV-USG:launched_at"].ToString());
+                    DateTime date = DateTime.Now;
+                    var age = Convert.ToInt32((date - lauched).Days);
+
+                    var weeks = (age % 365) / 7;
+                    var days = (age % 365) % 7;
+                    var final = (weeks + " Weeks," + days + " Days");
+
+                    var flavor = currentInstance["flavor"]["links"][0]["href"].ToString();
+                    if (flavor == currentInstance["flavor"]["links"][0]["href"].ToString())
+                    {
+                        flavor = "m1.nano";
+                    }
+
+                    //var ipv4 = currentInstance["addresses"]["private"][0]["addr"].ToString();
 
                     instancesGridView.Rows.Add(
                         currentInstance["id"].ToString(),
                         currentInstance["name"].ToString(),
                         currentInstance["image"].ToString(),
                         currentInstance["addresses"].ToString(),
-                        currentInstance["flavor"].ToString(),
+                        flavor.ToString(),
                         currentInstance["key_name"].ToString(),
                         currentInstance["OS-EXT-STS:vm_state"].ToString(),
                         currentInstance["OS-EXT-AZ:availability_zone"].ToString(),
-                        currentInstance["OS-EXT-STS:task_state"].ToString(),
-                        currentInstance["OS-EXT-STS:power_state"].ToString(),
-                        currentInstance["OS-SRV-USG:launched_at"].ToString()
+                        task.ToString(),
+                        powerState.ToString(),
+                        final.ToString()
                     );
                 
                 }

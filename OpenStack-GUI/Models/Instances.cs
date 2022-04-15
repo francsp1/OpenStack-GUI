@@ -45,4 +45,28 @@ namespace OpenStack_GUI.Models
         public string Age { get; set; }
 
     }
+
+    public class Private
+    {
+        public int version { get; set; }
+        public string addr { get; set; }
+
+        [JsonProperty("OS-EXT-IPS:type")]
+        public string OSEXTIPSType { get; set; }
+
+        [JsonProperty("OS-EXT-IPS-MAC:mac_addr")]
+        public string OSEXTIPSMACMacAddr { get; set; }
+    }
+
+    public class Shared
+    {
+        public int version { get; set; }
+        public string addr { get; set; }
+
+        [JsonProperty("OS-EXT-IPS:type")]
+        public string OSEXTIPSType { get; set; }
+
+        [JsonProperty("OS-EXT-IPS-MAC:mac_addr")]
+        public string OSEXTIPSMACMacAddr { get; set; }
+    }
 }
