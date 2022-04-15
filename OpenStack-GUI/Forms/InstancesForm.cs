@@ -19,6 +19,10 @@ namespace OpenStack_GUI.Forms
         {
             InitializeComponent();
 
+            //instancesGridView.Columns[3].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            //instancesGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
             refresh();
         }
 
@@ -39,7 +43,10 @@ namespace OpenStack_GUI.Forms
                 var responseString = myWebClient.DownloadString(url);
 
                 var myObject = JObject.Parse(responseString);
+
                 JArray instances = (JArray)myObject["servers"];
+
+                JObject addresses = (JObject) myObject["servers"][0]["addresses"];
 
                 instancesGridView.Rows.Clear();
                 instancesGridView.Refresh();
@@ -83,11 +90,31 @@ namespace OpenStack_GUI.Forms
 
                     //var ipv4 = currentInstance["addresses"]["private"][0]["addr"].ToString();
 
+
+                    string ips = "";
+                    JObject addressesObject = JObject.Parse(currentInstance["addresses"].ToString());
+
+                    foreach (var network in addressesObject)
+                    {
+                        var networkName = network.Key;
+                        ips = ips + "Network: " + networkName + "\n";
+                        foreach (var address in network.Value)
+                        {
+
+                            var version = address["version"].ToString();
+                            var addr = address["addr"].ToString();
+
+                            ips = ips + addr + "\n";
+                        }
+                    }
+
+
                     instancesGridView.Rows.Add(
                         currentInstance["id"].ToString(),
                         currentInstance["name"].ToString(),
                         currentInstance["image"].ToString(),
-                        currentInstance["addresses"].ToString(),
+                        //currentInstance["addresses"].ToString(),
+                        ips,
                         flavor.ToString(),
                         currentInstance["key_name"].ToString(),
                         currentInstance["OS-EXT-STS:vm_state"].ToString(),
