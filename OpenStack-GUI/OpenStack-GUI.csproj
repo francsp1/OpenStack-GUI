@@ -123,6 +123,12 @@
     <Compile Include="Forms\InstancesForm.Designer.cs">
       <DependentUpon>InstancesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\KeyPairForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KeyPairForm.Designer.cs">
+      <DependentUpon>KeyPairForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InstancesForm.resx">
       <DependentUpon>InstancesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KeyPairForm.resx">
+      <DependentUpon>KeyPairForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
