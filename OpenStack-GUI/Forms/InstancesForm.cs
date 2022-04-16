@@ -90,7 +90,6 @@ namespace OpenStack_GUI.Forms
 
                     //var ipv4 = currentInstance["addresses"]["private"][0]["addr"].ToString();
 
-
                     string ips = "";
                     JObject addressesObject = JObject.Parse(currentInstance["addresses"].ToString());
 
@@ -108,12 +107,10 @@ namespace OpenStack_GUI.Forms
                         }
                     }
 
-
                     instancesGridView.Rows.Add(
                         currentInstance["id"].ToString(),
                         currentInstance["name"].ToString(),
                         currentInstance["image"].ToString(),
-                        //currentInstance["addresses"].ToString(),
                         ips,
                         flavor.ToString(),
                         currentInstance["key_name"].ToString(),
