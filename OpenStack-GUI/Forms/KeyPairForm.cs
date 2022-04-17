@@ -34,8 +34,8 @@ namespace OpenStack_GUI.Forms
 
                 myWebClient.Headers.Add("x-auth-token", GlobalSessionDetails.ScopedToken);
 
-                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/compute/v2/os-keypairs";
-
+                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/compute/v2/" + GlobalSessionDetails.ProjectId + "/os-keypairs";
+               
                 var responseString = myWebClient.DownloadString(url);
 
                 var myObject = JObject.Parse(responseString);
@@ -44,16 +44,15 @@ namespace OpenStack_GUI.Forms
                 keysGridView1.Rows.Clear();
                 keysGridView1.Refresh();
 
-                for (int i = 0; i < keys.Count; i++)
+                for (int i = 0; i < myObject.Count; i++)
                 {
 
-                    var currentKey = keys[i];
+                    var currentKey = myObject[i];
 
                     keysGridView1.Rows.Add(
                         currentKey["id"].ToString(),
                         currentKey["name"].ToString(),
-                        currentKey["type"].ToString(),
-                        currentKey["fingerprint"].ToString());    
+                        currentKey["fingerprint"].ToString());
                 }
 
             }

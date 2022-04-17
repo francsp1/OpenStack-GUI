@@ -25,6 +25,8 @@ namespace OpenStack_GUI.Models
 
         public static string ProjectId { get; set; } = null;
 
+        public static string KeyName { get; set; } = null;
+
         public static bool getUnscopedToken() //Get unscoped token and user id
         {
             try

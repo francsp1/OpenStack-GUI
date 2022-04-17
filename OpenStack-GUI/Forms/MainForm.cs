@@ -34,6 +34,8 @@ namespace OpenStack_GUI.Forms
 
                 GlobalSessionDetails.ProjectId = getSelectedProjectId();
 
+                GlobalSessionDetails.KeyName = getSelectedKeyPair();
+
                 if (GlobalSessionDetails.getScopedToken())
                 {
                     comboBoxProjects.SelectedIndexChanged += new System.EventHandler(this.comboBoxProjects_SelectedIndexChanged);
@@ -80,7 +82,7 @@ namespace OpenStack_GUI.Forms
             fillmageServiceTab();
             fillVolumesTab();
             fillinstanceTab();
-
+            fillKeyTab();
         }
 
         private void fillVolumesTab()
@@ -118,6 +120,17 @@ namespace OpenStack_GUI.Forms
             instancesForm.Dock = DockStyle.Fill;
         }
 
+        private void fillKeyTab()
+        {
+            panelKeyPair.Controls.Clear();
+            KeyPairForm keyPairForm = new KeyPairForm();
+            keyPairForm.TopLevel = false;
+            keyPairForm.AutoScroll = true;
+            panelKeyPair.Controls.Add(keyPairForm);
+            keyPairForm.Show();
+            keyPairForm.Dock = DockStyle.Fill;
+        }
+
         private string getSelectedProjectId() //Get the id of the project currently selected
         {
             try
@@ -148,6 +161,35 @@ namespace OpenStack_GUI.Forms
             }
         }
 
+        private string getSelectedKeyPair() //Get the id of the project currently selected
+        {
+            try
+            {
+                var myWebClient = new WebClient();
+                myWebClient.Headers.Add("x-auth-token", GlobalSessionDetails.UnscopedToken);
+
+                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/compute/v2/os-keypairs";
+
+                var responseString = myWebClient.DownloadString(url);
+
+                var jo = JObject.Parse(responseString);
+                var keypair = jo["keypairs"];
+
+                var getkey = keypair[0]["keypair"]["name"].ToString();
+                Console.WriteLine(getkey);
+                if (getkey != null)
+                {
+                    return keypair[0]["keypair"]["name"].ToString();
+                }
+                
+                return null;
+            }
+            catch (Exception excp)
+            {
+                MessageBox.Show(excp.Message, "Error obtaining the keyPair ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
 
 
         private void comboBoxProjects_SelectedIndexChanged(object sender, EventArgs e)

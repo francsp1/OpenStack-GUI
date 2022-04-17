@@ -32,8 +32,8 @@ namespace OpenStack_GUI.Forms
             this.keysTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPageKeyPair = new System.Windows.Forms.TabPage();
-            this.tabPageCreateKey = new System.Windows.Forms.TabPage();
             this.keysGridView1 = new System.Windows.Forms.DataGridView();
+            this.tabPageCreateKey = new System.Windows.Forms.TabPage();
             this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,19 +82,11 @@ namespace OpenStack_GUI.Forms
             this.tabPageKeyPair.TabIndex = 0;
             this.tabPageKeyPair.Text = "Key Pairs";
             // 
-            // tabPageCreateKey
-            // 
-            this.tabPageCreateKey.BackColor = System.Drawing.Color.White;
-            this.tabPageCreateKey.Location = new System.Drawing.Point(4, 22);
-            this.tabPageCreateKey.Name = "tabPageCreateKey";
-            this.tabPageCreateKey.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCreateKey.Size = new System.Drawing.Size(1131, 469);
-            this.tabPageCreateKey.TabIndex = 1;
-            this.tabPageCreateKey.Text = "Create Key Pair";
-            // 
             // keysGridView1
             // 
+            this.keysGridView1.AllowUserToAddRows = false;
             this.keysGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.keysGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.keysGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.keysGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdColumn,
@@ -106,6 +98,16 @@ namespace OpenStack_GUI.Forms
             this.keysGridView1.Name = "keysGridView1";
             this.keysGridView1.Size = new System.Drawing.Size(1125, 463);
             this.keysGridView1.TabIndex = 0;
+            // 
+            // tabPageCreateKey
+            // 
+            this.tabPageCreateKey.BackColor = System.Drawing.Color.White;
+            this.tabPageCreateKey.Location = new System.Drawing.Point(4, 22);
+            this.tabPageCreateKey.Name = "tabPageCreateKey";
+            this.tabPageCreateKey.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageCreateKey.Size = new System.Drawing.Size(1131, 469);
+            this.tabPageCreateKey.TabIndex = 1;
+            this.tabPageCreateKey.Text = "Create Key Pair";
             // 
             // IdColumn
             // 
@@ -124,6 +126,7 @@ namespace OpenStack_GUI.Forms
             this.typeColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.typeColumn.HeaderText = "Type";
             this.typeColumn.Name = "typeColumn";
+            this.typeColumn.Visible = false;
             // 
             // fingerprintColumn
             // 
