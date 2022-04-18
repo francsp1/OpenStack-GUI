@@ -46,8 +46,6 @@ namespace OpenStack_GUI.Forms
 
                 JArray instances = (JArray)myObject["servers"];
 
-                JObject addresses = (JObject) myObject["servers"][0]["addresses"];
-
                 instancesGridView.Rows.Clear();
                 instancesGridView.Refresh();
 
@@ -58,24 +56,36 @@ namespace OpenStack_GUI.Forms
 
                     var task = currentInstance["OS-EXT-STS:task_state"].ToString();
 
-                    if (task == "")
-                    {
-                        task = "None";
-                    }
-
                     var powerState = currentInstance["OS-EXT-STS:power_state"].ToString();
 
-                    if (powerState == "1")
+                    switch (powerState)
                     {
-                        powerState = "Running";
-                    }
-                    else if (powerState == "0")
-                    {
-                        powerState = "Not Running";
+                        case "0":
+                            powerState = "No statte";
+                            break;
+                        case "1":
+                            powerState = "Running";
+                            break;
+                        case "3":
+                            powerState = "Paused";
+
+                            break;
+                        case "4":
+                            powerState = "Shutdown";
+                            break;
+                        case "6":
+                            powerState = "Crashed";
+                            break;
+                        case "7":
+                            powerState = "Suspended";
+                            break;
                     }
 
-                    var lauched = Convert.ToDateTime(currentInstance["OS-SRV-USG:launched_at"].ToString());
                     DateTime date = DateTime.Now;
+                    var lauched = Convert.ToDateTime(
+                        String.IsNullOrWhiteSpace(currentInstance["OS-SRV-USG:launched_at"].ToString()) ? date.ToString() : currentInstance["OS-SRV-USG:launched_at"].ToString()
+                        );
+
                     var age = Convert.ToInt32((date - lauched).Days);
 
                     var weeks = (age % 365) / 7;
@@ -87,8 +97,6 @@ namespace OpenStack_GUI.Forms
                     {
                         flavor = "m1.nano";
                     }
-
-                    //var ipv4 = currentInstance["addresses"]["private"][0]["addr"].ToString();
 
                     string ips = "";
                     JObject addressesObject = JObject.Parse(currentInstance["addresses"].ToString());
@@ -107,18 +115,19 @@ namespace OpenStack_GUI.Forms
                         }
                     }
 
+
                     instancesGridView.Rows.Add(
                         currentInstance["id"].ToString(),
                         currentInstance["name"].ToString(),
-                        currentInstance["image"].ToString(),
+                        currentInstance["image"].ToString(),//<---
                         ips,
-                        flavor.ToString(),
-                        currentInstance["key_name"].ToString(),
-                        currentInstance["OS-EXT-STS:vm_state"].ToString(),
-                        currentInstance["OS-EXT-AZ:availability_zone"].ToString(),
-                        task.ToString(),
+                        flavor.ToString(), //<---
+                        String.IsNullOrWhiteSpace(currentInstance["key_name"].ToString())                    ? "None"   : currentInstance["key_name"].ToString(),
+                        String.IsNullOrWhiteSpace(currentInstance["OS-EXT-STS:vm_state"].ToString())         ? ""       : currentInstance["OS-EXT-STS:vm_state"].ToString(),
+                        String.IsNullOrWhiteSpace(currentInstance["OS-EXT-AZ:availability_zone"].ToString()) ? ""       : currentInstance["OS-EXT-AZ:availability_zone"].ToString(),
+                        String.IsNullOrWhiteSpace(task)                                                      ? "None"   : task,
                         powerState.ToString(),
-                        final.ToString()
+                        final.ToString() //<--- 
                     );
                 
                 }
