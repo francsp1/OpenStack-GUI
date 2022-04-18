@@ -34,7 +34,7 @@ namespace OpenStack_GUI.Forms
 
                 GlobalSessionDetails.ProjectId = getSelectedProjectId();
 
-                GlobalSessionDetails.KeyName = getSelectedKeyPair();
+                //GlobalSessionDetails.KeyName = getSelectedKeyPair();
 
                 if (GlobalSessionDetails.getScopedToken())
                 {
