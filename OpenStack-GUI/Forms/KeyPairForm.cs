@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using OpenStack_GUI.Models;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,80 @@ namespace OpenStack_GUI.Forms
             }
         }
 
+        private void CreateKeyButton_Click(object sender, EventArgs e)
+        {
+            string name = txtkeyName.Text;
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("Please, enter a valid Key Pair Name", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            string type = typeComboBox.Text;
+            
+            KeyPair key = new KeyPair()
+            {
+                keypair = new
+
+                CreateKeysModel()
+                {
+                    Name = name,
+                    Type = type
+                }
+            };
+
+            using (var client = new HttpClient())
+            {
+                var endpoint = new Uri(GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/compute/v2/" + GlobalSessionDetails.ProjectId + "/os-keypairs");
+
+                string requestJson = JsonConvert.SerializeObject(key);
+                var payload = new StringContent(requestJson, Encoding.UTF8, "application/json");
+
+                client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+
+                client.DefaultRequestHeaders.ExpectContinue = false;
+                var result = client.PostAsync(endpoint, payload).Result;
+                var json = result.Content.ReadAsStringAsync().Result;
+
+                MessageBox.Show("Key Pair created sucessesfully", "Sucess!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                materialTabControl1.SelectedTab = tabPageKeyPair;
+
+                refresh();
+            }
+        }
+
+        private void cellclick_delete(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == keysGridView1.Columns["deleteColumn"].Index)
+            {
+
+                deleteKey(keysGridView1[0, e.RowIndex].Value.ToString());
+                refresh();
+            }
+        }
+
+        private void deleteKey(string keyID)
+        {
+            using (var client = new HttpClient())
+            {
+                var endpoint = new Uri(GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/compute/v2/" + GlobalSessionDetails.ProjectId + "/os-keypairs/" + keyID); 
+
+                client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+
+                client.DefaultRequestHeaders.ExpectContinue = false;
+                var result = client.DeleteAsync(endpoint).Result;
+                var json = result.Content.ReadAsStringAsync().Result;
+
+                if (!result.IsSuccessStatusCode)
+                {
+                    MessageBox.Show(result.ReasonPhrase, "Could not Delete the Key", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                MessageBox.Show("Key Pair deleted with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            refresh();
+        }
     }
 }

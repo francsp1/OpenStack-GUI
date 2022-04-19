@@ -150,6 +150,7 @@
     <Compile Include="Models\GlobalSessionDetails.cs" />
     <Compile Include="Models\Images.cs" />
     <Compile Include="Models\Instances.cs" />
+    <Compile Include="Models\KeyPair.cs" />
     <Compile Include="Models\Volumes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
