@@ -116,9 +116,7 @@ namespace OpenStack_GUI.Forms
                         currentImage["min_disk"].ToString(), 
                         currentImage["min_ram"].ToString(), 
                         currentImage["container_format"].ToString(), 
-                        (((float)long.Parse( string.IsNullOrWhiteSpace(imageSize)  ? "0" : imageSize) / 1048576)).ToString("0.00") + "MB", 
-                        "Delete", 
-                        "Edit"
+                        (((float)long.Parse( string.IsNullOrWhiteSpace(imageSize)  ? "0" : imageSize) / 1048576)).ToString("0.00") + "MB"
                         );
                 }
                 if (responseJsonObject["next"] != null)
