@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -38,7 +39,7 @@ namespace OpenStack_GUI.Forms
 
                 myWebClient.Headers.Add("x-auth-token", GlobalSessionDetails.ScopedToken);
 
-                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/compute/v2/" + GlobalSessionDetails.ProjectId + "/servers/detail";
+                string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/compute/v2.1/servers/detail";
 
                 var responseString = myWebClient.DownloadString(url);
 
@@ -92,15 +93,16 @@ namespace OpenStack_GUI.Forms
                     var days = (age % 365) % 7;
                     var final = (weeks + " Weeks," + days + " Days");
 
-                    var flavor = currentInstance["flavor"]["links"][0]["href"].ToString();
-                    if (flavor == currentInstance["flavor"]["links"][0]["href"].ToString())
+                    string flavorName = getFlavorName(currentInstance["flavor"]["id"].ToString());
+
+                    string imageName = "";
+                    if (currentInstance["image"].ToString() != "")
                     {
-                        flavor = "m1.nano";
+                        imageName = getImageName(currentInstance["image"]["id"].ToString());
                     }
 
                     string ips = "";
                     JObject addressesObject = JObject.Parse(currentInstance["addresses"].ToString());
-
                     foreach (var network in addressesObject)
                     {
                         var networkName = network.Key;
@@ -119,9 +121,9 @@ namespace OpenStack_GUI.Forms
                     instancesGridView.Rows.Add(
                         currentInstance["id"].ToString(),
                         currentInstance["name"].ToString(),
-                        currentInstance["image"].ToString(),//<---
-                        ips,
-                        flavor.ToString(), //<---
+                        String.IsNullOrWhiteSpace(imageName)                                                 ? "None"    : imageName,
+                        String.IsNullOrWhiteSpace(ips)                                                       ? "None"   : ips,
+                        String.IsNullOrWhiteSpace(flavorName)                                                ? "Error"  : flavorName,
                         String.IsNullOrWhiteSpace(currentInstance["key_name"].ToString())                    ? "None"   : currentInstance["key_name"].ToString(),
                         String.IsNullOrWhiteSpace(currentInstance["OS-EXT-STS:vm_state"].ToString())         ? ""       : currentInstance["OS-EXT-STS:vm_state"].ToString(),
                         String.IsNullOrWhiteSpace(currentInstance["OS-EXT-AZ:availability_zone"].ToString()) ? ""       : currentInstance["OS-EXT-AZ:availability_zone"].ToString(),
@@ -131,12 +133,57 @@ namespace OpenStack_GUI.Forms
                     );
                 
                 }
-
             }
             catch (Exception excp)
             {
                 MessageBox.Show(excp.Message, "Could not get the Instances", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private string getImageName(string imageId)
+        {
+            string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/compute/v2.1/images/" + imageId;
+
+            var request = new HttpRequestMessage(HttpMethod.Get, url);
+            var client = GlobalSessionDetails._clientFactory.CreateClient();
+
+            client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+
+            client.DefaultRequestHeaders.ExpectContinue = false;
+
+            var response = client.SendAsync(request).Result;
+            var json = response.Content.ReadAsStringAsync().Result;
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return null;
+            }
+
+            JObject responseJsonObject = JObject.Parse(json);
+            return responseJsonObject["image"]["name"].ToString();
+        }
+
+        private string getFlavorName(string flavorId)
+        {
+            string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/compute/v2.1/flavors/" + flavorId;
+
+            var request = new HttpRequestMessage(HttpMethod.Get, url);
+            var client = GlobalSessionDetails._clientFactory.CreateClient();
+
+            client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+
+            client.DefaultRequestHeaders.ExpectContinue = false;
+
+            var response = client.SendAsync(request).Result;
+            var json = response.Content.ReadAsStringAsync().Result;
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return null;
+            }
+
+            JObject responseJsonObject = JObject.Parse(json);
+            return responseJsonObject["flavor"]["name"].ToString() ;
         }
     }
 }
