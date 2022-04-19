@@ -77,7 +77,7 @@ namespace OpenStack_GUI.Forms
             this.instancesTabControl.Depth = 0;
             this.instancesTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.instancesTabControl.Location = new System.Drawing.Point(0, 48);
-            this.instancesTabControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.instancesTabControl.Margin = new System.Windows.Forms.Padding(4);
             this.instancesTabControl.MouseState = MaterialSkin.MouseState.HOVER;
             this.instancesTabControl.Multiline = true;
             this.instancesTabControl.Name = "instancesTabControl";
@@ -89,9 +89,9 @@ namespace OpenStack_GUI.Forms
             // 
             this.tabPage1.Controls.Add(this.instancesGridView);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(1511, 639);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Instances";
@@ -130,13 +130,14 @@ namespace OpenStack_GUI.Forms
             this.instancesGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.instancesGridView.GridColor = System.Drawing.Color.White;
             this.instancesGridView.Location = new System.Drawing.Point(4, 4);
-            this.instancesGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.instancesGridView.Margin = new System.Windows.Forms.Padding(4);
             this.instancesGridView.Name = "instancesGridView";
             this.instancesGridView.ReadOnly = true;
             this.instancesGridView.RowHeadersWidth = 51;
             this.instancesGridView.RowTemplate.Height = 60;
             this.instancesGridView.Size = new System.Drawing.Size(1503, 631);
             this.instancesGridView.TabIndex = 0;
+            this.instancesGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.instancesGridView_CellClick);
             // 
             // idColumn
             // 
@@ -265,9 +266,9 @@ namespace OpenStack_GUI.Forms
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(1511, 639);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Cretate Instances";

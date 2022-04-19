@@ -185,5 +185,38 @@ namespace OpenStack_GUI.Forms
             JObject responseJsonObject = JObject.Parse(json);
             return responseJsonObject["flavor"]["name"].ToString() ;
         }
+
+        private void instancesGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == instancesGridView.Columns["deleteColumn"].Index)
+            {
+                deleteInstance(instancesGridView[0, e.RowIndex].Value.ToString());
+                refresh();
+
+            }
+        }
+
+        private void deleteInstance(string serverId)
+        {
+            string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/compute/v2.1/servers/" + serverId;
+
+            var request = new HttpRequestMessage(HttpMethod.Delete, url);
+            var client = GlobalSessionDetails._clientFactory.CreateClient();
+
+            client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+
+            client.DefaultRequestHeaders.ExpectContinue = false;
+
+
+            var response = client.SendAsync(request).Result;
+            var json = response.Content.ReadAsStringAsync().Result;
+
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show(response.ReasonPhrase, "Could not Delete the instance", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("Instance deleted with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
