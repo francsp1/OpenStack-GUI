@@ -27,14 +27,12 @@ namespace OpenStack_GUI.Forms
                 string username = GlobalSessionDetails.Username;
                 if (username != null)
                 {
-                    this.Text = "User: " + username + " | " + "ID: "+ GlobalSessionDetails.UserId;
+                    this.Text = "User: " + username; //  + " | " + "ID: "+ GlobalSessionDetails.UserId;
                 }
 
                 comboBoxProjects.SelectedIndex = 0;
 
                 GlobalSessionDetails.ProjectId = getSelectedProjectId();
-
-                //GlobalSessionDetails.KeyName = getSelectedKeyPair();
 
                 if (GlobalSessionDetails.getScopedToken())
                 {
@@ -196,12 +194,10 @@ namespace OpenStack_GUI.Forms
         {
             if(GlobalSessionDetails.ProjectId == (GlobalSessionDetails.ProjectId = getSelectedProjectId())) //if user selects the same project that was already selected
             {
-                //MessageBox.Show("Entrou!!\nAntigo: " + GlobalSessionDetails.ProjectId + "\nNovo:    " + getSelectedProjectId(), "Ola", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else //if user select other project
             {
-                //MessageBox.Show("Fazer cenas", "Ola", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 if (GlobalSessionDetails.getScopedToken()){ //if the token has been obtained with success
                 
