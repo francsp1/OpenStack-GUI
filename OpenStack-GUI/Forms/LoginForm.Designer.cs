@@ -162,9 +162,7 @@ namespace OpenStack_GUI.Forms
             this.cmbBoxProtocol.ItemHeight = 43;
             this.cmbBoxProtocol.Items.AddRange(new object[] {
             "http",
-            "https",
-            "HTTP",
-            "HTTPS"});
+            "https"});
             this.cmbBoxProtocol.Location = new System.Drawing.Point(39, 265);
             this.cmbBoxProtocol.MaxDropDownItems = 4;
             this.cmbBoxProtocol.MouseState = MaterialSkin.MouseState.OUT;
