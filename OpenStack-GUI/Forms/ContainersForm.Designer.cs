@@ -32,15 +32,15 @@ namespace OpenStack_GUI.Forms
             this.containersTabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.containersTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.containersTabPage = new System.Windows.Forms.TabPage();
-            this.createContainerTabPage = new System.Windows.Forms.TabPage();
             this.containersGridView = new System.Windows.Forms.DataGridView();
+            this.createContainerTabPage = new System.Windows.Forms.TabPage();
             this.nameCollumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idCollumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imageCollumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusCollumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.taskStateCollumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.editCollumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.deleteCollumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.editCollumn = new System.Windows.Forms.DataGridViewImageColumn();
+            this.deleteCollumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.containersTabControl.SuspendLayout();
             this.containersTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.containersGridView)).BeginInit();
@@ -54,9 +54,10 @@ namespace OpenStack_GUI.Forms
             this.containersTabSelector.Dock = System.Windows.Forms.DockStyle.Top;
             this.containersTabSelector.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.containersTabSelector.Location = new System.Drawing.Point(0, 0);
+            this.containersTabSelector.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.containersTabSelector.MouseState = MaterialSkin.MouseState.HOVER;
             this.containersTabSelector.Name = "containersTabSelector";
-            this.containersTabSelector.Size = new System.Drawing.Size(1519, 48);
+            this.containersTabSelector.Size = new System.Drawing.Size(1139, 39);
             this.containersTabSelector.TabIndex = 0;
             // 
             // containersTabControl
@@ -65,34 +66,26 @@ namespace OpenStack_GUI.Forms
             this.containersTabControl.Controls.Add(this.createContainerTabPage);
             this.containersTabControl.Depth = 0;
             this.containersTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.containersTabControl.Location = new System.Drawing.Point(0, 48);
+            this.containersTabControl.Location = new System.Drawing.Point(0, 39);
+            this.containersTabControl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.containersTabControl.MouseState = MaterialSkin.MouseState.HOVER;
             this.containersTabControl.Multiline = true;
             this.containersTabControl.Name = "containersTabControl";
             this.containersTabControl.SelectedIndex = 0;
-            this.containersTabControl.Size = new System.Drawing.Size(1519, 668);
+            this.containersTabControl.Size = new System.Drawing.Size(1139, 543);
             this.containersTabControl.TabIndex = 1;
             // 
             // containersTabPage
             // 
             this.containersTabPage.Controls.Add(this.containersGridView);
-            this.containersTabPage.Location = new System.Drawing.Point(4, 25);
+            this.containersTabPage.Location = new System.Drawing.Point(4, 22);
+            this.containersTabPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.containersTabPage.Name = "containersTabPage";
-            this.containersTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.containersTabPage.Size = new System.Drawing.Size(1511, 639);
+            this.containersTabPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.containersTabPage.Size = new System.Drawing.Size(1131, 517);
             this.containersTabPage.TabIndex = 0;
             this.containersTabPage.Text = "Containers";
             this.containersTabPage.UseVisualStyleBackColor = true;
-            // 
-            // createContainerTabPage
-            // 
-            this.createContainerTabPage.Location = new System.Drawing.Point(4, 25);
-            this.createContainerTabPage.Name = "createContainerTabPage";
-            this.createContainerTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.createContainerTabPage.Size = new System.Drawing.Size(1511, 639);
-            this.createContainerTabPage.TabIndex = 1;
-            this.createContainerTabPage.Text = "Create Container";
-            this.createContainerTabPage.UseVisualStyleBackColor = true;
             // 
             // containersGridView
             // 
@@ -112,13 +105,25 @@ namespace OpenStack_GUI.Forms
             this.deleteCollumn});
             this.containersGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.containersGridView.GridColor = System.Drawing.Color.White;
-            this.containersGridView.Location = new System.Drawing.Point(3, 3);
+            this.containersGridView.Location = new System.Drawing.Point(2, 2);
+            this.containersGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.containersGridView.Name = "containersGridView";
             this.containersGridView.ReadOnly = true;
             this.containersGridView.RowHeadersWidth = 51;
             this.containersGridView.RowTemplate.Height = 24;
-            this.containersGridView.Size = new System.Drawing.Size(1505, 633);
+            this.containersGridView.Size = new System.Drawing.Size(1127, 513);
             this.containersGridView.TabIndex = 0;
+            // 
+            // createContainerTabPage
+            // 
+            this.createContainerTabPage.Location = new System.Drawing.Point(4, 22);
+            this.createContainerTabPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.createContainerTabPage.Name = "createContainerTabPage";
+            this.createContainerTabPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.createContainerTabPage.Size = new System.Drawing.Size(1131, 517);
+            this.createContainerTabPage.TabIndex = 1;
+            this.createContainerTabPage.Text = "Create Container";
+            this.createContainerTabPage.UseVisualStyleBackColor = true;
             // 
             // nameCollumn
             // 
@@ -161,6 +166,7 @@ namespace OpenStack_GUI.Forms
             // 
             this.editCollumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.editCollumn.HeaderText = "Edit";
+            this.editCollumn.Image = global::OpenStack_GUI.Properties.Resources.edit_button;
             this.editCollumn.MinimumWidth = 6;
             this.editCollumn.Name = "editCollumn";
             this.editCollumn.ReadOnly = true;
@@ -172,6 +178,7 @@ namespace OpenStack_GUI.Forms
             // 
             this.deleteCollumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.deleteCollumn.HeaderText = "Delete";
+            this.deleteCollumn.Image = global::OpenStack_GUI.Properties.Resources.remove__1_;
             this.deleteCollumn.MinimumWidth = 6;
             this.deleteCollumn.Name = "deleteCollumn";
             this.deleteCollumn.ReadOnly = true;
@@ -181,14 +188,15 @@ namespace OpenStack_GUI.Forms
             // 
             // ContainersForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1519, 716);
+            this.ClientSize = new System.Drawing.Size(1139, 582);
             this.ControlBox = false;
             this.Controls.Add(this.containersTabControl);
             this.Controls.Add(this.containersTabSelector);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ContainersForm";
@@ -214,7 +222,7 @@ namespace OpenStack_GUI.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn imageCollumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusCollumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn taskStateCollumn;
-        private System.Windows.Forms.DataGridViewButtonColumn editCollumn;
-        private System.Windows.Forms.DataGridViewButtonColumn deleteCollumn;
+        private System.Windows.Forms.DataGridViewImageColumn editCollumn;
+        private System.Windows.Forms.DataGridViewImageColumn deleteCollumn;
     }
 }
