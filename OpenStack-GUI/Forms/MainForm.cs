@@ -81,6 +81,7 @@ namespace OpenStack_GUI.Forms
             fillVolumesTab();
             fillinstanceTab();
             fillKeyTab();
+            fillContainersTab();
         }
 
         private void fillVolumesTab()
@@ -127,6 +128,17 @@ namespace OpenStack_GUI.Forms
             panelKeyPair.Controls.Add(keyPairForm);
             keyPairForm.Show();
             keyPairForm.Dock = DockStyle.Fill;
+        }
+
+        private void fillContainersTab()
+        {
+            panelContainers.Controls.Clear();
+            ContainersForm containerForm = new ContainersForm();
+            containerForm.TopLevel = false;
+            containerForm.AutoScroll = true;
+            panelContainers.Controls.Add(containerForm);
+            containerForm.Show();
+            containerForm.Dock = DockStyle.Fill;
         }
 
         private string getSelectedProjectId() //Get the id of the project currently selected

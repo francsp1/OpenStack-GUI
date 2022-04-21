@@ -141,11 +141,11 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TestForm.cs">
+    <Compile Include="Forms\ContainersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TestForm.Designer.cs">
-      <DependentUpon>TestForm.cs</DependentUpon>
+    <Compile Include="Forms\ContainersForm.Designer.cs">
+      <DependentUpon>ContainersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\GlobalSessionDetails.cs" />
     <Compile Include="Models\Images.cs" />
@@ -175,8 +175,8 @@
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TestForm.resx">
-      <DependentUpon>TestForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ContainersForm.resx">
+      <DependentUpon>ContainersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
