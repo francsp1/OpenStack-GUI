@@ -20,13 +20,13 @@ namespace OpenStack_GUI.Forms
 
             materialSkinInitialize();
 
-            
+            /*
             txtDomain.Text = "192.168.100.140";
             txtPort.Text = "80";
             txtUsername.Text = "demo";
             //txtPassword.Text = "secret";
             txtPassword.Text = "password";
-            
+            */
 
             /*
             txtDomain.Text = "127.0.0.1";
