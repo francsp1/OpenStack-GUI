@@ -78,5 +78,85 @@ namespace OpenStack_GUI.Forms
             } while (responseJsonObject["next"].ToString() != "");  // get the containers while there is a next filed in the response 
 
         }
+
+        private void containersGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == containersGridView.Columns["deleteCollumn"].Index)
+            {
+                deleteContainer(containersGridView[0, e.RowIndex].Value.ToString());
+                fillContainersDataGridView();
+
+            }
+        }
+
+        private void deleteContainer(string containerId)
+        {
+            string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/container/v1/containers/" + containerId;
+
+            var request = new HttpRequestMessage(HttpMethod.Delete, url);
+            var client = GlobalSessionDetails._clientFactory.CreateClient();
+
+            client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+
+            client.DefaultRequestHeaders.ExpectContinue = false;
+
+
+            var response = client.SendAsync(request).Result;
+            var json = response.Content.ReadAsStringAsync().Result;
+
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show(response.ReasonPhrase, "Could not Delete the container", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("Container deleted with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnCreateContainer_Click(object sender, EventArgs e)
+        {
+            string name = txtContainerName.Text;
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("Please, enter a valid Container Name", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string imageName = txtContainerImage.Text;
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("Please, enter a valid Image Name/ID", "Invalid field!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            string url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/container/v1/containers/";
+
+            var requestJson = "{\"name\":\"" + name + "\",\"image\":\"" + imageName + "\"}";
+            var payload = new StringContent(requestJson, Encoding.UTF8, "application/json");
+
+            var request = new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = payload,
+            };
+
+            var client = GlobalSessionDetails._clientFactory.CreateClient();
+
+            client.DefaultRequestHeaders.Add("X-Auth-Token", GlobalSessionDetails.ScopedToken);
+
+            client.DefaultRequestHeaders.ExpectContinue = false;
+
+            var response = client.SendAsync(request).Result;
+            var json = response.Content.ReadAsStringAsync().Result;
+
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show(response.ReasonPhrase, "Could not create the Container", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("Container Created with success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            fillContainersDataGridView();
+            containersTabControl.SelectedTab = containersTabPage;
+        }
     }
 }
