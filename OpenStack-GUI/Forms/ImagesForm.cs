@@ -120,6 +120,8 @@ namespace OpenStack_GUI.Forms
                         (((float)long.Parse( string.IsNullOrWhiteSpace(imageSize)  ? "0" : imageSize) / 1048576)).ToString("0.00") + "MB"
                         );
                 }
+                var teste = responseJsonObject["next"];
+
                 if (responseJsonObject["next"] != null)
                 {
                     url = GlobalSessionDetails.Protocol + "://" + GlobalSessionDetails.Domain + ":" + GlobalSessionDetails.Port + "/image" + responseJsonObject["next"].ToString();
