@@ -28,10 +28,11 @@ namespace OpenStack_GUI.Forms
 
             fillImagesDataGridView();
 
+            /*
             txtImageFile.Text = "C:\\Users\\franc\\Downloads\\cirros-0.4.0-x86_64-disk.img";
             txtImageName.Text = "Teste";
             txtImageDescription.Text = "T desc";
-
+            */
 
         }
 
